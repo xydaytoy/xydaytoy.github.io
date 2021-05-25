@@ -1,45 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>fairseq_tips</title>
-      <link href="2021/05/21/fairseq-tips/"/>
-      <url>2021/05/21/fairseq-tips/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
+<search>
+  <entry>
+    <title>fairseq_tips</title>
+    <url>/2021/05/21/fairseq-tips/</url>
+    <content><![CDATA[]]></content>
       <categories>
-          
-          <category> fairseq </category>
-          
+        <category>fairseq</category>
       </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>tensorflow_tips</title>
-      <link href="2021/05/21/tensorflow-tips/"/>
-      <url>2021/05/21/tensorflow-tips/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
+  </entry>
+  <entry>
+    <title>tensorflow_tips</title>
+    <url>/2021/05/21/tensorflow-tips/</url>
+    <content><![CDATA[]]></content>
       <categories>
-          
-          <category> tensorflow </category>
-          
+        <category>tensorflow</category>
       </categories>
-      
-      
-    </entry>
-    
-    
-  
-  
+  </entry>
 </search>
