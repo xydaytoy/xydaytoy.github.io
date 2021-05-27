@@ -3,7 +3,10 @@
   <entry>
     <title>github博客常用命令</title>
     <url>/2021/05/27/blog-instructions/</url>
-    <content><![CDATA[<ul>
+    <content><![CDATA[<p>汇总一些博客常用命令和备份博客的方法。</p>
+<span id="more"></span>
+
+<ul>
 <li>新建：</li>
 </ul>
 <p><code>hexo init [folder]</code><br>新建网站，有folder就新建一个名为folder的文件夹并将网站存在该文件夹下，没有folder就将网站存在当前目录下。</p>
@@ -25,16 +28,25 @@
 <li>备份</li>
 </ul>
 <p>采用同上传文件的方式来备份网站源文件，在github上建立一个private仓库，将网站的文件夹整体移动到克隆到本地的备份文件夹中，每隔一段时间上传最新的文件来备份网站。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit  -m  &quot;backup&quot;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit  -m  &quot;backup&quot;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>code</category>
         <category>github</category>
       </categories>
   </entry>
   <entry>
-    <title>fairseq踩坑记录</title>
+    <title>fairseq代码位置记录</title>
     <url>/2021/05/21/fairseq-tips/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>记录一些fairseq中功能实现的代码位置。</p>
+<p>fairseq版本: 0.9.0</p>
+<span id="more"></span>
+
+<ul>
+<li>ensemble集成</li>
+</ul>
+<p>在fairseq/sequence_generator.py中760行，ensemble在beam search之前。</p>
+]]></content>
       <categories>
         <category>code</category>
         <category>pytorch</category>
@@ -42,18 +54,116 @@
       </categories>
   </entry>
   <entry>
-    <title>tensorflow踩坑记录</title>
-    <url>/2021/05/21/tensorflow-tips/</url>
-    <content><![CDATA[]]></content>
+    <title>fairseq踩坑记录</title>
+    <url>/2021/05/27/fairseq-tips1/</url>
+    <content><![CDATA[<p>记录一些fairseq中遇到的bug和解决方案。</p>
+<p>fairseq版本: 0.9.0</p>
+<span id="more"></span>
+
+<ul>
+<li>torch.max返回值</li>
+</ul>
+<p>报错：<code>TypeError: expected Tensor as element 0 in argument 0, but got torch.return_types.max</code></p>
+<p>原因是torch.max(a, dim=)返回值是tuple类型，第一个元素是值，第二个元素是索引，因此只需要返回值的tensor时，torch.max(a, dim=).values即可</p>
+<ul>
+<li>导致维度变化的命令</li>
+</ul>
+<p>torch.max=tf.reduce_sum，都会使维度减一</p>
+<p>a = a[:-1:] 也会使维度减一</p>
+<p>cat维度不变，stack使维度加一，都是tensor拼接的功能</p>
+<ul>
+<li>cpu和gpu上变量的类型不匹配问题</li>
+</ul>
+<p>报错：RuntimeError: expected device cpu but got device cuda:0</p>
+<p>可能出现错误的位置：</p>
+<blockquote>
+<p>等号左边和右边类型不一样</p>
+</blockquote>
+<blockquote>
+<p>运算符左右两端类型不同，例：+ - * /</p>
+</blockquote>
+<blockquote>
+<p>同一个函数内，传入参数的类型不同，例matmul等</p>
+</blockquote>
+<p>把tensor转移到相同的设备上解决问题</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-&gt;cuda : data.cuda()</span><br><span class="line">-&gt;cpu: data.cpu()</span><br><span class="line">-&gt;numpy：</span><br><span class="line">cuda类型不能直接转numpy 须先转成cpu类型，data.cpu().numpy()</span><br><span class="line">在cuda下训练中的数据不能直接转换为numpy，data.cpu().detach().numpy()</span><br></pre></td></tr></table></figure>
+<p>参考: <a href="https://blog.csdn.net/qq_41368074/article/details/105942534">https://blog.csdn.net/qq_41368074/article/details/105942534</a></p>
+]]></content>
       <categories>
         <category>code</category>
-        <category>tensorflow</category>
+        <category>pytorch</category>
+        <category>fairseq</category>
       </categories>
   </entry>
   <entry>
-    <title>tf张量转换</title>
+    <title>hexo_next_tips</title>
+    <url>/2021/05/27/hexo-next-tips/</url>
+    <content><![CDATA[<p>hexo+next框架博客的一些附加功能记录。</p>
+<p>hexo: 5.4.0</p>
+<p>next: 7.8.0</p>
+<span id="more"></span>
+
+<ul>
+<li>版本信息：</li>
+</ul>
+<p>hexo和next版本信息可在相应文件夹的package.json中搜索version查看。</p>
+<ul>
+<li>版权声明:</li>
+</ul>
+<p>在.\themes\next\layout_macro\目录下，新建my-copyright.swig文件，内容为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% if page.copyright %&#125;</span><br><span class="line">&lt;div class&#x3D;&quot;my_post_copyright&quot;&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;&#x2F;cdn.bootcss.com&#x2F;clipboard.js&#x2F;1.5.10&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;!-- JS库 sweetalert 可修改路径 --&gt;</span><br><span class="line">  &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;http:&#x2F;&#x2F;jslibs.wuxubj.cn&#x2F;sweetalert_mini&#x2F;jquery-1.7.1.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;http:&#x2F;&#x2F;jslibs.wuxubj.cn&#x2F;sweetalert_mini&#x2F;sweetalert.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; type&#x3D;&quot;text&#x2F;css&quot; href&#x3D;&quot;http:&#x2F;&#x2F;jslibs.wuxubj.cn&#x2F;sweetalert_mini&#x2F;sweetalert.mini.css&quot;&gt;</span><br><span class="line"></span><br><span class="line">  &lt;p&gt;&lt;span&gt;本文标题:&lt;&#x2F;span&gt;&#123;&#123; page.title &#125;&#125;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;</span><br><span class="line">  &lt;p&gt;&lt;span&gt;本文作者:&lt;&#x2F;span&gt;xxx&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;</span><br><span class="line">  &lt;p&gt;&lt;span&gt;本文链接:&lt;&#x2F;span&gt;&lt;a href&#x3D;&quot;&#123;&#123; url_for(page.path) &#125;&#125;&quot; title&#x3D;&quot;&#123;&#123; page.title &#125;&#125;&quot;&gt;&#123;&#123; page.permalink &#125;&#125;&lt;&#x2F;a&gt;</span><br><span class="line">    &lt;span class&#x3D;&quot;copy-path&quot;  title&#x3D;&quot;点击复制文章链接&quot;&gt;&lt;i class&#x3D;&quot;fa fa-clipboard&quot; data-clipboard-text&#x3D;&quot;&#123;&#123; page.permalink &#125;&#125;&quot;  aria-label&#x3D;&quot;复制成功！&quot;&gt;&lt;&#x2F;i&gt;&lt;&#x2F;span&gt;</span><br><span class="line">  &lt;&#x2F;p&gt;</span><br><span class="line">  &lt;p&gt;&lt;span&gt;版权声明:&lt;&#x2F;span&gt;本博客所有文章除特别声明外，均采用&lt;a rel&#x3D;&quot;license&quot; href&#x3D;&quot;https:&#x2F;&#x2F;creativecommons.org&#x2F;licenses&#x2F;by-nc-nd&#x2F;4.0&#x2F;&quot; target&#x3D;&quot;_blank&quot; title&#x3D;&quot;Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)&quot;&gt;CC BY-NC-ND&lt;&#x2F;a&gt;许可协议。转载请注明出处！&lt;&#x2F;p&gt;  </span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;script&gt; </span><br><span class="line">    var clipboard &#x3D; new Clipboard(&#39;.fa-clipboard&#39;);</span><br><span class="line">    clipboard.on(&#39;success&#39;, $(function()&#123;</span><br><span class="line">      $(&quot;.fa-clipboard&quot;).click(function()&#123;</span><br><span class="line">        swal(&#123;   </span><br><span class="line">          title: &quot;&quot;,   </span><br><span class="line">          text: &#39;复制成功&#39;,   </span><br><span class="line">          html: false,</span><br><span class="line">          timer: 500,   </span><br><span class="line">          showConfirmButton: false</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;));  </span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>打开.\themes\next\layout_macro\post.swig文件，在</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;#####################&#125;</span><br><span class="line">&#123;### END POST BODY ###&#125;</span><br><span class="line">&#123;#####################&#125;</span><br></pre></td></tr></table></figure>
+<p>之后添加：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!--添加版权信息--&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &#123;% if not is_index %&#125;</span><br><span class="line">    &#123;% include &#39;my-copyright.swig&#39; %&#125;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在.\themes\next\source\css_common\components\post\目录下，新建my-post-copyright.styl文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.my_post_copyright &#123;</span><br><span class="line">  width: 85%;</span><br><span class="line">  max-width: 45em;</span><br><span class="line">  margin: 2.8em auto 0;</span><br><span class="line">  padding: 0.5em 1.0em;</span><br><span class="line">  border: 1px solid #d3d3d3;</span><br><span class="line">  font-size: 0.93rem;</span><br><span class="line">  line-height: 1.6em;</span><br><span class="line">  word-break: break-all;</span><br><span class="line">  background: rgba(255,255,255,0.4);</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright p&#123;margin:0;&#125;</span><br><span class="line">.my_post_copyright span &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  width: 5.2em;</span><br><span class="line">  color: #333333; &#x2F;&#x2F; title color</span><br><span class="line">  font-weight: bold;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright .raw &#123;</span><br><span class="line">  margin-left: 1em;</span><br><span class="line">  width: 5em;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright a &#123;</span><br><span class="line">  color: #808080;</span><br><span class="line">  border-bottom:0;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright a:hover &#123;</span><br><span class="line">  color: #0593d3; &#x2F;&#x2F; link color</span><br><span class="line">  text-decoration: underline;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright:hover .fa-clipboard &#123;</span><br><span class="line">  color: #000;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright .post-url:hover &#123;</span><br><span class="line">  font-weight: normal;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright .copy-path &#123;</span><br><span class="line">  margin-left: 1em;</span><br><span class="line">  width: 1em;</span><br><span class="line">  +mobile()&#123;display:none;&#125;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright .copy-path:hover &#123;</span><br><span class="line">  color: #808080;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>打开.\themes\next\source\css_common\components\post\post.styl文件，在最后添加：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@import &quot;my-post-copyright&quot;</span><br></pre></td></tr></table></figure>
+
+<p>打开.\scaffolds\post.md文件，设置新文件开启版权声明</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">copyright: true #开启</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>参考：<a href="https://blog.csdn.net/u011236348/article/details/88169271">https://blog.csdn.net/u011236348/article/details/88169271</a></p>
+<ul>
+<li>访客/阅读量统计</li>
+</ul>
+<p>打开.\themes\next_config.yml文件，<br>搜索busuanzi_count关键字，把enable设置为true，</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Show Views &#x2F; Visitors of the website &#x2F; page with busuanzi.</span><br><span class="line"># Get more information on http:&#x2F;&#x2F;ibruce.info&#x2F;2015&#x2F;04&#x2F;04&#x2F;busuanzi</span><br><span class="line">busuanzi_count:</span><br><span class="line">  enable: true</span><br><span class="line">  total_visitors: true #访客数</span><br><span class="line">  total_visitors_icon: fa fa-user</span><br><span class="line">  total_views: true #访问数</span><br><span class="line">  total_views_icon: fa fa-eye</span><br><span class="line">  post_views: true #文章阅读量</span><br><span class="line">  post_views_icon: fa fa-eye</span><br></pre></td></tr></table></figure>
+<p>同一文件，搜索footer关键字，在其底下添加counter，设值为true。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">footer:</span><br><span class="line">  # Specify the date when the site was setup. If not defined, current year will be used.</span><br><span class="line">  #since: 2015</span><br><span class="line">  # count for visit</span><br><span class="line">  counter: true</span><br></pre></td></tr></table></figure>
+
+<p>打开.\themes\next\layout_partials\footer.swig文件，添加代码。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% if theme.footer.counter %&#125;</span><br><span class="line">    &lt;script async src&#x3D;&quot;&#x2F;&#x2F;dn-lbstatics.qbox.me&#x2F;busuanzi&#x2F;2.3&#x2F;busuanzi.pure.mini.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>访客、访问次数在网站主页底部，文章阅读量在文章开头。</p>
+<p>参考：<a href="https://blog.csdn.net/baidu_34310405/article/details/102665373">https://blog.csdn.net/baidu_34310405/article/details/102665373</a></p>
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>hexo</category>
+        <category>next</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>tf-tensor变换</title>
     <url>/2021/05/27/tf-tensor-conversion/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>tensorflow中tensor变换的函数汇总。</p>
+<span id="more"></span>
+
+<p><code>tf.stack</code><br>list-&gt;tensor<br>（tf.convert_to_tensor）</p>
+<p><code>tf.unstack</code><br>tensor-&gt;list</p>
+<p><code>tf.expand_dims</code><br>扩展维度</p>
+<p><code>reduce_sum/max/mean</code><br>减少维度</p>
+<p><code>tf.reshape</code><br>改变各维度大小（可增加减少维度）</p>
+<p><code>tf.transpose</code><br>调换维度顺序</p>
+<p><code>tf.tile</code><br>不改变维度的复制</p>
+<p><code>tf.concat</code><br>不改变维度的拼接</p>
+<p><code>tf.broadcast_to</code><br>广播</p>
+]]></content>
       <categories>
         <category>code</category>
         <category>tensorflow</category>
