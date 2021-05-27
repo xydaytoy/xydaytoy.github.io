@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head> 
+<meta charset="utf-8"> 
+<title>schedule</title> 
+<link rel="stylesheet" href="css/jquery.fullPage.css">
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/jquery.fullPage.min.js"></script>
+<script>
+$(function(){
+	$('#dowebok').fullpage({
+		sectionsColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff']
+	});
+});
+</script>
+</head>
+<body>
+<div id="dowebok">
+	<div class="section">
+	    <p id="ymd" style="text-align:center;font-family:FZYaoti;color:black;font-size:40px;"></p>
+		<script>
+			var date = new Date()<!--获得日期数据-->
+			var y = date.getFullYear();<!--年-->
+			var m = date.getMonth()+1;<!--月，这里的月份必须要+1才是当前月份-->
+			var d = date.getDate(); <!--日，getDay是获得当前星期几（0-6），getDate是获得当前日期-->
+			var i=parseInt(y);
+			var j=i/1000
+			j=parseInt(j)
+			i=i%1000
+			var k=i/100
+			k=parseInt(k)
+			i=i%100
+			var p=i/10
+			p=parseInt(p)
+			i=i%10
+			if(i==1){i="一"}
+			else if(i==2){i="二"}
+			else if(i==3){i="三"}
+			else if(i==4){i="四"}
+			else if(i==5){i="五"}
+			else if(i==6){i="六"}
+			else if(i==7){i="七"}
+			else if(i==8){i="八"}
+			else if(i==9){i="九"}
+			else if(i==0){i="零"}
+			
+			if(j==1){j="一"}
+			else if(j==2){j="二"}
+			else if(j==3){j="三"}
+			else if(j==4){j="四"}
+			else if(j==5){j="五"}
+			else if(j==6){j="六"}
+			else if(j==7){j="七"}
+			else if(j==8){j="八"}
+			else if(j==9){j="九"}
+			else if(j==0){j="零"}
+			
+			if(k==1){k="一"}
+			else if(k==2){k="二"}
+			else if(k==3){k="三"}
+			else if(k==4){k="四"}
+			else if(k==5){k="五"}
+			else if(k==6){k="六"}
+			else if(k==7){k="七"}
+			else if(k==8){k="八"}
+			else if(k==9){k="九"}
+			else if(k==0){k="零"}
+			
+			if(p==1){p="一"}
+			else if(p==2){p="二"}
+			else if(p==3){p="三"}
+			else if(p==4){p="四"}
+			else if(p==5){p="五"}
+			else if(p==6){p="六"}
+			else if(p==7){p="七"}
+			else if(p==8){p="八"}
+			else if(p==9){p="九"}
+			else if(p==0){p="零"}
+			
+			if(m==1){m="一"}
+			else if(m==1){m="二"}
+			else if(m==2){m="三"}
+			else if(m==3){m="四"}
+			else if(m==4){m="五"}
+			else if(m==5){m="六"}
+			else if(m==6){m="七"}
+			else if(m==7){m="八"}
+			else if(m==8){m="九"}
+			else if(m==9){m="十"}
+			else if(m==10){m="十一"}
+			else if(m==11){m="十二"}
+			else if(m==12){m="十三"}
+			if(d==1){d="一"}
+			else if(d==2){d="二"}
+			else if(d==3){d="三"}
+			else if(d==4){d="四"}
+			else if(d==5){d="五"}
+			else if(d==6){d="六"}
+			else if(d==7){d="七"}
+			else if(d==8){d="八"}
+			else if(d==9){d="九"}
+			else if(d==10){d="十"}
+			else if(d==11){d="十一"}
+			else if(d==12){d="十二"}
+			else if(d==13){d="十三"}
+			else if(d==14){d="十四"}
+			else if(d==15){d="十五"}
+			else if(d==16){d="十六"}
+			else if(d==17){d="十七"}
+			else if(d==18){d="十八"}
+			else if(d==19){d="十九"}
+			else if(d==20){d="二十"}
+			else if(d==21){d="二十一"}
+			else if(d==22){d="二十二"}
+			else if(d==23){d="二十三"}
+			else if(d==24){d="二十四"}
+			else if(d==25){d="二十五"}
+			else if(d==26){d="二十六"}
+			else if(d==27){d="二十七"}
+			else if(d==28){d="二十八"}
+			else if(d==29){d="二十九"}
+			else if(d==30){d="三十"}
+			else if(d==31){d="三十一"}
+			document.getElementById("ymd").innerHTML = j+k+p+i+"年"+m+"月"+d+"日";
+		</script>
+		<hr style="width:50%" />
+	</div>
+	<div class="section">
+		<p style="text-align:center;font-family:FZYaoti;color:black;font-size:40px;">1858年9月19日：<br>很愉快。决定了，应当爱、应当劳动！就这样。<br>1858年9月20日：<br>很累。不想爱了，也不想劳动了。</p>
+	<p style="text-align:center;font-family:FZYaoti;color:black;font-size:20px;">————列夫·托尔斯泰</p>
+	</div>
+	<div class="section">
+		<p style="text-align:center;font-family:FZYaoti;color:black;font-size:40px;">1858年9月19日：<br>很愉快。决定了，应当爱、应当劳动！就这样。<br>1858年9月20日：<br>很累。不想爱了，也不想劳动了。</p>
+	<p style="text-align:center;font-family:FZYaoti;color:black;font-size:20px;">————列夫·托尔斯泰</p>
+	</div>
+</div>
+</body>
+</html>

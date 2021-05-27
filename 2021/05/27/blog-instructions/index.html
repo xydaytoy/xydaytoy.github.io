@@ -28,7 +28,7 @@
 <meta property="og:description" content="汇总一些博客常用命令和备份博客的方法。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-05-27T04:00:45.000Z">
-<meta property="article:modified_time" content="2021-05-27T06:16:40.068Z">
+<meta property="article:modified_time" content="2021-05-27T08:43:25.186Z">
 <meta property="article:author" content="xydaytoy">
 <meta name="twitter:card" content="summary">
 
@@ -118,11 +118,6 @@
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
@@ -131,6 +126,11 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>摘记</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -212,7 +212,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-05-27 12:00:45 / 修改时间：14:16:40" itemprop="dateCreated datePublished" datetime="2021-05-27T12:00:45+08:00">2021-05-27</time>
+              <time title="创建时间：2021-05-27 12:00:45 / 修改时间：16:43:25" itemprop="dateCreated datePublished" datetime="2021-05-27T12:00:45+08:00">2021-05-27</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -220,11 +220,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/code/" itemprop="url" rel="index"><span itemprop="name">code</span></a>
+                  <a href="/categories/other/" itemprop="url" rel="index"><span itemprop="name">other</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/code/github/" itemprop="url" rel="index"><span itemprop="name">github</span></a>
+                  <a href="/categories/other/github/" itemprop="url" rel="index"><span itemprop="name">github</span></a>
                 </span>
             </span>
 
@@ -246,31 +246,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>汇总一些博客常用命令和备份博客的方法。</p>
+        <blockquote>
+<p>汇总一些博客常用命令和备份博客的方法。</p>
+</blockquote>
 <span id="more"></span>
 
-<ul>
-<li>新建：</li>
-</ul>
-<p><code>hexo init [folder]</code><br>新建网站，有folder就新建一个名为folder的文件夹并将网站存在该文件夹下，没有folder就将网站存在当前目录下。</p>
+<h1 id="新建："><a href="#新建：" class="headerlink" title="新建："></a>新建：</h1><p><code>hexo init [folder]</code><br>新建网站，有folder就新建一个名为folder的文件夹并将网站存在该文件夹下，没有folder就将网站存在当前目录下。</p>
 <p><code>hexo new [layout] “title”</code><br>新建文章，如果没有设置 layout 的话，默认使用 _config.yml 中的 default_layout 参数代替，文章标题用双引号括起来。</p>
-<ul>
-<li>部署更改:</li>
-</ul>
-<p><code>hexo clean</code><br>清除缓存文件(db.json)和已生成的静态文件(public)，当更改不生效时可以使用该命令。</p>
+<h1 id="部署更改"><a href="#部署更改" class="headerlink" title="部署更改:"></a>部署更改:</h1><p><code>hexo clean</code><br>清除缓存文件(db.json)和已生成的静态文件(public)，当更改不生效时可以使用该命令。</p>
 <p><code>hexo g / hexo generate</code><br>生成静态文件，之后可启动服务器或者部署网站。</p>
 <p><code>hexo s / hexo server</code><br>启动服务器，可访问<a target="_blank" rel="noopener" href="http://localhost:4000/%E6%9F%A5%E7%9C%8B%E3%80%82">http://localhost:4000/查看。</a></p>
 <p><code>hexo d / hexo deploy</code><br>部署网站，可访问网站链接查看。</p>
-<ul>
-<li>上传文件：</li>
-</ul>
-<p>在github上code下载处复制<a target="_blank" rel="noopener" href="https://github.com/xxx.git">https://github.com/xxx.git</a> 的链接，<br>在本地git bash中输入<code>git clone https://github.com/xxx.git</code> 克隆仓库到本地，<br>将需要上传的文件复制到本地生成的文件夹中，输入命令：</p>
+<h1 id="上传文件："><a href="#上传文件：" class="headerlink" title="上传文件："></a>上传文件：</h1><p>在github上code下载处复制<a target="_blank" rel="noopener" href="https://github.com/xxx.git">https://github.com/xxx.git</a> 的链接，<br>在本地git bash中输入<code>git clone https://github.com/xxx.git</code> 克隆仓库到本地，<br>将需要上传的文件复制到本地生成的文件夹中，输入命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add . #将文件夹下的所有文件都添加进来</span><br><span class="line">git commit  -m  &quot;first commit&quot;  #“first commit”可替换成任意需要的注释信息</span><br><span class="line">git push -u origin main  #将本地仓库push到github上面，2020年10月1日之后，github新创建的仓库默认分支都将使用main，而不是之前的master，要注意。</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>备份</li>
-</ul>
-<p>采用同上传文件的方式来备份网站源文件，在github上建立一个private仓库，将网站的文件夹整体移动到克隆到本地的备份文件夹中，每隔一段时间上传最新的文件来备份网站。</p>
+<h1 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h1><p>采用同上传文件的方式来备份网站源文件，在github上建立一个private仓库，将网站的文件夹整体移动到克隆到本地的备份文件夹中，每隔一段时间上传最新的文件来备份网站。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit  -m  &quot;backup&quot;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
 
     </div>
@@ -389,6 +379,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">新建：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E6%9B%B4%E6%94%B9"><span class="nav-number">2.</span> <span class="nav-text">部署更改:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">上传文件：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%87%E4%BB%BD"><span class="nav-number">4.</span> <span class="nav-text">备份</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -409,11 +400,19 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xydaytoy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xydaytoy" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:daytoy2018@gmail.com" title="E-Mail → mailto:daytoy2018@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
 
 
 
