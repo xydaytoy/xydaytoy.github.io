@@ -20,15 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="札记">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="新建：  hexo init [folder]新建网站，有folder就新建一个名为folder的文件夹并将网站存在该文件夹下，没有folder就将网站存在当前目录下。 hexo new [layout] “title”新建文章，如果没有设置 layout 的话，默认使用 _config.yml 中的 default_layout 参数代替，文章标题用双引号括起来。  部署更改:  hexo c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="github博客常用命令">
+<meta property="og:url" content="http://example.com/2021/05/27/blog-instructions/index.html">
 <meta property="og:site_name" content="札记">
+<meta property="og:description" content="新建：  hexo init [folder]新建网站，有folder就新建一个名为folder的文件夹并将网站存在该文件夹下，没有folder就将网站存在当前目录下。 hexo new [layout] “title”新建文章，如果没有设置 layout 的话，默认使用 _config.yml 中的 default_layout 参数代替，文章标题用双引号括起来。  部署更改:  hexo c">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-27T04:00:45.000Z">
+<meta property="article:modified_time" content="2021-05-27T05:48:12.151Z">
 <meta property="article:author" content="xydaytoy">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/archives/">
+<link rel="canonical" href="http://example.com/2021/05/27/blog-instructions/">
 
 
 <script id="page-configurations">
@@ -36,12 +40,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | 札记</title>
+  <title>github博客常用命令 | 札记</title>
   
 
 
@@ -172,90 +176,148 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 3 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/27/blog-instructions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xydaytoy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="札记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          github博客常用命令
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-27 12:00:45 / 修改时间：13:48:12" itemprop="dateCreated datePublished" datetime="2021-05-27T12:00:45+08:00">2021-05-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/code/" itemprop="url" rel="index"><span itemprop="name">code</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/code/github/" itemprop="url" rel="index"><span itemprop="name">github</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+        <ul>
+<li>新建：</li>
+</ul>
+<p><code>hexo init [folder]</code><br>新建网站，有folder就新建一个名为folder的文件夹并将网站存在该文件夹下，没有folder就将网站存在当前目录下。</p>
+<p><code>hexo new [layout] “title”</code><br>新建文章，如果没有设置 layout 的话，默认使用 _config.yml 中的 default_layout 参数代替，文章标题用双引号括起来。</p>
+<ul>
+<li>部署更改:</li>
+</ul>
+<p><code>hexo clean</code><br>清除缓存文件(db.json)和已生成的静态文件(public)，当更改不生效时可以使用该命令。</p>
+<p><code>hexo g / hexo generate</code><br>生成静态文件，之后可启动服务器或者部署网站。</p>
+<p><code>hexo s / hexo server</code><br>启动服务器，可访问<a target="_blank" rel="noopener" href="http://localhost:4000/%E6%9F%A5%E7%9C%8B%E3%80%82">http://localhost:4000/查看。</a></p>
+<p><code>hexo d / hexo deploy</code><br>部署网站，可访问网站链接查看。</p>
+<ul>
+<li>上传文件：</li>
+</ul>
+<p>在github上code下载处复制<a target="_blank" rel="noopener" href="https://github.com/xxx.git">https://github.com/xxx.git</a> 的链接，<br>在本地git bash中输入<code>git clone https://github.com/xxx.git</code> 克隆仓库到本地，<br>将需要上传的文件复制到本地生成的文件夹中，输入命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add . #将文件夹下的所有文件都添加进来</span><br><span class="line">git commit  -m  &quot;first commit&quot;  #“first commit”可替换成任意需要的注释信息</span><br><span class="line">git push -u origin main  #将本地仓库push到github上面，2020年10月1日之后，github新创建的仓库默认分支都将使用main，而不是之前的master，要注意。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>备份</li>
+</ul>
+<p>采用同上传文件的方式来备份网站源文件，在github上建立一个private仓库，将网站的文件夹整体移动到克隆到本地的备份文件夹中，每隔一段时间上传最新的文件来备份网站。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit  -m  &quot;backup&quot;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-05-27T12:00:45+08:00"
-              content="2021-05-27">
-          05-27
-        </time>
-      </div>
+    <!--添加版权信息-->
+    <div>
+        
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/05/27/blog-instructions/" itemprop="url">
-            <span itemprop="name">github博客常用命令</span>
-          </a>
-      </div>
+  <p><span>本文标题:</span>github博客常用命令</a></p>
+  <p><span>本文作者:</span>xydaytoy</a></p>
+  <p><span>本文链接:</span><a href="/2021/05/27/blog-instructions/" title="github博客常用命令">http://example.com/2021/05/27/blog-instructions/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://example.com/2021/05/27/blog-instructions/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>版权声明:</span>本博客所有文章除特别声明外，均采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND</a>许可协议。转载请注明出处！</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
 
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-05-21T18:59:52+08:00"
-              content="2021-05-21">
-          05-21
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/05/21/fairseq-tips/" itemprop="url">
-            <span itemprop="name">fairseq踩坑记录</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-05-21T18:03:27+08:00"
-              content="2021-05-21">
-          05-21
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/05/21/tensorflow-tips/" itemprop="url">
-            <span itemprop="name">tensorflow踩坑记录</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-
+        
     </div>
-  </div>
-  
-  
-  
 
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/21/fairseq-tips/" rel="prev" title="fairseq踩坑记录">
+      <i class="fa fa-chevron-left"></i> fairseq踩坑记录
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
