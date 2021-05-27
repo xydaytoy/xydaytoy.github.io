@@ -32,6 +32,16 @@
       </categories>
   </entry>
   <entry>
+    <title>fairseq踩坑记录</title>
+    <url>/2021/05/21/fairseq-tips/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>code</category>
+        <category>pytorch</category>
+        <category>fairseq</category>
+      </categories>
+  </entry>
+  <entry>
     <title>tensorflow踩坑记录</title>
     <url>/2021/05/21/tensorflow-tips/</url>
     <content><![CDATA[]]></content>
@@ -41,13 +51,12 @@
       </categories>
   </entry>
   <entry>
-    <title>fairseq踩坑记录</title>
-    <url>/2021/05/21/fairseq-tips/</url>
+    <title>tf张量转换</title>
+    <url>/2021/05/27/tf-tensor-conversion/</url>
     <content><![CDATA[]]></content>
       <categories>
         <category>code</category>
-        <category>pytorch</category>
-        <category>fairseq</category>
+        <category>tensorflow</category>
       </categories>
   </entry>
 </search>
