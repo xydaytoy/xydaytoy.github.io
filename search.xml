@@ -117,6 +117,11 @@
 <blockquote>
 <p>参考：<a href="https://blog.csdn.net/baidu_34310405/article/details/102665373">https://blog.csdn.net/baidu_34310405/article/details/102665373</a></p>
 </blockquote>
+<h1 id="博客中插入自己编写的html页面"><a href="#博客中插入自己编写的html页面" class="headerlink" title="博客中插入自己编写的html页面"></a>博客中插入自己编写的html页面</h1><p>看到next官方readme中LEAFERx博客sentence页面很好看，也动手搞一个类似的。利用jQuery的全屏滚动插件fullPage.js实现，网页部分主要参考链接中的代码。</p>
+<p>将自己的html页面插入博客中，首先新建一个页面<code>hexo new page &quot;schedule&quot;</code>，在生成的文件夹source/schedule/下复制网页的css/js/html文件即可</p>
+<blockquote>
+<p>参考：<a href="https://www.dowebok.com/77.html">https://www.dowebok.com/77.html</a></p>
+</blockquote>
 ]]></content>
       <categories>
         <category>other</category>
