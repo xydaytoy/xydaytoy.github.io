@@ -23,73 +23,65 @@ $(function(){
 			var y = date.getFullYear();<!--年-->
 			var m = date.getMonth()+1;<!--月，这里的月份必须要+1才是当前月份-->
 			var d = date.getDate(); <!--日，getDay是获得当前星期几（0-6），getDate是获得当前日期-->
-			var i=parseInt(y);
-			var j=i/1000
-			j=parseInt(j)
-			i=i%1000
-			var k=i/100
-			k=parseInt(k)
-			i=i%100
-			var p=i/10
-			p=parseInt(p)
-			i=i%10
-			if(i==1){i="一"}
-			else if(i==2){i="二"}
-			else if(i==3){i="三"}
-			else if(i==4){i="四"}
-			else if(i==5){i="五"}
-			else if(i==6){i="六"}
-			else if(i==7){i="七"}
-			else if(i==8){i="八"}
-			else if(i==9){i="九"}
-			else if(i==0){i="零"}
-			
-			if(j==1){j="一"}
-			else if(j==2){j="二"}
-			else if(j==3){j="三"}
-			else if(j==4){j="四"}
-			else if(j==5){j="五"}
-			else if(j==6){j="六"}
-			else if(j==7){j="七"}
-			else if(j==8){j="八"}
-			else if(j==9){j="九"}
-			else if(j==0){j="零"}
-			
-			if(k==1){k="一"}
-			else if(k==2){k="二"}
-			else if(k==3){k="三"}
-			else if(k==4){k="四"}
-			else if(k==5){k="五"}
-			else if(k==6){k="六"}
-			else if(k==7){k="七"}
-			else if(k==8){k="八"}
-			else if(k==9){k="九"}
-			else if(k==0){k="零"}
-			
-			if(p==1){p="一"}
-			else if(p==2){p="二"}
-			else if(p==3){p="三"}
-			else if(p==4){p="四"}
-			else if(p==5){p="五"}
-			else if(p==6){p="六"}
-			else if(p==7){p="七"}
-			else if(p==8){p="八"}
-			else if(p==9){p="九"}
-			else if(p==0){p="零"}
-			
+			y=parseInt(y);
+			var y1=parseInt(y/1000)
+			y=y%1000
+			var y2=parseInt(y/100)
+			y=y%100
+			var y3=parseInt(y/10)
+			y4=y%10
+			if(y1==1){y1="一"}
+			else if(y1==2){y1="二"}
+			else if(y1==3){y1="三"}
+			else if(y1==4){y1="四"}
+			else if(y1==5){y1="五"}
+			else if(y1==6){y1="六"}
+			else if(y1==7){y1="七"}
+			else if(y1==8){y1="八"}
+			else if(y1==9){y1="九"}
+			else if(y1==0){y1="零"}
+			if(y2==1){y2="一"}
+			else if(y2==2){y2="二"}
+			else if(y2==3){y2="三"}
+			else if(y2==4){y2="四"}
+			else if(y2==5){y2="五"}
+			else if(y2==6){y2="六"}
+			else if(y2==7){y2="七"}
+			else if(y2==8){y2="八"}
+			else if(y2==9){y2="九"}
+			else if(y2==0){y2="零"}
+			if(y3==1){y3="一"}
+			else if(y3==2){y3="二"}
+			else if(y3==3){y3="三"}
+			else if(y3==4){y3="四"}
+			else if(y3==5){y3="五"}
+			else if(y3==6){y3="六"}
+			else if(y3==7){y3="七"}
+			else if(y3==8){y3="八"}
+			else if(y3==9){y3="九"}
+			else if(y3==0){y3="零"}
+			if(y4==1){y4="一"}
+			else if(y4==2){y4="二"}
+			else if(y4==3){y4="三"}
+			else if(y4==4){y4="四"}
+			else if(y4==5){y4="五"}
+			else if(y4==6){y4="六"}
+			else if(y4==7){y4="七"}
+			else if(y4==8){y4="八"}
+			else if(y4==9){y4="九"}
+			else if(y4==0){y4="零"}
 			if(m==1){m="一"}
-			else if(m==1){m="二"}
-			else if(m==2){m="三"}
-			else if(m==3){m="四"}
-			else if(m==4){m="五"}
-			else if(m==5){m="六"}
-			else if(m==6){m="七"}
-			else if(m==7){m="八"}
-			else if(m==8){m="九"}
-			else if(m==9){m="十"}
-			else if(m==10){m="十一"}
-			else if(m==11){m="十二"}
-			else if(m==12){m="十三"}
+			else if(m==2){m="二"}
+			else if(m==3){m="三"}
+			else if(m==4){m="四"}
+			else if(m==5){m="五"}
+			else if(m==6){m="六"}
+			else if(m==7){m="七"}
+			else if(m==8){m="八"}
+			else if(m==9){m="九"}
+			else if(m==10){m="十"}
+			else if(m==11){m="十一"}
+			else if(m==12){m="十二"}
 			if(d==1){d="一"}
 			else if(d==2){d="二"}
 			else if(d==3){d="三"}
@@ -121,17 +113,17 @@ $(function(){
 			else if(d==29){d="二十九"}
 			else if(d==30){d="三十"}
 			else if(d==31){d="三十一"}
-			document.getElementById("ymd").innerHTML = j+k+p+i+"年"+m+"月"+d+"日";
+			document.getElementById("ymd").innerHTML = y1+y2+y3+y4+"年"+m+"月"+d+"日";
 		</script>
 		<hr style="width:50%" />
 	</div>
 	<div class="section">
-		<p style="text-align:center;font-family:FZYaoti;color:black;font-size:40px;">1858年9月19日：<br>很愉快。决定了，应当爱、应当劳动！就这样。<br>1858年9月20日：<br>很累。不想爱了，也不想劳动了。</p>
-	<p style="text-align:center;font-family:FZYaoti;color:black;font-size:20px;">————列夫·托尔斯泰</p>
+		<p style="text-align:center;font-family:FZYaoti;color:black;font-size:30px;">所以，理论上我们可以检查一个人的遗体，从耳囊的第一磨牙的同位素特征，<br>发现他的母亲在怀孕时住在何处，饮食结构如何。然后我们可以分析其余的恒<br>牙，确认死者在哪里度过童年；检查骨头，看看他在死前15年左右在哪里居住。<br>最后用头发和指甲确定他在什么地方度过生命的最后几年或几个月。</p>
+	<p style="text-align:center;font-family:FZYaoti;color:black;font-size:20px;">————二零二一年五月二十七日 《法医报告》</p>
 	</div>
 	<div class="section">
-		<p style="text-align:center;font-family:FZYaoti;color:black;font-size:40px;">1858年9月19日：<br>很愉快。决定了，应当爱、应当劳动！就这样。<br>1858年9月20日：<br>很累。不想爱了，也不想劳动了。</p>
-	<p style="text-align:center;font-family:FZYaoti;color:black;font-size:20px;">————列夫·托尔斯泰</p>
+		<p style="text-align:center;font-family:FZYaoti;color:black;font-size:30px;">1858年9月19日：<br>很愉快。决定了，应当爱、应当劳动！就这样。<br>1858年9月20日：<br>很累。不想爱了，也不想劳动了。</p>
+	<p style="text-align:center;font-family:FZYaoti;color:black;font-size:20px;"></p>
 	</div>
 </div>
 </body>
