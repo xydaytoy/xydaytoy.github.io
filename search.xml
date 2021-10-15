@@ -133,6 +133,128 @@
       </categories>
   </entry>
   <entry>
+    <title>DC分治</title>
+    <url>/2021/10/15/oj-DC/</url>
+    <content><![CDATA[<blockquote>
+<p>算法课笔记-分治<br>语言：C++</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>内容。</p>
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>oj</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>DP动态规划</title>
+    <url>/2021/10/15/oj-DP/</url>
+    <content><![CDATA[<blockquote>
+<p>算法课笔记-动态规划<br>语言: C++</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>内容。</p>
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>oj</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>python笔记</title>
+    <url>/2021/05/31/python-note/</url>
+    <content><![CDATA[<blockquote>
+<p>python3的一些知识点</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><ul>
+<li><p>函数中的默认参数必须指向不变对象，否则在多次调用时会改变默认值（例如None、str，反例如list）。</p>
+</li>
+<li><p>可变参数：允许不定量个参数输入，在参数前加<em>，传入参数类型是tuple。<br>在输入list/tuple进入可变参数的函数时，可以加上</em>直接传入。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def func(*num):</span><br><span class="line">    pass</span><br><span class="line">a &#x3D; (1,2,3)</span><br><span class="line">func(*a)</span><br></pre></td></tr></table></figure></li>
+<li><p>关键字参数：**来表示，用法同可变参数，区别是传入的参数都为<code>x=y</code>格式，传入后变成一个关键字为x，值为y的字典。<br>可以用作用户可选输入的收集上。</p>
+</li>
+<li><p>命名关键字参数：用<em>或者可变参数</em>x做分隔符，规定必须输入的关键字参数。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def func(x,y,*,z):</span><br><span class="line">    pass</span><br><span class="line">func(1,2,z&#x3D;4)</span><br></pre></td></tr></table></figure>
+<h1 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h1></li>
+<li><p>左闭右开取值，第三个参数表示间隔</p>
+</li>
+</ul>
+<h1 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h1><ul>
+<li>字典的迭代默认是key，迭代value:<code>for value in d.values()</code>，<br>同时迭代key和value:<code>for k, v in d.items()</code></li>
+</ul>
+<h1 id="生成器generator"><a href="#生成器generator" class="headerlink" title="生成器generator"></a>生成器generator</h1><ul>
+<li><p>把生成式列表的[]改为()，每次调用next(x)计算下一个元素的值，或者用for循环迭代</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">g &#x3D; (x*x for x in range(0,10))</span><br><span class="line">a &#x3D; next(g)</span><br><span class="line">for i in g:</span><br><span class="line">	print(i)</span><br></pre></td></tr></table></figure></li>
+<li><p>在函数中添加yield语句，每次调用<code>next()</code>，运行到yield返回，下次调用从yield下继续</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def odd():</span><br><span class="line">	print(&quot;step 1&quot;)</span><br><span class="line">	yield 1</span><br><span class="line">	print(&quot;step 2&quot;)</span><br><span class="line">	yield 3</span><br><span class="line">	print(&quot;step 3&quot;)</span><br><span class="line">	yield 5</span><br><span class="line">o &#x3D; odd()</span><br><span class="line">a &#x3D; next(o) #step 2\n3</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这里要注意for循环调用函数生成器时，函数内的print内容无法输出，可以通过<code>StopIteration</code>错误的value获取。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for i in o:</span><br><span class="line">	print(i) #1 3 5</span><br><span class="line">while True:</span><br><span class="line">	try:</span><br><span class="line">		x &#x3D; next(o)</span><br><span class="line">		print(x)</span><br><span class="line">	except StopIteration as e:</span><br><span class="line">		print(e.value)</span><br><span class="line">		break</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h1><ul>
+<li>判断对象是不是<code>Iterable</code>对象</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from collections.abc import Iterable</span><br><span class="line">isinstance([], Iterable) # True</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以被<code>next()</code>不断调用并返回下一个值的对象称为迭代器<code>Iterator</code>对象，生成器都是<code>Iterator</code>对象，但是<code>Iterable</code>对象不全是<code>Iterator</code>对象</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from collections.abc import Iterator</span><br><span class="line">isinstance([],Iterator) # False</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Iterable</code>对象可以通过使用<code>iter()</code>函数变成<code>Iterator</code>对象，两者的区别是后者是惰性的，可以是无限长度的序列流，无法提前知道长度，前者是有限的，长度可知的。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">isinstance(iter([]), Iterator) # True</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h1><p>函数式编程的一个特点：允许把函数本身作为参数传入另一个函数，还允许返回一个函数。</p>
+<h2 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h2><ul>
+<li>接收另一个函数作为参数的函数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def add(x, y, f):</span><br><span class="line">	return f(x) + f(y)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>map()：接收两个参数，一个函数，一个<code>Iterable</code>对象，对每个对象实施函数，返回结果是一个<code>Iterator</code>对象。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def f(x):</span><br><span class="line">	return x*x</span><br><span class="line">r &#x3D; map(f, [1,2,3,4,5,6])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>reduce()：接收两个参数，一个函数和一个序列，功能是把结果继续和序列的下一个元素做累积计算。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#str2int功能实现</span><br><span class="line">from functools import reduce</span><br><span class="line">def fn(x, y):</span><br><span class="line">	return x * 10 + y</span><br><span class="line">def char2num(s):</span><br><span class="line">	digits &#x3D; &#123;&#39;0&#39;: 0, &#39;1&#39;: 1, &#39;2&#39;: 2, &#39;3&#39;: 3, &#39;4&#39;: 4, &#39;5&#39;: 5, &#39;6&#39;: 6, &#39;7&#39;: 7, &#39;8&#39;: 8, &#39;9&#39;: 9&#125;</span><br><span class="line">	return digits[s]</span><br><span class="line">reduce(fn, map(char2num, &#39;13579&#39;)) # 13579</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#利用map和reduce编写一个str2float函数，把字符串&#39;123.456&#39;转换成浮点数123.456</span><br><span class="line">def str2float(s):</span><br><span class="line">    def ten(x, y):</span><br><span class="line">        return x*10+y</span><br><span class="line">    def st(x):</span><br><span class="line">        D &#x3D; &#123;&#39;0&#39;: 0, &#39;1&#39;: 1, &#39;2&#39;: 2, &#39;3&#39;: 3, &#39;4&#39;: 4, &#39;5&#39;: 5, &#39;6&#39;: 6, &#39;7&#39;: 7, &#39;8&#39;: 8, &#39;9&#39;: 9&#125;</span><br><span class="line">        return D[x]</span><br><span class="line">    a, b &#x3D; s.split(&#39;.&#39;)</span><br><span class="line">    num &#x3D; len(b)</span><br><span class="line">    ans1 &#x3D; reduce(ten, list(map(st, a)))</span><br><span class="line">    ans2 &#x3D; reduce(ten, list(map(st, b)))</span><br><span class="line">    ans &#x3D; ans1 +ans2&#x2F;(10**num)</span><br><span class="line">    return ans</span><br><span class="line">	</span><br><span class="line">print(&#39;str2float(\&#39;123.456\&#39;) &#x3D;&#39;, str2float(&#39;123.456&#39;))</span><br><span class="line">if abs(str2float(&#39;123.456&#39;) - 123.456) &lt; 0.00001:</span><br><span class="line">    print(&#39;测试成功!&#39;)</span><br><span class="line">else:</span><br><span class="line">    print(&#39;测试失败!&#39;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>filter():接收两个参数，一个函数，一个序列，根据函数的True/False来决定序列是否保留，返回值是一个<code>Iterator</code>对象<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def not_empty(s):</span><br><span class="line">    return s and s.strip()</span><br><span class="line">x &#x3D; list(filter(not_empty, [&#39;A&#39;, &#39;&#39;, &#39;B&#39;, None, &#39;C&#39;, &#39;  &#39;])) # [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>python</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>pytorch笔记</title>
+    <url>/2021/05/28/pytorch-note/</url>
+    <content><![CDATA[<blockquote>
+<p>pytorch-动手学深度学习2021笔记</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h1><h2 id="访问元素"><a href="#访问元素" class="headerlink" title="访问元素"></a>访问元素</h2><p><code>[1,:]</code>其中:表示选择范围，只有:表示全选，与数字结合表示范围。</p>
+<p><code>[::3,::2]</code>其中::表示跳选，每隔x个选择一个。</p>
+<p>张量:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">x &#x3D; torch.arange(12) #生成</span><br><span class="line">x.shape #形状</span><br><span class="line">x.numel() #元素总数</span><br><span class="line">x &#x3D; x.reshape(3,4) #变换</span><br><span class="line">x &#x3D; torch.zeros((1,2,3)) #全零</span><br><span class="line">x &#x3D; torch.ones((2,3,4)) #全一</span><br><span class="line">x &#x3D; torch.tensor(list) #根据list生成tensor</span><br><span class="line">+ - * &#x2F; ** #对元素进行运算</span><br><span class="line">torch.exp(x) #指数运算</span><br><span class="line">torch.cat((x,y),dim&#x3D;0) #在第零维拼接，零维是最外侧</span><br><span class="line">x &#x3D;&#x3D; y #构建二元张量，是元素比较的结果</span><br><span class="line">x.sum() #求和，结果是一个元素的tensor</span><br><span class="line">x[0:2,:]&#x3D;12 #区域赋值</span><br><span class="line">x[:]&#x3D;x+y &#x2F; x+&#x3D;y #减少内存开销，前后不变</span><br><span class="line">y &#x3D; x.numpy() #tensor转ndarray</span><br><span class="line">x &#x3D; torch.tensor(y) #ndarray转tensor</span><br><span class="line">x.item() &#x2F; float(x) &#x2F; int(x) #0维张量转标量</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>code</category>
+        <category>pytorch</category>
+      </categories>
+  </entry>
+  <entry>
     <title>tf-tensor变换</title>
     <url>/2021/05/27/tf-tensor-conversion/</url>
     <content><![CDATA[<blockquote>
