@@ -10,12 +10,11 @@
 
 <p>记录一个GLPK工具无需VS编译，直接增加系统路径的方法，简单好用。</p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>1.从link<a href="https://sourceforge.net/projects/winglpk/%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%8C%85%E3%80%82">https://sourceforge.net/projects/winglpk/下载安装包。</a><br>2.下载好之后将安装包解压，并将其复制到C盘下。<br>3.进入C:\glpk-4.65\w64或者C:\glpk-4.65\w32，根据自己电脑的系统类型选择打开64位的还是32位的。（查看电脑系统类型的操作：控制面板–系统和安全–系统）<br>4.打开控制面板–系统和安全–系统–高级系统设置-环境变量：编辑系统变量中的Path，将路径C:\glpk-4.65\w64加入Path中。<br>5.检验安装是否成功：在C:\glpk-4.65\w64文件夹下，路径中输入cmd打开命令行窗口，输入glpsol回车，显示版本信息则说明安装成功。</p>
-<h1 id="输入文件-imput-mod"><a href="#输入文件-imput-mod" class="headerlink" title="输入文件:imput.mod"></a>输入文件:imput.mod</h1><p>var x1;<br>var x2;<br>var x3;<br>//var x4 binary;布尔变量binary，类似的还有整数integer。</p>
+<h1 id="输入文件-input-mod"><a href="#输入文件-input-mod" class="headerlink" title="输入文件:input.mod"></a>输入文件:input.mod</h1><p>var x1;<br>var x2;<br>var x3;<br>//var x4 binary;布尔变量binary，类似的还有整数integer。</p>
 <p>maximize z: 10 * x1 + 8 * x2 + 16 * x3;</p>
 <p>s.t. con1 : 3 * x1 + 3 * x2 + 2 * x3 &lt;= 200;<br>s.t. con2 : 4 * x1 + 3 * x2 + 7 * x3 &lt;= 300;<br>s.t. con3 : -x1 &lt;= 0;<br>s.t. con4 : -x2 &lt;= 0;<br>s.t. con5 : -x3 &lt;= 0;<br>end;</p>
 <h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><p>glpsol -m input.mod -o output.sol 　<br>-m filename: 指定描述问题的文件<br>-o filename: 指定输出结果保存在哪个文件</p>
-<p>#输出:output.sol</p>
-<p>Problem:    input<br>Rows:       6<br>Columns:    3<br>Non-zeros:  12<br>Status:     OPTIMAL<br>Objective:  z = 746.6666667 (MAXimum)</p>
+<h1 id="输出-output-sol"><a href="#输出-output-sol" class="headerlink" title="输出:output.sol"></a>输出:output.sol</h1><p>Problem:    input<br>Rows:       6<br>Columns:    3<br>Non-zeros:  12<br>Status:     OPTIMAL<br>Objective:  z = 746.6666667 (MAXimum)</p>
 <p>   No.   Row name   St   Activity     Lower bound   Upper bound    Marginal</p>
 <hr>
 <pre><code> 1 z            B        746.667                             
@@ -122,21 +121,6 @@
       </categories>
   </entry>
   <entry>
-    <title>DC分治</title>
-    <url>/2021/10/15/oj-DC/</url>
-    <content><![CDATA[<blockquote>
-<p>算法课笔记-分治<br>语言：C++</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>内容。</p>
-]]></content>
-      <categories>
-        <category>code</category>
-        <category>oj</category>
-      </categories>
-  </entry>
-  <entry>
     <title>hexo-next框架附加功能</title>
     <url>/2021/05/27/hexo-next-tips/</url>
     <content><![CDATA[<blockquote>
@@ -193,14 +177,14 @@
       </categories>
   </entry>
   <entry>
-    <title>DP动态规划</title>
-    <url>/2021/10/15/oj-DP/</url>
+    <title>DC分治</title>
+    <url>/2021/10/15/oj-DC/</url>
     <content><![CDATA[<blockquote>
-<p>算法课笔记-动态规划<br>语言: C++</p>
+<p>算法课笔记-分治<br>语言：C++</p>
 </blockquote>
 <span id="more"></span>
 
-<h1 id="中文标题"><a href="#中文标题" class="headerlink" title="中文标题"></a>中文标题</h1><p>内容。</p>
+<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>内容。</p>
 ]]></content>
       <categories>
         <category>code</category>
@@ -283,6 +267,38 @@
       </categories>
   </entry>
   <entry>
+    <title>DP动态规划</title>
+    <url>/2021/10/15/oj-DP/</url>
+    <content><![CDATA[<blockquote>
+<p>算法课笔记-动态规划<br>语言: C++</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="中文标题"><a href="#中文标题" class="headerlink" title="中文标题"></a>中文标题</h1><p>内容。</p>
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>oj</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>pytorch笔记</title>
+    <url>/2021/05/28/pytorch-note/</url>
+    <content><![CDATA[<blockquote>
+<p>pytorch-动手学深度学习2021笔记</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h1><h2 id="访问元素"><a href="#访问元素" class="headerlink" title="访问元素"></a>访问元素</h2><p><code>[1,:]</code>其中:表示选择范围，只有:表示全选，与数字结合表示范围。</p>
+<p><code>[::3,::2]</code>其中::表示跳选，每隔x个选择一个。</p>
+<p>张量:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">x &#x3D; torch.arange(12) #生成</span><br><span class="line">x.shape #形状</span><br><span class="line">x.numel() #元素总数</span><br><span class="line">x &#x3D; x.reshape(3,4) #变换</span><br><span class="line">x &#x3D; torch.zeros((1,2,3)) #全零</span><br><span class="line">x &#x3D; torch.ones((2,3,4)) #全一</span><br><span class="line">x &#x3D; torch.tensor(list) #根据list生成tensor</span><br><span class="line">+ - * &#x2F; ** #对元素进行运算</span><br><span class="line">torch.exp(x) #指数运算</span><br><span class="line">torch.cat((x,y),dim&#x3D;0) #在第零维拼接，零维是最外侧</span><br><span class="line">x &#x3D;&#x3D; y #构建二元张量，是元素比较的结果</span><br><span class="line">x.sum() #求和，结果是一个元素的tensor</span><br><span class="line">x[0:2,:]&#x3D;12 #区域赋值</span><br><span class="line">x[:]&#x3D;x+y &#x2F; x+&#x3D;y #减少内存开销，前后不变</span><br><span class="line">y &#x3D; x.numpy() #tensor转ndarray</span><br><span class="line">x &#x3D; torch.tensor(y) #ndarray转tensor</span><br><span class="line">x.item() &#x2F; float(x) &#x2F; int(x) #0维张量转标量</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>code</category>
+        <category>pytorch</category>
+      </categories>
+  </entry>
+  <entry>
     <title>tf-tensor变换</title>
     <url>/2021/05/27/tf-tensor-conversion/</url>
     <content><![CDATA[<blockquote>
@@ -303,23 +319,6 @@
       <categories>
         <category>code</category>
         <category>tensorflow</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>pytorch笔记</title>
-    <url>/2021/05/28/pytorch-note/</url>
-    <content><![CDATA[<blockquote>
-<p>pytorch-动手学深度学习2021笔记</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h1><h2 id="访问元素"><a href="#访问元素" class="headerlink" title="访问元素"></a>访问元素</h2><p><code>[1,:]</code>其中:表示选择范围，只有:表示全选，与数字结合表示范围。</p>
-<p><code>[::3,::2]</code>其中::表示跳选，每隔x个选择一个。</p>
-<p>张量:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">x &#x3D; torch.arange(12) #生成</span><br><span class="line">x.shape #形状</span><br><span class="line">x.numel() #元素总数</span><br><span class="line">x &#x3D; x.reshape(3,4) #变换</span><br><span class="line">x &#x3D; torch.zeros((1,2,3)) #全零</span><br><span class="line">x &#x3D; torch.ones((2,3,4)) #全一</span><br><span class="line">x &#x3D; torch.tensor(list) #根据list生成tensor</span><br><span class="line">+ - * &#x2F; ** #对元素进行运算</span><br><span class="line">torch.exp(x) #指数运算</span><br><span class="line">torch.cat((x,y),dim&#x3D;0) #在第零维拼接，零维是最外侧</span><br><span class="line">x &#x3D;&#x3D; y #构建二元张量，是元素比较的结果</span><br><span class="line">x.sum() #求和，结果是一个元素的tensor</span><br><span class="line">x[0:2,:]&#x3D;12 #区域赋值</span><br><span class="line">x[:]&#x3D;x+y &#x2F; x+&#x3D;y #减少内存开销，前后不变</span><br><span class="line">y &#x3D; x.numpy() #tensor转ndarray</span><br><span class="line">x &#x3D; torch.tensor(y) #ndarray转tensor</span><br><span class="line">x.item() &#x2F; float(x) &#x2F; int(x) #0维张量转标量</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>code</category>
-        <category>pytorch</category>
       </categories>
   </entry>
 </search>
