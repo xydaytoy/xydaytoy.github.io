@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-10-15T04:40:43.136Z</updated>
+  <updated>2021-11-27T15:00:54.513Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,13 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>线性规划_GLPK工具</title>
+    <link href="http://example.com/2021/11/27/LP-GLPK/"/>
+    <id>http://example.com/2021/11/27/LP-GLPK/</id>
+    <published>2021-11-27T14:16:28.000Z</published>
+    <updated>2021-11-27T15:00:54.513Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>线性规划求解工具GLPK在windows环境下的安装和使用样例。</p></blockquote><span id="more"></span><p>记录一个GLPK工具无需VS编译，直接增加系统路径的方法，简单好用。</p><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>1.从link<a href="https://sourceforge.net/projects/winglpk/%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%8C%85%E3%80%82">https://sourceforge.net/projects/winglpk/下载安装包。</a><br>2.下载好之后将安装包解压，并将其复制到C盘下。<br>3.进入C:\glpk-4.65\w64或者C:\glpk-4.65\w32，根据自己电脑的系统类型选择打开64位的还是32位的。（查看电脑系统类型的操作：控制面板–系统和安全–系统）<br>4.打开控制面板–系统和安全–系统–高级系统设置-环境变量：编辑系统变量中的Path，将路径C:\glpk-4.65\w64加入Path中。<br>5.检验安装是否成功：在C:\glpk-4.65\w64文件夹下，路径中输入cmd打开命令行窗口，输入glpsol回车，显示版本信息则说明安装成功。</p><h1 id="输入文件-imput-mod"><a href="#输入文件-imput-mod" class="headerlink" title="输入文件:imput.mod"></a>输入文件:imput.mod</h1><p>var x1;<br>var x2;<br>var x3;<br>//var x4 binary;布尔变量binary，类似的还有整数integer。</p><p>maximize z: 10 * x1 + 8 * x2 + 16 * x3;</p><p>s.t. con1 : 3 * x1 + 3 * x2 + 2 * x3 &lt;= 200;<br>s.t. con2 : 4 * x1 + 3 * x2 + 7 * x3 &lt;= 300;<br>s.t. con3 : -x1 &lt;= 0;<br>s.t. con4 : -x2 &lt;= 0;<br>s.t. con5 : -x3 &lt;= 0;<br>end;</p><h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><p>glpsol -m input.mod -o output.sol 　<br>-m filename: 指定描述问题的文件<br>-o filename: 指定输出结果保存在哪个文件</p><p>#输出:output.sol</p><p>Problem:    input<br>Rows:       6<br>Columns:    3<br>Non-zeros:  12<br>Status:     OPTIMAL<br>Objective:  z = 746.6666667 (MAXimum)</p><p>   No.   Row name   St   Activity     Lower bound   Upper bound    Marginal</p><hr><pre><code> 1 z            B        746.667                              2 con1         NU           200                         200      0.533333  3 con2         NU           300                         300       2.13333  4 con3         NU             0                          -0      0.133333  5 con4         B       -53.3333                          -0  6 con5         B            -20                          -0 </code></pre><p>   No. Column name  St   Activity     Lower bound   Upper bound    Marginal</p><hr><pre><code> 1 x1           B              0                              2 x2           B        53.3333                              3 x3           B             20                             </code></pre><p>Karush-Kuhn-Tucker optimality conditions:</p><p>KKT.PE: max.abs.err = 0.00e+00 on row 0<br>        max.rel.err = 0.00e+00 on row 0<br>        High quality</p><p>KKT.PB: max.abs.err = 0.00e+00 on row 0<br>        max.rel.err = 0.00e+00 on row 0<br>        High quality</p><p>KKT.DE: max.abs.err = 1.78e-15 on column 1<br>        max.rel.err = 8.35e-17 on column 1<br>        High quality</p><p>KKT.DB: max.abs.err = 0.00e+00 on row 0<br>        max.rel.err = 0.00e+00 on row 0<br>        High quality</p><p>End of output</p><blockquote><p>参考：<a href="https://blog.csdn.net/weixin_42848399/article/details/91654118">https://blog.csdn.net/weixin_42848399/article/details/91654118</a></p></blockquote>]]></content>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;线性规划求解工具GLPK在windows环境下的安装和使用样例。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="other" scheme="http://example.com/categories/other/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>DP动态规划</title>
     <link href="http://example.com/2021/10/15/oj-DP/"/>
     <id>http://example.com/2021/10/15/oj-DP/</id>
     <published>2021-10-15T04:33:12.000Z</published>
-    <updated>2021-10-15T04:40:43.136Z</updated>
+    <updated>2021-10-15T07:58:41.473Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>算法课笔记-动态规划<br>语言: C++</p></blockquote><span id="more"></span><h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>内容。</p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>算法课笔记-动态规划<br>语言: C++</p></blockquote><span id="more"></span><h1 id="中文标题"><a href="#中文标题" class="headerlink" title="中文标题"></a>中文标题</h1><p>内容。</p>]]></content>
     
     
     <summary type="html">&lt;blockquote&gt;
