@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="pytorch-动手学深度学习2021笔记">
+  <meta name="description" content="疯狂写大作业的一周。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pytorch笔记">
-<meta property="og:url" content="http://example.com/2021/05/28/pytorch-note/index.html">
+<meta property="og:title" content="每周知识碎片1">
+<meta property="og:url" content="http://example.com/2021/11/29/weekly-211129/index.html">
 <meta property="og:site_name" content="札记">
-<meta property="og:description" content="pytorch-动手学深度学习2021笔记">
+<meta property="og:description" content="疯狂写大作业的一周。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-28T08:25:31.000Z">
-<meta property="article:modified_time" content="2021-05-28T10:06:55.471Z">
+<meta property="article:published_time" content="2021-11-29T07:49:47.000Z">
+<meta property="article:modified_time" content="2021-11-29T10:54:58.252Z">
 <meta property="article:author" content="xydaytoy">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2021/05/28/pytorch-note/">
+<link rel="canonical" href="http://example.com/2021/11/29/weekly-211129/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>pytorch笔记 | 札记</title>
+  <title>每周知识碎片1 | 札记</title>
   
 
 
@@ -189,7 +189,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/28/pytorch-note/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/29/weekly-211129/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -202,7 +202,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          pytorch笔记
+          每周知识碎片1
         </h1>
 
         <div class="post-meta">
@@ -213,7 +213,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-05-28 16:25:31 / 修改时间：18:06:55" itemprop="dateCreated datePublished" datetime="2021-05-28T16:25:31+08:00">2021-05-28</time>
+              <time title="创建时间：2021-11-29 15:49:47 / 修改时间：18:54:58" itemprop="dateCreated datePublished" datetime="2021-11-29T15:49:47+08:00">2021-11-29</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -221,11 +221,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/code/" itemprop="url" rel="index"><span itemprop="name">code</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/code/pytorch/" itemprop="url" rel="index"><span itemprop="name">pytorch</span></a>
+                  <a href="/categories/weekly/" itemprop="url" rel="index"><span itemprop="name">weekly</span></a>
                 </span>
             </span>
 
@@ -248,14 +244,30 @@
 
       
         <blockquote>
-<p>pytorch-动手学深度学习2021笔记</p>
+<p>疯狂写大作业的一周。</p>
 </blockquote>
 <span id="more"></span>
 
-<h1 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h1><h2 id="访问元素"><a href="#访问元素" class="headerlink" title="访问元素"></a>访问元素</h2><p><code>[1,:]</code>其中:表示选择范围，只有:表示全选，与数字结合表示范围。</p>
-<p><code>[::3,::2]</code>其中::表示跳选，每隔x个选择一个。</p>
-<p>张量:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">x &#x3D; torch.arange(12) #生成</span><br><span class="line">x.shape #形状</span><br><span class="line">x.numel() #元素总数</span><br><span class="line">x &#x3D; x.reshape(3,4) #变换</span><br><span class="line">x &#x3D; torch.zeros((1,2,3)) #全零</span><br><span class="line">x &#x3D; torch.ones((2,3,4)) #全一</span><br><span class="line">x &#x3D; torch.tensor(list) #根据list生成tensor</span><br><span class="line">+ - * &#x2F; ** #对元素进行运算</span><br><span class="line">torch.exp(x) #指数运算</span><br><span class="line">torch.cat((x,y),dim&#x3D;0) #在第零维拼接，零维是最外侧</span><br><span class="line">x &#x3D;&#x3D; y #构建二元张量，是元素比较的结果</span><br><span class="line">x.sum() #求和，结果是一个元素的tensor</span><br><span class="line">x[0:2,:]&#x3D;12 #区域赋值</span><br><span class="line">x[:]&#x3D;x+y &#x2F; x+&#x3D;y #减少内存开销，前后不变</span><br><span class="line">y &#x3D; x.numpy() #tensor转ndarray</span><br><span class="line">x &#x3D; torch.tensor(y) #ndarray转tensor</span><br><span class="line">x.item() &#x2F; float(x) &#x2F; int(x) #0维张量转标量</span><br></pre></td></tr></table></figure>
+<h1 id="python-获取路径相关"><a href="#python-获取路径相关" class="headerlink" title="python 获取路径相关"></a>python 获取路径相关</h1><p>获取linux下的用户根路径</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> os</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>os.envrion[<span class="string">&#x27;HOME&#x27;</span>]</span><br><span class="line"><span class="string">&#x27;/home/user&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>连接路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import os</span><br><span class="line">&gt;&gt;&gt; os.path.join(os.envrion[&#39;HOME&#39;], &#39;xxx&#39;, &#39;yyy.txt&#39;)</span><br><span class="line">&#39;&#x2F;home&#x2F;user&#x2F;xxx&#x2F;yyy.txt&#39;</span><br></pre></td></tr></table></figure>
+
+<p>glob返回所有匹配的文件路径列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from glob import glob</span><br><span class="line">&gt;&gt;&gt; files &#x3D; glob(os.path.join(ROOT, cat, &#39;*.txt&#39;))</span><br><span class="line">[&#39;xxx.txt&#39;, &#39;111.txt&#39;]</span><br></pre></td></tr></table></figure>
+
+<h1 id="错误：AttributeError-module-‘threading’-has-no-attribute-‘RLock’"><a href="#错误：AttributeError-module-‘threading’-has-no-attribute-‘RLock’" class="headerlink" title="错误：AttributeError: module ‘threading’ has no attribute ‘RLock’"></a>错误：AttributeError: module ‘threading’ has no attribute ‘RLock’</h1><p><strong>错误原因</strong>：自己的代码文件与python自带的脚本文件重名，导致import引入包的时候引入错误。</p>
+<p><strong>修改办法</strong>：根据错误提示，修改相关文件的文件名，要注意除了提示的包，在引入该包的过程中引入的其他包的错误也可能导致这个错误提示，例如该错误提示为：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">nohup: ignoring input</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;data/split_data.py&quot;, line 4, in &lt;module&gt;</span><br><span class="line">    import pandas as pd</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/site-packages/pandas/__init__.py&quot;, line 11, in &lt;module&gt;</span><br><span class="line">    __import__(dependency)</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/site-packages/numpy/__init__.py&quot;, line 142, in &lt;module&gt;</span><br><span class="line">    from . import core</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/site-packages/numpy/core/__init__.py&quot;, line 103, in &lt;module&gt;</span><br><span class="line">    from . import _internal</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/site-packages/numpy/core/_internal.py&quot;, line 11, in &lt;module&gt;</span><br><span class="line">    import platform</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/platform.py&quot;, line 117, in &lt;module&gt;</span><br><span class="line">    import sys, os, re, subprocess</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/subprocess.py&quot;, line 131, in &lt;module&gt;</span><br><span class="line">    import threading</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/threading.py&quot;, line 7, in &lt;module&gt;</span><br><span class="line">    from traceback import format_exc as _format_exc</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/traceback.py&quot;, line 5, in &lt;module&gt;</span><br><span class="line">    import linecache</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/linecache.py&quot;, line 11, in &lt;module&gt;</span><br><span class="line">    import tokenize</span><br><span class="line">  File &quot;/home/user/text-classify/Bert-THUCNews-Classification-master/data/tokenize.py&quot;, line 2, in &lt;module&gt;</span><br><span class="line">    from pytorch_pretrained_bert import BertTokenizer</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/site-packages/pytorch_pretrained_bert/__init__.py&quot;, line 2, in &lt;module&gt;</span><br><span class="line">    from .tokenization import BertTokenizer, BasicTokenizer, WordpieceTokenizer</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/site-packages/pytorch_pretrained_bert/tokenization.py&quot;, line 20, in &lt;module&gt;</span><br><span class="line">    import logging</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/logging/__init__.py&quot;, line 212, in &lt;module&gt;</span><br><span class="line">    _lock = threading.RLock()</span><br><span class="line">AttributeError: module &#x27;threading&#x27; has no attribute &#x27;RLock&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>但并不是<code>threading</code>包有重名问题，而是在<code>import tokenize</code>这步中，本文件夹下有一个<code>tokenize.py</code>文件，可以看到引入的file路径和其他明显不同。</p>
+<h1 id="错误：No-module-named-xxx"><a href="#错误：No-module-named-xxx" class="headerlink" title="错误：No module named xxx"></a>错误：No module named xxx</h1><p>引入自己写的代码中的文件时<code>from filename import xxx</code>，出现这个错误，检查下面两点：</p>
+<p>1.在被引入(import)的目录下需要有一个<code>__init__.py</code>文件，该文件可以为空。</p>
+<p>2.同级目录不可以直接导入，需要加上上一级的文件名，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from folder.filename import xxx</span><br></pre></td></tr></table></figure>
+
+
     </div>
 
     
@@ -274,10 +286,10 @@
   <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
 
-  <p><span>本文标题:</span>pytorch笔记</a></p>
+  <p><span>本文标题:</span>每周知识碎片1</a></p>
   <p><span>本文作者:</span>xydaytoy</a></p>
-  <p><span>本文链接:</span><a href="/2021/05/28/pytorch-note/" title="pytorch笔记">http://example.com/2021/05/28/pytorch-note/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://example.com/2021/05/28/pytorch-note/"  aria-label="复制成功！"></i></span>
+  <p><span>本文链接:</span><a href="/2021/11/29/weekly-211129/" title="每周知识碎片1">http://example.com/2021/11/29/weekly-211129/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://example.com/2021/11/29/weekly-211129/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>版权声明:</span>本博客所有文章除特别声明外，均采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND</a>许可协议。转载请注明出处！</p>  
 </div>
@@ -307,13 +319,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/05/27/fairseq-tips1/" rel="prev" title="fairseq踩坑记录">
-      <i class="fa fa-chevron-left"></i> fairseq踩坑记录
+    <a href="/2021/11/28/linux-tips/" rel="prev" title="linux-tips">
+      <i class="fa fa-chevron-left"></i> linux-tips
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/05/31/python-note/" rel="next" title="python笔记">
-      python笔记 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -372,7 +381,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">数据操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E5%85%83%E7%B4%A0"><span class="nav-number">1.1.</span> <span class="nav-text">访问元素</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python-%E8%8E%B7%E5%8F%96%E8%B7%AF%E5%BE%84%E7%9B%B8%E5%85%B3"><span class="nav-number">1.</span> <span class="nav-text">python 获取路径相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%EF%BC%9AAttributeError-module-%E2%80%98threading%E2%80%99-has-no-attribute-%E2%80%98RLock%E2%80%99"><span class="nav-number">2.</span> <span class="nav-text">错误：AttributeError: module ‘threading’ has no attribute ‘RLock’</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%EF%BC%9ANo-module-named-xxx"><span class="nav-number">3.</span> <span class="nav-text">错误：No module named xxx</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

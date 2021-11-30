@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="linux服务器下的一些常用操作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux-tips">
+<meta property="og:url" content="http://example.com/2021/11/28/linux-tips/index.html">
+<meta property="og:site_name" content="札记">
+<meta property="og:description" content="linux服务器下的一些常用操作。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-28T05:29:06.000Z">
+<meta property="article:modified_time" content="2021-11-29T05:54:49.413Z">
+<meta property="article:author" content="xydaytoy">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/11/28/linux-tips/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>linux-tips | 札记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="札记" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">札记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>摘记</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/28/linux-tips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xydaytoy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="札记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          linux-tips
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-28 13:29:06" itemprop="dateCreated datePublished" datetime="2021-11-28T13:29:06+08:00">2021-11-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-29 13:54:49" itemprop="dateModified" datetime="2021-11-29T13:54:49+08:00">2021-11-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/other/" itemprop="url" rel="index"><span itemprop="name">other</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/other/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>linux服务器下的一些常用操作。</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="0-在线手册"><a href="#0-在线手册" class="headerlink" title="0 在线手册"></a>0 在线手册</h1><p>1.<a target="_blank" rel="noopener" href="https://www.linuxcool.com/">Linux命令大全（手册）</a></p>
+<p>2.<a target="_blank" rel="noopener" href="https://www.cnblogs.com/jingmoxukong/p/7867397.html">一篇文章让你彻底掌握shell语言</a></p>
+<p>3.<a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-command-manual.html">Linux命令大全（RUNOOB.COM）</a></p>
+<h1 id="1-资源占用情况"><a href="#1-资源占用情况" class="headerlink" title="1 资源占用情况"></a>1 资源占用情况</h1><h2 id="1-1-GPU显卡占用"><a href="#1-1-GPU显卡占用" class="headerlink" title="1.1 GPU显卡占用"></a>1.1 GPU显卡占用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure>
+
+<p>显示如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Sun Nov 28 13:47:48 2021       </span><br><span class="line">+-----------------------------------------------------------------------------+</span><br><span class="line">| NVIDIA-SMI 430.64       Driver Version: 430.64       CUDA Version: 10.1     |</span><br><span class="line">|-------------------------------+----------------------+----------------------+</span><br><span class="line">| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |</span><br><span class="line">| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |</span><br><span class="line">|===============================+======================+======================|</span><br><span class="line">|   0  Tesla V100-PCIE...  Off  | 00000000:04:00.0 Off |                    0 |</span><br><span class="line">| N/A   60C    P0    73W / 250W |  16487MiB / 32510MiB |     39%      Default |</span><br><span class="line">+-------------------------------+----------------------+----------------------+</span><br><span class="line">|   1  Tesla V100-PCIE...  Off  | 00000000:06:00.0 Off |                    0 |</span><br><span class="line">| N/A   40C    P0    27W / 250W |      0MiB / 32510MiB |      0%      Default |</span><br><span class="line">+-------------------------------+----------------------+----------------------+</span><br><span class="line">|   2  Tesla V100S-PCI...  Off  | 00000000:0C:00.0 Off |                    0 |</span><br><span class="line">| N/A   75C    P0   166W / 250W |  17412MiB / 32510MiB |     27%      Default |</span><br><span class="line">+-------------------------------+----------------------+----------------------+</span><br><span class="line">|   3  Tesla V100S-PCI...  Off  | 00000000:0E:00.0 Off |                    0 |</span><br><span class="line">| N/A   72C    P0   140W / 250W |  15442MiB / 32510MiB |     28%      Default |</span><br><span class="line">+-------------------------------+----------------------+----------------------+</span><br><span class="line">                                                                               </span><br><span class="line">+-----------------------------------------------------------------------------+</span><br><span class="line">| Processes:                                                       GPU Memory |</span><br><span class="line">|  GPU       PID   Type   Process name                             Usage      |</span><br><span class="line">|=============================================================================|</span><br><span class="line">|    0     10685      C   ...g/anaconda3/envs/torch/bin/python 16475MiB |</span><br><span class="line">|    2     11578      C   ...g/anaconda3/envs/torch/bin/python 17401MiB |</span><br><span class="line">|    3     11579      C   ...g/anaconda3/envs/torch/bin/python 15431MiB |</span><br><span class="line">+-----------------------------------------------------------------------------+</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="1-2-查看进程"><a href="#1-2-查看进程" class="headerlink" title="1.2 查看进程"></a>1.2 查看进程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top</span><br></pre></td></tr></table></figure>
+
+<p>显示如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND </span><br><span class="line">   10010      20  10  10.15g  3.63g   200200   4.0  1.5   0:30:31 top</span><br></pre></td></tr></table></figure>
+
+<p>查看某一用户的所有进程（top下）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">u username</span><br></pre></td></tr></table></figure>
+
+<p>展开具体命令（top下）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c</span><br></pre></td></tr></table></figure>
+
+<p>退出top命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl+c</span><br></pre></td></tr></table></figure>
+
+<p>查看某一进程的详细信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep PID</span><br></pre></td></tr></table></figure>
+
+<p>结束进程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill PID</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-文件路径"><a href="#2-文件路径" class="headerlink" title="2 文件路径"></a>2 文件路径</h1><p>1.当前路径：<code>$pwd</code></p>
+<p>2.当前目录：<code>.</code>，上级目录：<code>..</code></p>
+<p>3.根目录：<code>/</code></p>
+<p>4.用户的home路径：<code>~</code>，<code>~user</code>表示用户名为user（在/etc/passwd中存在的用户名）的home路径</p>
+<h1 id="3-从网页下载数据"><a href="#3-从网页下载数据" class="headerlink" title="3 从网页下载数据"></a>3 从网页下载数据</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget 数据链接</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-防误删（回收站）"><a href="#4-防误删（回收站）" class="headerlink" title="4 防误删（回收站）"></a>4 防误删（回收站）</h1><p>目录结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\.bashrc</span><br><span class="line">\00-trash</span><br><span class="line">	-trash.sh</span><br><span class="line">	-.trash</span><br><span class="line">		-.bashrc</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-1-移入回收站"><a href="#4-1-移入回收站" class="headerlink" title="4.1 移入回收站"></a>4.1 移入回收站</h2><p>将<code>rm</code>命令删除的文件移入<code>.trash</code>文件中，并用时间命名防止重复。</p>
+<p>使用时在<code>.bashrc</code>文件中加入以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># trash for rm command</span><br><span class="line">alias rm&#x3D;&#x2F;user&#x2F;00-trash&#x2F;trash.sh</span><br></pre></td></tr></table></figure>
+
+<p>执行<code>source .bashrc</code>使其生效。</p>
+<p><code>trash.sh</code>如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">#一个简易回收站</span><br><span class="line">#https:&#x2F;&#x2F;github.com&#x2F;LIU-LIU-LIU&#x2F;Recycle_bin</span><br><span class="line"></span><br><span class="line">TarshDir&#x3D;&quot;&#96;echo ~&#96;&#x2F;00-trash&#x2F;.trash&quot;</span><br><span class="line">FileNamePrefix&#x3D;&#96;date +%y-%m-%d-%H-%M-%S&#96;</span><br><span class="line"></span><br><span class="line">error()&#123;</span><br><span class="line">echo -e &quot;\033[31m 错误!\n移动至回收站不需要任何命令选项。格式:rm [文件]  \033[0m&quot;</span><br><span class="line">exit 1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tarsh()&#123;</span><br><span class="line">case $1 in</span><br><span class="line">-*|.&#x2F;)</span><br><span class="line">        error</span><br><span class="line">;;</span><br><span class="line">&#x2F;)</span><br><span class="line">        echo -e &quot;\033[31m 此操作风险太高,已禁止! \033[0m&quot;</span><br><span class="line">        exit 1</span><br><span class="line">;;</span><br><span class="line">*)</span><br><span class="line">        mkdir -p &quot;$TarshDir&quot;&#x2F;&quot;$FileNamePrefix&quot;</span><br><span class="line">        &#x2F;bin&#x2F;mv -i &quot;$@&quot; &quot;&quot;$TarshDir&quot;&#x2F;&quot;$FileNamePrefix&quot;&#x2F;&quot;</span><br><span class="line">        if [ &quot;$?&quot; &#x3D;&#x3D; &quot;0&quot; ] ; then</span><br><span class="line">                echo &quot;已将&quot;$@&quot;移动至回收站(&quot;$TarshDir&quot;&#x2F;&quot;$FileNamePrefix&quot;&#x2F;)&quot;</span><br><span class="line">        else</span><br><span class="line">                echo -e &quot;\033[31m 移动至回收站失败。\033[0m&quot;</span><br><span class="line">                &#x2F;bin&#x2F;rm -rf &quot;$TarshDir&quot;&#x2F;&quot;$FileNamePrefix&quot;</span><br><span class="line">        fi</span><br><span class="line">;;</span><br><span class="line">esac</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if [ -z &quot;$1&quot; ];then</span><br><span class="line">        error</span><br><span class="line">else</span><br><span class="line">        tarsh $*</span><br><span class="line">fi</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="4-2-清空回收站"><a href="#4-2-清空回收站" class="headerlink" title="4.2 清空回收站"></a>4.2 清空回收站</h1><p>在<code>.trash</code>文件夹中，写一个<code>.bashrc</code>文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias rm&#x3D;&quot;rm&quot;</span><br></pre></td></tr></table></figure>
+
+<p>执行<code>source .bashrc</code>文件恢复原始<code>rm</code>命令功能，清空回收站。</p>
+<h1 id="5-解压文件"><a href="#5-解压文件" class="headerlink" title="5 解压文件"></a>5 解压文件</h1><h2 id="5-1-zip文件"><a href="#5-1-zip文件" class="headerlink" title="5.1 zip文件"></a>5.1 zip文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip filename</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-2-tar-gz文件"><a href="#5-2-tar-gz文件" class="headerlink" title="5.2 tar.gz文件"></a>5.2 tar.gz文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf filename</span><br></pre></td></tr></table></figure>
+
+<h1 id="6-执行进程相关"><a href="#6-执行进程相关" class="headerlink" title="6 执行进程相关"></a>6 执行进程相关</h1><h2 id="6-1-指定进程使用的GPU"><a href="#6-1-指定进程使用的GPU" class="headerlink" title="6.1 指定进程使用的GPU"></a>6.1 指定进程使用的GPU</h2><p>在终端执行时指定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CUDA_VISIBLE_DEVICES&#x3D;0,1，当设为-1时代表不使用任何gpu</span><br></pre></td></tr></table></figure>
+
+<p>在sh脚本文件中指定:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#export CUDA_VISIBLE_DEVICES&#x3D;0,1</span><br></pre></td></tr></table></figure>
+
+<p>在python程序中指定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import os; os.environ[&quot;CUDA_VISIBLE_DEVICES&quot;] &#x3D; &quot;0&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-2-后台运行不挂断"><a href="#6-2-后台运行不挂断" class="headerlink" title="6.2 后台运行不挂断"></a>6.2 后台运行不挂断</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup python -u train.py &gt; nohup.log 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+
+<p>该命令会将输出重定向到nohup.log文件中。</p>
+<h1 id="7-磁盘空间"><a href="#7-磁盘空间" class="headerlink" title="7 磁盘空间"></a>7 磁盘空间</h1><p>查看整个服务器的空间:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
+
+<p>查看当前目录下每一级目录的空间：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -h --max-depth&#x3D;1</span><br></pre></td></tr></table></figure>
+
+<h1 id="8-文本内容抽取和对比"><a href="#8-文本内容抽取和对比" class="headerlink" title="8 文本内容抽取和对比"></a>8 文本内容抽取和对比</h1><h1 id="8-1-文本比对"><a href="#8-1-文本比对" class="headerlink" title="8.1 文本比对"></a>8.1 文本比对</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vimdiff file1 file2</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-2-内容抽取：cut"><a href="#8-2-内容抽取：cut" class="headerlink" title="8.2 内容抽取：cut"></a>8.2 内容抽取：cut</h2><p>对每行抽取需要的部分，常用参数如下：</p>
+<ol>
+<li><code>-d</code>：指定分隔符，默认为“TAB”</li>
+<li><code>-f</code>：抽取指定部分</li>
+<li><code>N-</code>：从第N个部分到结尾</li>
+<li><code>N-M</code>：从第N个部分到第M个（包括M）部分</li>
+<li><code>-M</code>：从第1个部分到第M个（包括M）部分</li>
+</ol>
+<p><strong>举例：</strong> 在文件ldc_test.result中抽取出以<code>-T</code>开头的句子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-S: 决议 要求 埃塞俄比亚 立即 采取 具体 步骤 , 使 厄 埃 边界 委员会 能 在 没有 先决条件 的 情况 下 迅速 标@@ 定 边界 ; 要求 厄立特里亚 不再 拖延 , 不 设 先决条件 地 取消 对 埃@@ 厄 特派 团 的 行动 和 作业 的 所有 限制 .</span><br><span class="line">-T: The resolution requires Ethiopia to immediately take concrete steps to allow the Erit@@ rea - Ethiopia Boundary Commission to speedily demarc@@ ate the border without any preconditions ; and requires Erit@@ rea to cancel all of its restrictions on UN@@ ME@@ E &#39;s actions and operations without any further delay and without setting any preconditions .</span><br><span class="line">-P: The resolution asked Ethiopia to take specific steps immediately to enable the Erit@@ rean border committee to rapidly set its boundary without a precondition ; Erit@@ rea would no longer delay or set a precedent for the removal of all restrictions on the actions and operations of the Erit@@ rean special missions .</span><br><span class="line"></span><br><span class="line">-S: 有关 部门 应 强化 低 保@@ 户 在 享受 低 保 时 须 履行 的 义务 : 如 及时 通报 家庭 人员 及 收入 变化 情况 , 汇报 就业 情况 , 接受 定期 复@@ 审 等 , 而 有关 部门 则 应 加大 监督 检查 的 力度 .</span><br><span class="line">-T: The relevant department should stress the obligations that welfare recipients must carry out while enjoying the welfare : for example , promptly notifying the changes in the family members and incomes , reporting the status of employment , accepting regular reviews , etc. On the other hand , the relevant department should step up monitoring and inspection .</span><br><span class="line">-P: The relevant departments should strengthen the obligation of low - bonded households to carry out such tasks as helping low - income families to enjoy low - income insured : if timely reporting of changes in the income and changes in the income and reporting on employment , and receiving regular reviews , the relevant departments should intensify supervision and inspection .</span><br></pre></td></tr></table></figure>
+
+<p>使用命令：<code>grep ^-T ldc_test.result | cut -f2- -d&quot; &quot; &gt; new.result</code>。其中，<code>-d&quot; &quot;</code>将空格设为分隔符，<code>-f2-</code>在用空格分开后的部分中，从第二个部分起，抽取后面所有部分。效果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The resolution requires Ethiopia to immediately take concrete steps to allow the Erit@@ rea - Ethiopia Boundary Commission to speedily demarc@@ ate the border without any preconditions ; and requires Erit@@ rea to cancel all of its restrictions on UN@@ ME@@ E &#39;s actions and operations without any further delay and without setting any preconditions .</span><br><span class="line">The relevant department should stress the obligations that welfare recipients must carry out while </span><br></pre></td></tr></table></figure>
+
+<h1 id="9-统计目录下的文件数量"><a href="#9-统计目录下的文件数量" class="headerlink" title="9 统计目录下的文件数量"></a>9 统计目录下的文件数量</h1><p>1.统计当前目录下的一般文件的数量（不包括子文件夹，也不包括子文件夹内的文件）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l |grep &quot;^-&quot;|wc -l</span><br></pre></td></tr></table></figure>
+
+<p>2.统计当前目录下的子文件夹数量（不包括一般文件，也不包括子文件夹内的文件）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l |grep &quot;^ｄ&quot;|wc -l</span><br></pre></td></tr></table></figure>
+
+<p>3.统计当前目录下的一般文件数量（包括子文件夹内的一般文件，但不包括子文件夹，也不包括子文件夹内的子文件夹）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -lR|grep &quot;^-&quot;|wc -l </span><br></pre></td></tr></table></figure>
+
+<p>解释：</p>
+<p><code>ls-l</code>命令输出当前目录下的文件信息（包含目录、链接、设备文件等），每一行对应一个文件。</p>
+<p><code>ls -lR</code>命令输出当前目录下的包括子目录的文件信息。</p>
+<p><code>grep &quot;^-&quot;</code>过滤<code>ls</code>的输出信息，只保留一般文件。</p>
+<p><code>grep &quot;^d&quot;</code>过滤<code>ls</code>的输出信息，只保留子文件夹。</p>
+<p><code>wc -l</code>命令统计输出信息的行数。</p>
+<blockquote>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://hannlp.github.io/2021-01-15-Linux-&amp;-Shell-Usage-Record/">https://hannlp.github.io/2021-01-15-Linux-&amp;-Shell-Usage-Record/</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/LIU-LIU-LIU/Recycle_bin">https://github.com/LIU-LIU-LIU/Recycle_bin</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dylancao/p/9012790.html">https://www.cnblogs.com/dylancao/p/9012790.html</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <!--添加版权信息-->
+    <div>
+        
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+
+  <p><span>本文标题:</span>linux-tips</a></p>
+  <p><span>本文作者:</span>xydaytoy</a></p>
+  <p><span>本文链接:</span><a href="/2021/11/28/linux-tips/" title="linux-tips">http://example.com/2021/11/28/linux-tips/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://example.com/2021/11/28/linux-tips/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>版权声明:</span>本博客所有文章除特别声明外，均采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND</a>许可协议。转载请注明出处！</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+        
+    </div>
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/28/chinese-text-classify/" rel="prev" title="chinese_text_classify">
+      <i class="fa fa-chevron-left"></i> chinese_text_classify
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/11/29/weekly-211129/" rel="next" title="每周知识碎片1">
+      每周知识碎片1 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-%E5%9C%A8%E7%BA%BF%E6%89%8B%E5%86%8C"><span class="nav-number">1.</span> <span class="nav-text">0 在线手册</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E8%B5%84%E6%BA%90%E5%8D%A0%E7%94%A8%E6%83%85%E5%86%B5"><span class="nav-number">2.</span> <span class="nav-text">1 资源占用情况</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-GPU%E6%98%BE%E5%8D%A1%E5%8D%A0%E7%94%A8"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 GPU显卡占用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 查看进程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84"><span class="nav-number">3.</span> <span class="nav-text">2 文件路径</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E4%BB%8E%E7%BD%91%E9%A1%B5%E4%B8%8B%E8%BD%BD%E6%95%B0%E6%8D%AE"><span class="nav-number">4.</span> <span class="nav-text">3 从网页下载数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E9%98%B2%E8%AF%AF%E5%88%A0%EF%BC%88%E5%9B%9E%E6%94%B6%E7%AB%99%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">4 防误删（回收站）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E7%A7%BB%E5%85%A5%E5%9B%9E%E6%94%B6%E7%AB%99"><span class="nav-number">5.1.</span> <span class="nav-text">4.1 移入回收站</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-2-%E6%B8%85%E7%A9%BA%E5%9B%9E%E6%94%B6%E7%AB%99"><span class="nav-number">6.</span> <span class="nav-text">4.2 清空回收站</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6"><span class="nav-number">7.</span> <span class="nav-text">5 解压文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-zip%E6%96%87%E4%BB%B6"><span class="nav-number">7.1.</span> <span class="nav-text">5.1 zip文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-tar-gz%E6%96%87%E4%BB%B6"><span class="nav-number">7.2.</span> <span class="nav-text">5.2 tar.gz文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E6%89%A7%E8%A1%8C%E8%BF%9B%E7%A8%8B%E7%9B%B8%E5%85%B3"><span class="nav-number">8.</span> <span class="nav-text">6 执行进程相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-%E6%8C%87%E5%AE%9A%E8%BF%9B%E7%A8%8B%E4%BD%BF%E7%94%A8%E7%9A%84GPU"><span class="nav-number">8.1.</span> <span class="nav-text">6.1 指定进程使用的GPU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E4%B8%8D%E6%8C%82%E6%96%AD"><span class="nav-number">8.2.</span> <span class="nav-text">6.2 后台运行不挂断</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4"><span class="nav-number">9.</span> <span class="nav-text">7 磁盘空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-%E6%96%87%E6%9C%AC%E5%86%85%E5%AE%B9%E6%8A%BD%E5%8F%96%E5%92%8C%E5%AF%B9%E6%AF%94"><span class="nav-number">10.</span> <span class="nav-text">8 文本内容抽取和对比</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-1-%E6%96%87%E6%9C%AC%E6%AF%94%E5%AF%B9"><span class="nav-number">11.</span> <span class="nav-text">8.1 文本比对</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-%E5%86%85%E5%AE%B9%E6%8A%BD%E5%8F%96%EF%BC%9Acut"><span class="nav-number">11.1.</span> <span class="nav-text">8.2 内容抽取：cut</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-%E7%BB%9F%E8%AE%A1%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6%E6%95%B0%E9%87%8F"><span class="nav-number">12.</span> <span class="nav-text">9 统计目录下的文件数量</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">xydaytoy</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xydaytoy" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xydaytoy" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:daytoy2018@gmail.com" title="E-Mail → mailto:daytoy2018@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xydaytoy</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
