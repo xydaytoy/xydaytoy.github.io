@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>github博客常用命令</title>
+    <url>/2021/05/27/blog-instructions/</url>
+    <content><![CDATA[<blockquote>
+<p>汇总一些博客常用命令和备份博客的方法。</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="新建："><a href="#新建：" class="headerlink" title="新建："></a>新建：</h1><p><code>hexo init [folder]</code><br>新建网站，有folder就新建一个名为folder的文件夹并将网站存在该文件夹下，没有folder就将网站存在当前目录下。</p>
+<p><code>hexo new [layout] “title”</code><br>新建文章，如果没有设置 layout 的话，默认使用 _config.yml 中的 default_layout 参数代替，文章标题用双引号括起来。</p>
+<h1 id="部署更改"><a href="#部署更改" class="headerlink" title="部署更改:"></a>部署更改:</h1><p><code>hexo clean</code><br>清除缓存文件(db.json)和已生成的静态文件(public)，当更改不生效时可以使用该命令。</p>
+<p><code>hexo g / hexo generate</code><br>生成静态文件，之后可启动服务器或者部署网站。</p>
+<p><code>hexo s / hexo server</code><br>启动服务器，可访问<a href="http://localhost:4000/%E6%9F%A5%E7%9C%8B%E3%80%82">http://localhost:4000/查看。</a></p>
+<p><code>hexo d / hexo deploy</code><br>部署网站，可访问网站链接查看。</p>
+<h1 id="上传文件："><a href="#上传文件：" class="headerlink" title="上传文件："></a>上传文件：</h1><p>在github上code下载处复制<a href="https://github.com/xxx.git">https://github.com/xxx.git</a> 的链接，<br>在本地git bash中输入<code>git clone https://github.com/xxx.git</code> 克隆仓库到本地，<br>将需要上传的文件复制到本地生成的文件夹中，输入命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add . #将文件夹下的所有文件都添加进来</span><br><span class="line">git commit  -m  &quot;first commit&quot;  #“first commit”可替换成任意需要的注释信息</span><br><span class="line">git push -u origin main  #将本地仓库push到github上面，2020年10月1日之后，github新创建的仓库默认分支都将使用main，而不是之前的master，要注意。</span><br></pre></td></tr></table></figure>
+
+<h1 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h1><p>采用同上传文件的方式来备份网站源文件，在github上建立一个private仓库，将网站的文件夹整体移动到克隆到本地的备份文件夹中，每隔一段时间上传最新的文件来备份网站。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit  -m  &quot;backup&quot;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>other</category>
+        <category>github</category>
+      </categories>
+  </entry>
+  <entry>
     <title>线性规划_GLPK工具</title>
     <url>/2021/11/27/LP-GLPK/</url>
     <content><![CDATA[<blockquote>
@@ -45,64 +70,54 @@
       </categories>
   </entry>
   <entry>
-    <title>github博客常用命令</title>
-    <url>/2021/05/27/blog-instructions/</url>
+    <title>fairseq代码位置记录</title>
+    <url>/2021/05/21/fairseq-tips/</url>
     <content><![CDATA[<blockquote>
-<p>汇总一些博客常用命令和备份博客的方法。</p>
+<p>记录一些fairseq中功能实现的代码位置。<br>fairseq版本: 0.9.0</p>
 </blockquote>
 <span id="more"></span>
 
-<h1 id="新建："><a href="#新建：" class="headerlink" title="新建："></a>新建：</h1><p><code>hexo init [folder]</code><br>新建网站，有folder就新建一个名为folder的文件夹并将网站存在该文件夹下，没有folder就将网站存在当前目录下。</p>
-<p><code>hexo new [layout] “title”</code><br>新建文章，如果没有设置 layout 的话，默认使用 _config.yml 中的 default_layout 参数代替，文章标题用双引号括起来。</p>
-<h1 id="部署更改"><a href="#部署更改" class="headerlink" title="部署更改:"></a>部署更改:</h1><p><code>hexo clean</code><br>清除缓存文件(db.json)和已生成的静态文件(public)，当更改不生效时可以使用该命令。</p>
-<p><code>hexo g / hexo generate</code><br>生成静态文件，之后可启动服务器或者部署网站。</p>
-<p><code>hexo s / hexo server</code><br>启动服务器，可访问<a href="http://localhost:4000/%E6%9F%A5%E7%9C%8B%E3%80%82">http://localhost:4000/查看。</a></p>
-<p><code>hexo d / hexo deploy</code><br>部署网站，可访问网站链接查看。</p>
-<h1 id="上传文件："><a href="#上传文件：" class="headerlink" title="上传文件："></a>上传文件：</h1><p>在github上code下载处复制<a href="https://github.com/xxx.git">https://github.com/xxx.git</a> 的链接，<br>在本地git bash中输入<code>git clone https://github.com/xxx.git</code> 克隆仓库到本地，<br>将需要上传的文件复制到本地生成的文件夹中，输入命令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add . #将文件夹下的所有文件都添加进来</span><br><span class="line">git commit  -m  &quot;first commit&quot;  #“first commit”可替换成任意需要的注释信息</span><br><span class="line">git push -u origin main  #将本地仓库push到github上面，2020年10月1日之后，github新创建的仓库默认分支都将使用main，而不是之前的master，要注意。</span><br></pre></td></tr></table></figure>
-
-<h1 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h1><p>采用同上传文件的方式来备份网站源文件，在github上建立一个private仓库，将网站的文件夹整体移动到克隆到本地的备份文件夹中，每隔一段时间上传最新的文件来备份网站。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit  -m  &quot;backup&quot;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+<h1 id="ensemble集成"><a href="#ensemble集成" class="headerlink" title="ensemble集成"></a>ensemble集成</h1><p>在fairseq/sequence_generator.py中760行，ensemble在beam search之前。</p>
 ]]></content>
       <categories>
-        <category>other</category>
-        <category>github</category>
+        <category>code</category>
+        <category>pytorch</category>
+        <category>fairseq</category>
       </categories>
   </entry>
   <entry>
-    <title>latex-tips</title>
-    <url>/2021/11/27/latex-tips/</url>
+    <title>fairseq踩坑记录</title>
+    <url>/2021/05/27/fairseq-tips1/</url>
     <content><![CDATA[<blockquote>
-<p>latex/overleaf一些笔记。</p>
+<p>记录一些fairseq中遇到的bug和解决方案。<br>fairseq版本: 0.9.0</p>
 </blockquote>
 <span id="more"></span>
 
-<h1 id="图片排版"><a href="#图片排版" class="headerlink" title="图片排版"></a>图片排版</h1><h2 id="宏包："><a href="#宏包：" class="headerlink" title="宏包："></a>宏包：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\usepackage&#123;graphicx&#125; %插图宏包</span><br><span class="line">\usepackage&#123;subfig&#125; %子图包含宏包，较新</span><br><span class="line">\usepackage&#123;subfigure&#125; %子图包含宏包，较旧</span><br></pre></td></tr></table></figure>
-
-<h2 id="基本命令："><a href="#基本命令：" class="headerlink" title="基本命令："></a>基本命令：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[ht]</span><br><span class="line">\centering</span><br><span class="line">\includegraphics[width&#x3D;10cm]&#123;example.png&#125;</span><br><span class="line">\caption&#123;this is a figure&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
-
-<p>\centering表示的是里面紧跟的内容都居中；</p>
-<p>\includegrapics[参数1]{参数2}</p>
-<p>参数1：对图片进行一些调整，例如宽高缩放width=10cm,height=8cm,scale=0.4</p>
-<p>参数2：图片名</p>
-<p>\caption{标题}设置图片的一个编号以及为图片添加标题；</p>
-<h2 id="图片位置："><a href="#图片位置：" class="headerlink" title="图片位置："></a>图片位置：</h2><p>\begin{figure}[参数1]</p>
-<p>参数1：对图片在文中的位置进行设置，h 此处（here）t 页顶（top）b 页底（bottom）p 独立一页（page），<strong>H 固定位置</strong>；</p>
-<h2 id="subfig和subfigure的区别："><a href="#subfig和subfigure的区别：" class="headerlink" title="subfig和subfigure的区别："></a>subfig和subfigure的区别：</h2><p>subfig：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[tbp]</span><br><span class="line">	\centering</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:a&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\quad</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:b&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\\	</span><br><span class="line">	\caption&#123;Capital Roman numerals.&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
-
-<p>subfigure：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125; \centering </span><br><span class="line">\subfigure[figure 1 title.] &#123; \label&#123;fig:a&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig1.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\subfigure[figure 2 title.] &#123; \label&#123;fig:b&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig2.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\caption&#123; general title. &#125; </span><br><span class="line">\label&#123;fig&#125; </span><br><span class="line">\end&#123;figure&#125; </span><br></pre></td></tr></table></figure>
-
-
+<h1 id="torch-max返回值"><a href="#torch-max返回值" class="headerlink" title="torch.max返回值"></a>torch.max返回值</h1><p>报错：<code>TypeError: expected Tensor as element 0 in argument 0, but got torch.return_types.max</code></p>
+<p>原因是torch.max(a, dim=)返回值是tuple类型，第一个元素是值，第二个元素是索引，因此只需要返回值的tensor时，torch.max(a, dim=).values即可</p>
+<h1 id="导致维度变化的命令"><a href="#导致维度变化的命令" class="headerlink" title="导致维度变化的命令"></a>导致维度变化的命令</h1><p>torch.max=tf.reduce_sum，都会使维度减一</p>
+<p>a = a[:-1:] 也会使维度减一</p>
+<p>cat维度不变，stack使维度加一，都是tensor拼接的功能</p>
+<h1 id="cpu和gpu上变量的类型不匹配问题"><a href="#cpu和gpu上变量的类型不匹配问题" class="headerlink" title="cpu和gpu上变量的类型不匹配问题"></a>cpu和gpu上变量的类型不匹配问题</h1><p>报错：RuntimeError: expected device cpu but got device cuda:0</p>
+<p>可能出现错误的位置：</p>
+<ul>
+<li><p>等号左边和右边类型不一样</p>
+</li>
+<li><p>运算符左右两端类型不同，例：+ - * /</p>
+</li>
+<li><p>同一个函数内，传入参数的类型不同，例matmul等</p>
+</li>
+</ul>
+<p>把tensor转移到相同的设备上解决问题</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-&gt;cuda : data.cuda()</span><br><span class="line">-&gt;cpu: data.cpu()</span><br><span class="line">-&gt;numpy：</span><br><span class="line">cuda类型不能直接转numpy 须先转成cpu类型，data.cpu().numpy()</span><br><span class="line">在cuda下训练中的数据不能直接转换为numpy，data.cpu().detach().numpy()</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>参考：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/143529262">https://zhuanlan.zhihu.com/p/143529262</a></p>
-<p><a href="https://blog.csdn.net/yq_forever/article/details/84796802">https://blog.csdn.net/yq_forever/article/details/84796802</a></p>
+<p>参考: <a href="https://blog.csdn.net/qq_41368074/article/details/105942534">https://blog.csdn.net/qq_41368074/article/details/105942534</a></p>
 </blockquote>
 ]]></content>
       <categories>
-        <category>other</category>
+        <category>code</category>
+        <category>pytorch</category>
+        <category>fairseq</category>
       </categories>
   </entry>
   <entry>
@@ -162,159 +177,39 @@
       </categories>
   </entry>
   <entry>
-    <title>fairseq代码位置记录</title>
-    <url>/2021/05/21/fairseq-tips/</url>
+    <title>latex-tips</title>
+    <url>/2021/11/27/latex-tips/</url>
     <content><![CDATA[<blockquote>
-<p>记录一些fairseq中功能实现的代码位置。<br>fairseq版本: 0.9.0</p>
+<p>latex/overleaf一些笔记。</p>
 </blockquote>
 <span id="more"></span>
 
-<h1 id="ensemble集成"><a href="#ensemble集成" class="headerlink" title="ensemble集成"></a>ensemble集成</h1><p>在fairseq/sequence_generator.py中760行，ensemble在beam search之前。</p>
-]]></content>
-      <categories>
-        <category>code</category>
-        <category>pytorch</category>
-        <category>fairseq</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>fairseq踩坑记录</title>
-    <url>/2021/05/27/fairseq-tips1/</url>
-    <content><![CDATA[<blockquote>
-<p>记录一些fairseq中遇到的bug和解决方案。<br>fairseq版本: 0.9.0</p>
-</blockquote>
-<span id="more"></span>
+<h1 id="图片排版"><a href="#图片排版" class="headerlink" title="图片排版"></a>图片排版</h1><h2 id="宏包："><a href="#宏包：" class="headerlink" title="宏包："></a>宏包：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\usepackage&#123;graphicx&#125; %插图宏包</span><br><span class="line">\usepackage&#123;subfig&#125; %子图包含宏包，较新</span><br><span class="line">\usepackage&#123;subfigure&#125; %子图包含宏包，较旧</span><br></pre></td></tr></table></figure>
 
-<h1 id="torch-max返回值"><a href="#torch-max返回值" class="headerlink" title="torch.max返回值"></a>torch.max返回值</h1><p>报错：<code>TypeError: expected Tensor as element 0 in argument 0, but got torch.return_types.max</code></p>
-<p>原因是torch.max(a, dim=)返回值是tuple类型，第一个元素是值，第二个元素是索引，因此只需要返回值的tensor时，torch.max(a, dim=).values即可</p>
-<h1 id="导致维度变化的命令"><a href="#导致维度变化的命令" class="headerlink" title="导致维度变化的命令"></a>导致维度变化的命令</h1><p>torch.max=tf.reduce_sum，都会使维度减一</p>
-<p>a = a[:-1:] 也会使维度减一</p>
-<p>cat维度不变，stack使维度加一，都是tensor拼接的功能</p>
-<h1 id="cpu和gpu上变量的类型不匹配问题"><a href="#cpu和gpu上变量的类型不匹配问题" class="headerlink" title="cpu和gpu上变量的类型不匹配问题"></a>cpu和gpu上变量的类型不匹配问题</h1><p>报错：RuntimeError: expected device cpu but got device cuda:0</p>
-<p>可能出现错误的位置：</p>
-<ul>
-<li><p>等号左边和右边类型不一样</p>
-</li>
-<li><p>运算符左右两端类型不同，例：+ - * /</p>
-</li>
-<li><p>同一个函数内，传入参数的类型不同，例matmul等</p>
-</li>
-</ul>
-<p>把tensor转移到相同的设备上解决问题</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-&gt;cuda : data.cuda()</span><br><span class="line">-&gt;cpu: data.cpu()</span><br><span class="line">-&gt;numpy：</span><br><span class="line">cuda类型不能直接转numpy 须先转成cpu类型，data.cpu().numpy()</span><br><span class="line">在cuda下训练中的数据不能直接转换为numpy，data.cpu().detach().numpy()</span><br></pre></td></tr></table></figure>
+<h2 id="基本命令："><a href="#基本命令：" class="headerlink" title="基本命令："></a>基本命令：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[ht]</span><br><span class="line">\centering</span><br><span class="line">\includegraphics[width&#x3D;10cm]&#123;example.png&#125;</span><br><span class="line">\caption&#123;this is a figure&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+
+<p>\centering表示的是里面紧跟的内容都居中；</p>
+<p>\includegrapics[参数1]{参数2}</p>
+<p>参数1：对图片进行一些调整，例如宽高缩放width=10cm,height=8cm,scale=0.4</p>
+<p>参数2：图片名</p>
+<p>\caption{标题}设置图片的一个编号以及为图片添加标题；</p>
+<h2 id="图片位置："><a href="#图片位置：" class="headerlink" title="图片位置："></a>图片位置：</h2><p>\begin{figure}[参数1]</p>
+<p>参数1：对图片在文中的位置进行设置，h 此处（here）t 页顶（top）b 页底（bottom）p 独立一页（page），<strong>H 固定位置</strong>；</p>
+<h2 id="subfig和subfigure的区别："><a href="#subfig和subfigure的区别：" class="headerlink" title="subfig和subfigure的区别："></a>subfig和subfigure的区别：</h2><p>subfig：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[tbp]</span><br><span class="line">	\centering</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:a&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\quad</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:b&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\\	</span><br><span class="line">	\caption&#123;Capital Roman numerals.&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+
+<p>subfigure：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125; \centering </span><br><span class="line">\subfigure[figure 1 title.] &#123; \label&#123;fig:a&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig1.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\subfigure[figure 2 title.] &#123; \label&#123;fig:b&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig2.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\caption&#123; general title. &#125; </span><br><span class="line">\label&#123;fig&#125; </span><br><span class="line">\end&#123;figure&#125; </span><br></pre></td></tr></table></figure>
+
+
 <blockquote>
-<p>参考: <a href="https://blog.csdn.net/qq_41368074/article/details/105942534">https://blog.csdn.net/qq_41368074/article/details/105942534</a></p>
+<p>参考：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/143529262">https://zhuanlan.zhihu.com/p/143529262</a></p>
+<p><a href="https://blog.csdn.net/yq_forever/article/details/84796802">https://blog.csdn.net/yq_forever/article/details/84796802</a></p>
 </blockquote>
 ]]></content>
       <categories>
-        <category>code</category>
-        <category>pytorch</category>
-        <category>fairseq</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>DP动态规划</title>
-    <url>/2021/10/15/oj-DP/</url>
-    <content><![CDATA[<blockquote>
-<p>算法课笔记-动态规划<br>语言: C++</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="中文标题"><a href="#中文标题" class="headerlink" title="中文标题"></a>中文标题</h1><p>内容。</p>
-]]></content>
-      <categories>
-        <category>code</category>
-        <category>oj</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>DC分治</title>
-    <url>/2021/10/15/oj-DC/</url>
-    <content><![CDATA[<blockquote>
-<p>算法课笔记-分治<br>语言：C++</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>内容。</p>
-]]></content>
-      <categories>
-        <category>code</category>
-        <category>oj</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>python笔记</title>
-    <url>/2021/05/31/python-note/</url>
-    <content><![CDATA[<blockquote>
-<p>python3的一些知识点</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><ul>
-<li><p>函数中的默认参数必须指向不变对象，否则在多次调用时会改变默认值（例如None、str，反例如list）。</p>
-</li>
-<li><p>可变参数：允许不定量个参数输入，在参数前加<em>，传入参数类型是tuple。<br>在输入list/tuple进入可变参数的函数时，可以加上</em>直接传入。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def func(*num):</span><br><span class="line">    pass</span><br><span class="line">a &#x3D; (1,2,3)</span><br><span class="line">func(*a)</span><br></pre></td></tr></table></figure></li>
-<li><p>关键字参数：**来表示，用法同可变参数，区别是传入的参数都为<code>x=y</code>格式，传入后变成一个关键字为x，值为y的字典。<br>可以用作用户可选输入的收集上。</p>
-</li>
-<li><p>命名关键字参数：用<em>或者可变参数</em>x做分隔符，规定必须输入的关键字参数。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def func(x,y,*,z):</span><br><span class="line">    pass</span><br><span class="line">func(1,2,z&#x3D;4)</span><br></pre></td></tr></table></figure>
-<h1 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h1></li>
-<li><p>左闭右开取值，第三个参数表示间隔</p>
-</li>
-</ul>
-<h1 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h1><ul>
-<li>字典的迭代默认是key，迭代value:<code>for value in d.values()</code>，<br>同时迭代key和value:<code>for k, v in d.items()</code></li>
-</ul>
-<h1 id="生成器generator"><a href="#生成器generator" class="headerlink" title="生成器generator"></a>生成器generator</h1><ul>
-<li><p>把生成式列表的[]改为()，每次调用next(x)计算下一个元素的值，或者用for循环迭代</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">g &#x3D; (x*x for x in range(0,10))</span><br><span class="line">a &#x3D; next(g)</span><br><span class="line">for i in g:</span><br><span class="line">	print(i)</span><br></pre></td></tr></table></figure></li>
-<li><p>在函数中添加yield语句，每次调用<code>next()</code>，运行到yield返回，下次调用从yield下继续</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def odd():</span><br><span class="line">	print(&quot;step 1&quot;)</span><br><span class="line">	yield 1</span><br><span class="line">	print(&quot;step 2&quot;)</span><br><span class="line">	yield 3</span><br><span class="line">	print(&quot;step 3&quot;)</span><br><span class="line">	yield 5</span><br><span class="line">o &#x3D; odd()</span><br><span class="line">a &#x3D; next(o) #step 2\n3</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>这里要注意for循环调用函数生成器时，函数内的print内容无法输出，可以通过<code>StopIteration</code>错误的value获取。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for i in o:</span><br><span class="line">	print(i) #1 3 5</span><br><span class="line">while True:</span><br><span class="line">	try:</span><br><span class="line">		x &#x3D; next(o)</span><br><span class="line">		print(x)</span><br><span class="line">	except StopIteration as e:</span><br><span class="line">		print(e.value)</span><br><span class="line">		break</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h1><ul>
-<li>判断对象是不是<code>Iterable</code>对象</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from collections.abc import Iterable</span><br><span class="line">isinstance([], Iterable) # True</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>可以被<code>next()</code>不断调用并返回下一个值的对象称为迭代器<code>Iterator</code>对象，生成器都是<code>Iterator</code>对象，但是<code>Iterable</code>对象不全是<code>Iterator</code>对象</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from collections.abc import Iterator</span><br><span class="line">isinstance([],Iterator) # False</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>Iterable</code>对象可以通过使用<code>iter()</code>函数变成<code>Iterator</code>对象，两者的区别是后者是惰性的，可以是无限长度的序列流，无法提前知道长度，前者是有限的，长度可知的。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">isinstance(iter([]), Iterator) # True</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h1><p>函数式编程的一个特点：允许把函数本身作为参数传入另一个函数，还允许返回一个函数。</p>
-<h2 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h2><ul>
-<li>接收另一个函数作为参数的函数</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def add(x, y, f):</span><br><span class="line">	return f(x) + f(y)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>map()：接收两个参数，一个函数，一个<code>Iterable</code>对象，对每个对象实施函数，返回结果是一个<code>Iterator</code>对象。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def f(x):</span><br><span class="line">	return x*x</span><br><span class="line">r &#x3D; map(f, [1,2,3,4,5,6])</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>reduce()：接收两个参数，一个函数和一个序列，功能是把结果继续和序列的下一个元素做累积计算。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#str2int功能实现</span><br><span class="line">from functools import reduce</span><br><span class="line">def fn(x, y):</span><br><span class="line">	return x * 10 + y</span><br><span class="line">def char2num(s):</span><br><span class="line">	digits &#x3D; &#123;&#39;0&#39;: 0, &#39;1&#39;: 1, &#39;2&#39;: 2, &#39;3&#39;: 3, &#39;4&#39;: 4, &#39;5&#39;: 5, &#39;6&#39;: 6, &#39;7&#39;: 7, &#39;8&#39;: 8, &#39;9&#39;: 9&#125;</span><br><span class="line">	return digits[s]</span><br><span class="line">reduce(fn, map(char2num, &#39;13579&#39;)) # 13579</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#利用map和reduce编写一个str2float函数，把字符串&#39;123.456&#39;转换成浮点数123.456</span><br><span class="line">def str2float(s):</span><br><span class="line">    def ten(x, y):</span><br><span class="line">        return x*10+y</span><br><span class="line">    def st(x):</span><br><span class="line">        D &#x3D; &#123;&#39;0&#39;: 0, &#39;1&#39;: 1, &#39;2&#39;: 2, &#39;3&#39;: 3, &#39;4&#39;: 4, &#39;5&#39;: 5, &#39;6&#39;: 6, &#39;7&#39;: 7, &#39;8&#39;: 8, &#39;9&#39;: 9&#125;</span><br><span class="line">        return D[x]</span><br><span class="line">    a, b &#x3D; s.split(&#39;.&#39;)</span><br><span class="line">    num &#x3D; len(b)</span><br><span class="line">    ans1 &#x3D; reduce(ten, list(map(st, a)))</span><br><span class="line">    ans2 &#x3D; reduce(ten, list(map(st, b)))</span><br><span class="line">    ans &#x3D; ans1 +ans2&#x2F;(10**num)</span><br><span class="line">    return ans</span><br><span class="line">	</span><br><span class="line">print(&#39;str2float(\&#39;123.456\&#39;) &#x3D;&#39;, str2float(&#39;123.456&#39;))</span><br><span class="line">if abs(str2float(&#39;123.456&#39;) - 123.456) &lt; 0.00001:</span><br><span class="line">    print(&#39;测试成功!&#39;)</span><br><span class="line">else:</span><br><span class="line">    print(&#39;测试失败!&#39;)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>filter():接收两个参数，一个函数，一个序列，根据函数的True/False来决定序列是否保留，返回值是一个<code>Iterator</code>对象<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def not_empty(s):</span><br><span class="line">    return s and s.strip()</span><br><span class="line">x &#x3D; list(filter(not_empty, [&#39;A&#39;, &#39;&#39;, &#39;B&#39;, None, &#39;C&#39;, &#39;  &#39;])) # [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>code</category>
-        <category>python</category>
+        <category>other</category>
       </categories>
   </entry>
   <entry>
@@ -442,6 +337,178 @@
       </categories>
   </entry>
   <entry>
+    <title>DC分治</title>
+    <url>/2021/10/15/oj-DC/</url>
+    <content><![CDATA[<blockquote>
+<p>算法课笔记-分治<br>语言：C++</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>内容。</p>
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>oj</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>python笔记</title>
+    <url>/2021/05/31/python-note/</url>
+    <content><![CDATA[<blockquote>
+<p>python3的一些知识点</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><ul>
+<li><p>函数中的默认参数必须指向不变对象，否则在多次调用时会改变默认值（例如None、str，反例如list）。</p>
+</li>
+<li><p>可变参数：允许不定量个参数输入，在参数前加<em>，传入参数类型是tuple。<br>在输入list/tuple进入可变参数的函数时，可以加上</em>直接传入。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def func(*num):</span><br><span class="line">    pass</span><br><span class="line">a &#x3D; (1,2,3)</span><br><span class="line">func(*a)</span><br></pre></td></tr></table></figure></li>
+<li><p>关键字参数：**来表示，用法同可变参数，区别是传入的参数都为<code>x=y</code>格式，传入后变成一个关键字为x，值为y的字典。<br>可以用作用户可选输入的收集上。</p>
+</li>
+<li><p>命名关键字参数：用<em>或者可变参数</em>x做分隔符，规定必须输入的关键字参数。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def func(x,y,*,z):</span><br><span class="line">    pass</span><br><span class="line">func(1,2,z&#x3D;4)</span><br></pre></td></tr></table></figure>
+<h1 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h1></li>
+<li><p>左闭右开取值，第三个参数表示间隔</p>
+</li>
+</ul>
+<h1 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h1><ul>
+<li>字典的迭代默认是key，迭代value:<code>for value in d.values()</code>，<br>同时迭代key和value:<code>for k, v in d.items()</code></li>
+</ul>
+<h1 id="生成器generator"><a href="#生成器generator" class="headerlink" title="生成器generator"></a>生成器generator</h1><ul>
+<li><p>把生成式列表的[]改为()，每次调用next(x)计算下一个元素的值，或者用for循环迭代</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">g &#x3D; (x*x for x in range(0,10))</span><br><span class="line">a &#x3D; next(g)</span><br><span class="line">for i in g:</span><br><span class="line">	print(i)</span><br></pre></td></tr></table></figure></li>
+<li><p>在函数中添加yield语句，每次调用<code>next()</code>，运行到yield返回，下次调用从yield下继续</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def odd():</span><br><span class="line">	print(&quot;step 1&quot;)</span><br><span class="line">	yield 1</span><br><span class="line">	print(&quot;step 2&quot;)</span><br><span class="line">	yield 3</span><br><span class="line">	print(&quot;step 3&quot;)</span><br><span class="line">	yield 5</span><br><span class="line">o &#x3D; odd()</span><br><span class="line">a &#x3D; next(o) #step 2\n3</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这里要注意for循环调用函数生成器时，函数内的print内容无法输出，可以通过<code>StopIteration</code>错误的value获取。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for i in o:</span><br><span class="line">	print(i) #1 3 5</span><br><span class="line">while True:</span><br><span class="line">	try:</span><br><span class="line">		x &#x3D; next(o)</span><br><span class="line">		print(x)</span><br><span class="line">	except StopIteration as e:</span><br><span class="line">		print(e.value)</span><br><span class="line">		break</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h1><ul>
+<li>判断对象是不是<code>Iterable</code>对象</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from collections.abc import Iterable</span><br><span class="line">isinstance([], Iterable) # True</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以被<code>next()</code>不断调用并返回下一个值的对象称为迭代器<code>Iterator</code>对象，生成器都是<code>Iterator</code>对象，但是<code>Iterable</code>对象不全是<code>Iterator</code>对象</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from collections.abc import Iterator</span><br><span class="line">isinstance([],Iterator) # False</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Iterable</code>对象可以通过使用<code>iter()</code>函数变成<code>Iterator</code>对象，两者的区别是后者是惰性的，可以是无限长度的序列流，无法提前知道长度，前者是有限的，长度可知的。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">isinstance(iter([]), Iterator) # True</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h1><p>函数式编程的一个特点：允许把函数本身作为参数传入另一个函数，还允许返回一个函数。</p>
+<h2 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h2><ul>
+<li>接收另一个函数作为参数的函数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def add(x, y, f):</span><br><span class="line">	return f(x) + f(y)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>map()：接收两个参数，一个函数，一个<code>Iterable</code>对象，对每个对象实施函数，返回结果是一个<code>Iterator</code>对象。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def f(x):</span><br><span class="line">	return x*x</span><br><span class="line">r &#x3D; map(f, [1,2,3,4,5,6])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>reduce()：接收两个参数，一个函数和一个序列，功能是把结果继续和序列的下一个元素做累积计算。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#str2int功能实现</span><br><span class="line">from functools import reduce</span><br><span class="line">def fn(x, y):</span><br><span class="line">	return x * 10 + y</span><br><span class="line">def char2num(s):</span><br><span class="line">	digits &#x3D; &#123;&#39;0&#39;: 0, &#39;1&#39;: 1, &#39;2&#39;: 2, &#39;3&#39;: 3, &#39;4&#39;: 4, &#39;5&#39;: 5, &#39;6&#39;: 6, &#39;7&#39;: 7, &#39;8&#39;: 8, &#39;9&#39;: 9&#125;</span><br><span class="line">	return digits[s]</span><br><span class="line">reduce(fn, map(char2num, &#39;13579&#39;)) # 13579</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#利用map和reduce编写一个str2float函数，把字符串&#39;123.456&#39;转换成浮点数123.456</span><br><span class="line">def str2float(s):</span><br><span class="line">    def ten(x, y):</span><br><span class="line">        return x*10+y</span><br><span class="line">    def st(x):</span><br><span class="line">        D &#x3D; &#123;&#39;0&#39;: 0, &#39;1&#39;: 1, &#39;2&#39;: 2, &#39;3&#39;: 3, &#39;4&#39;: 4, &#39;5&#39;: 5, &#39;6&#39;: 6, &#39;7&#39;: 7, &#39;8&#39;: 8, &#39;9&#39;: 9&#125;</span><br><span class="line">        return D[x]</span><br><span class="line">    a, b &#x3D; s.split(&#39;.&#39;)</span><br><span class="line">    num &#x3D; len(b)</span><br><span class="line">    ans1 &#x3D; reduce(ten, list(map(st, a)))</span><br><span class="line">    ans2 &#x3D; reduce(ten, list(map(st, b)))</span><br><span class="line">    ans &#x3D; ans1 +ans2&#x2F;(10**num)</span><br><span class="line">    return ans</span><br><span class="line">	</span><br><span class="line">print(&#39;str2float(\&#39;123.456\&#39;) &#x3D;&#39;, str2float(&#39;123.456&#39;))</span><br><span class="line">if abs(str2float(&#39;123.456&#39;) - 123.456) &lt; 0.00001:</span><br><span class="line">    print(&#39;测试成功!&#39;)</span><br><span class="line">else:</span><br><span class="line">    print(&#39;测试失败!&#39;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>filter():接收两个参数，一个函数，一个序列，根据函数的True/False来决定序列是否保留，返回值是一个<code>Iterator</code>对象<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def not_empty(s):</span><br><span class="line">    return s and s.strip()</span><br><span class="line">x &#x3D; list(filter(not_empty, [&#39;A&#39;, &#39;&#39;, &#39;B&#39;, None, &#39;C&#39;, &#39;  &#39;])) # [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>python</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>pytorch笔记</title>
+    <url>/2021/05/28/pytorch-note/</url>
+    <content><![CDATA[<blockquote>
+<p>pytorch-学习笔记</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="0-pytorch的组件"><a href="#0-pytorch的组件" class="headerlink" title="0 pytorch的组件"></a>0 pytorch的组件</h1><table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://pytorch.org/docs/stable/torch.html"><strong>torch</strong></a></td>
+<td>在GPU上的类似Numpy的张量库，一些基本操作</td>
+</tr>
+<tr>
+<td><a href="https://pytorch.org/docs/stable/autograd.html"><strong>torch.autograd</strong></a></td>
+<td>支持torch中张量的微分操作</td>
+</tr>
+<tr>
+<td><a href="https://pytorch.org/docs/stable/jit.html"><strong>torch.jit</strong></a></td>
+<td>创建可序列化和可优化的编译堆栈(TorchScript)</td>
+</tr>
+<tr>
+<td><a href="https://pytorch.org/docs/stable/nn.html"><strong>torch.nn</strong></a></td>
+<td>与autograd深度集成的神经网络库</td>
+</tr>
+<tr>
+<td><a href="https://pytorch.org/docs/stable/multiprocessing.html"><strong>torch.multiprocessing</strong></a></td>
+<td>对数据加载Hogwild训练起效的多进程</td>
+</tr>
+<tr>
+<td><a href="https://pytorch.org/docs/stable/data.html"><strong>torch.utils</strong></a></td>
+<td>数据加载和其他实用程序功能</td>
+</tr>
+</tbody></table>
+<h1 id="1-pytorch手册"><a href="#1-pytorch手册" class="headerlink" title="1 pytorch手册"></a>1 pytorch手册</h1><h2 id="1-1-官方备忘录"><a href="#1-1-官方备忘录" class="headerlink" title="1.1 官方备忘录"></a><a href="https://pytorch.org/tutorials/beginner/ptcheat.html">1.1 官方备忘录</a></h2><p><strong>import:</strong></p>
+<p>一般的：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch                                        <span class="comment"># root package</span></span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> Dataset, DataLoader    <span class="comment"># dataset representation and loading</span></span><br></pre></td></tr></table></figure>
+
+<p>神经网络API：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.autograd <span class="keyword">as</span> autograd         <span class="comment"># computation graph</span></span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> Tensor                  <span class="comment"># tensor node in the computation graph</span></span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn                     <span class="comment"># neural networks</span></span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F           <span class="comment"># layers, activations and more</span></span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim               <span class="comment"># optimizers e.g. gradient descent, ADAM, etc.</span></span><br><span class="line"><span class="keyword">from</span> torch.jit <span class="keyword">import</span> script, trace       <span class="comment"># hybrid frontend decorator and tracing jit</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Tensor:</strong></p>
+<p>创建：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.randn(*size)              <span class="comment"># tensor with independent N(0,1) entries</span></span><br><span class="line">x = torch.[ones|zeros](*size)       <span class="comment"># tensor with all 1&#x27;s [or 0&#x27;s]</span></span><br><span class="line">x = torch.tensor(L)                 <span class="comment"># create tensor from [nested] list or ndarray L</span></span><br><span class="line">y = x.clone()                       <span class="comment"># clone of x</span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():               <span class="comment"># code wrap that stops autograd from tracking tensor history</span></span><br><span class="line">requires_grad=<span class="literal">True</span>                  <span class="comment"># arg, when set to True, tracks computation</span></span><br><span class="line">                                    <span class="comment"># history for future derivative calculations</span></span><br></pre></td></tr></table></figure>
+
+<p>维度：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x.size()                                  <span class="comment"># return tuple-like object of dimensions</span></span><br><span class="line">x = torch.cat(tensor_seq, dim=<span class="number">0</span>)          <span class="comment"># concatenates tensors along dim</span></span><br><span class="line">y = x.view(a,b,...)                       <span class="comment"># reshapes x into size (a,b,...)</span></span><br><span class="line">y = x.view(-<span class="number">1</span>,a)                          <span class="comment"># reshapes x into size (b,a) for some b</span></span><br><span class="line">y = x.transpose(a,b)                      <span class="comment"># swaps dimensions a and b</span></span><br><span class="line">y = x.permute(*dims)                      <span class="comment"># permutes dimensions</span></span><br><span class="line">y = x.unsqueeze(dim)                      <span class="comment"># tensor with added axis</span></span><br><span class="line">y = x.unsqueeze(dim=<span class="number">2</span>)                    <span class="comment"># (a,b,c) tensor -&gt; (a,b,1,c) tensor</span></span><br><span class="line">y = x.squeeze()                           <span class="comment"># removes all dimensions of size 1 (a,1,b,1) -&gt; (a,b)</span></span><br><span class="line">y = x.squeeze(dim=<span class="number">1</span>)                      <span class="comment"># removes specified dimension of size 1 (a,1,b,1) -&gt; (a,b,1)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h1><h2 id="访问元素"><a href="#访问元素" class="headerlink" title="访问元素"></a>访问元素</h2><p><code>[1,:]</code>其中:表示选择范围，只有:表示全选，与数字结合表示范围。</p>
+<p><code>[::3,::2]</code>其中::表示跳选，每隔x个选择一个。</p>
+<p>张量:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">x &#x3D; torch.arange(12) #生成</span><br><span class="line">x.shape #形状</span><br><span class="line">x.numel() #元素总数</span><br><span class="line">x &#x3D; x.reshape(3,4) #变换</span><br><span class="line">x &#x3D; torch.zeros((1,2,3)) #全零</span><br><span class="line">x &#x3D; torch.ones((2,3,4)) #全一</span><br><span class="line">x &#x3D; torch.tensor(list) #根据list生成tensor</span><br><span class="line">+ - * &#x2F; ** #对元素进行运算</span><br><span class="line">torch.exp(x) #指数运算</span><br><span class="line">torch.cat((x,y),dim&#x3D;0) #在第零维拼接，零维是最外侧</span><br><span class="line">x &#x3D;&#x3D; y #构建二元张量，是元素比较的结果</span><br><span class="line">x.sum() #求和，结果是一个元素的tensor</span><br><span class="line">x[0:2,:]&#x3D;12 #区域赋值</span><br><span class="line">x[:]&#x3D;x+y &#x2F; x+&#x3D;y #减少内存开销，前后不变</span><br><span class="line">y &#x3D; x.numpy() #tensor转ndarray</span><br><span class="line">x &#x3D; torch.tensor(y) #ndarray转tensor</span><br><span class="line">x.item() &#x2F; float(x) &#x2F; int(x) #0维张量转标量</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>pytorch</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>DP动态规划</title>
+    <url>/2021/10/15/oj-DP/</url>
+    <content><![CDATA[<blockquote>
+<p>算法课笔记-动态规划<br>语言: C++</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="中文标题"><a href="#中文标题" class="headerlink" title="中文标题"></a>中文标题</h1><p>内容。</p>
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>oj</category>
+      </categories>
+  </entry>
+  <entry>
     <title>tf-tensor变换</title>
     <url>/2021/05/27/tf-tensor-conversion/</url>
     <content><![CDATA[<blockquote>
@@ -497,20 +564,43 @@
       </categories>
   </entry>
   <entry>
-    <title>pytorch笔记</title>
-    <url>/2021/05/28/pytorch-note/</url>
+    <title>每周知识碎片2</title>
+    <url>/2022/01/20/weekly-220120/</url>
     <content><![CDATA[<blockquote>
-<p>pytorch-动手学深度学习2021笔记</p>
+<p>疯狂写大作业的一周。</p>
+</blockquote>
+<blockquote>
+<p>力扣力扣力扣！</p>
 </blockquote>
 <span id="more"></span>
 
-<h1 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h1><h2 id="访问元素"><a href="#访问元素" class="headerlink" title="访问元素"></a>访问元素</h2><p><code>[1,:]</code>其中:表示选择范围，只有:表示全选，与数字结合表示范围。</p>
-<p><code>[::3,::2]</code>其中::表示跳选，每隔x个选择一个。</p>
-<p>张量:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">x &#x3D; torch.arange(12) #生成</span><br><span class="line">x.shape #形状</span><br><span class="line">x.numel() #元素总数</span><br><span class="line">x &#x3D; x.reshape(3,4) #变换</span><br><span class="line">x &#x3D; torch.zeros((1,2,3)) #全零</span><br><span class="line">x &#x3D; torch.ones((2,3,4)) #全一</span><br><span class="line">x &#x3D; torch.tensor(list) #根据list生成tensor</span><br><span class="line">+ - * &#x2F; ** #对元素进行运算</span><br><span class="line">torch.exp(x) #指数运算</span><br><span class="line">torch.cat((x,y),dim&#x3D;0) #在第零维拼接，零维是最外侧</span><br><span class="line">x &#x3D;&#x3D; y #构建二元张量，是元素比较的结果</span><br><span class="line">x.sum() #求和，结果是一个元素的tensor</span><br><span class="line">x[0:2,:]&#x3D;12 #区域赋值</span><br><span class="line">x[:]&#x3D;x+y &#x2F; x+&#x3D;y #减少内存开销，前后不变</span><br><span class="line">y &#x3D; x.numpy() #tensor转ndarray</span><br><span class="line">x &#x3D; torch.tensor(y) #ndarray转tensor</span><br><span class="line">x.item() &#x2F; float(x) &#x2F; int(x) #0维张量转标量</span><br></pre></td></tr></table></figure>]]></content>
+<h1 id="python-初始化全零的二维列表"><a href="#python-初始化全零的二维列表" class="headerlink" title="python 初始化全零的二维列表"></a>python 初始化全零的二维列表</h1><p>初始化一个全零的n*m的二维列表：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list1=[[<span class="number">0</span>]*(m) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br></pre></td></tr></table></figure>
+
+<p>错误的创建方式：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list2=[[<span class="number">0</span>]*m]*nde</span><br></pre></td></tr></table></figure>
+
+<p>在后续修改值的过程中会出现问题：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list2[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(list2)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[[2, 0, 0], [2, 0, 0]]</span><br></pre></td></tr></table></figure>
+
+<h1 id="python-初值默认的字典"><a href="#python-初值默认的字典" class="headerlink" title="python 初值默认的字典"></a>python 初值默认的字典</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line">dict1 = defaultdict(<span class="built_in">int</span>)</span><br><span class="line">dict2 = defaultdict(<span class="built_in">set</span>)</span><br><span class="line">dict3 = defaultdict(<span class="built_in">str</span>)</span><br><span class="line">dict4 = defaultdict(<span class="built_in">list</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(dict1[<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(dict2[<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(dict3[<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(dict4[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<p>在使用dict[n]时，不会出现key不存在的情况，会返回默认值：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0</span><br><span class="line">set()</span><br><span class="line"></span><br><span class="line">[]</span><br></pre></td></tr></table></figure>
+
+<h1 id="力扣-剑指offer-数组"><a href="#力扣-剑指offer-数组" class="headerlink" title="力扣-剑指offer-数组"></a>力扣-剑指offer-数组</h1><p>Ⅱ007：</p>
+<p>排序后有一个顺序的信息可以利用，固定一个值（跳过省略和过大的值），另外两个用两个指针根据大小调整可以更快的查找。</p>
+<p>Ⅱ010：</p>
+<p>数组元素存在负数时不能用双指针滑窗，因为不满足条件就滑窗的性质不具备了，这是采用前缀和和哈希表。</p>
+<p>Ⅱ011：</p>
+<p>把0换成-1就和上一道题的和为k的子数组一样了，用字典记录一下最开头的相同前缀和的位置即可。</p>
+<p>Ⅱ013：</p>
+<p>二维前缀和，需要注意的是二维全零列表的初始化方式（错误的初始化方式会导致在后期赋值的时候出现错误）</p>
+]]></content>
       <categories>
-        <category>code</category>
-        <category>pytorch</category>
+        <category>weekly</category>
       </categories>
   </entry>
   <entry>
