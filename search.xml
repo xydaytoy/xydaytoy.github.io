@@ -1,31 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>github博客常用命令</title>
-    <url>/2021/05/27/blog-instructions/</url>
-    <content><![CDATA[<blockquote>
-<p>汇总一些博客常用命令和备份博客的方法。</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="新建："><a href="#新建：" class="headerlink" title="新建："></a>新建：</h1><p><code>hexo init [folder]</code><br>新建网站，有folder就新建一个名为folder的文件夹并将网站存在该文件夹下，没有folder就将网站存在当前目录下。</p>
-<p><code>hexo new [layout] “title”</code><br>新建文章，如果没有设置 layout 的话，默认使用 _config.yml 中的 default_layout 参数代替，文章标题用双引号括起来。</p>
-<h1 id="部署更改"><a href="#部署更改" class="headerlink" title="部署更改:"></a>部署更改:</h1><p><code>hexo clean</code><br>清除缓存文件(db.json)和已生成的静态文件(public)，当更改不生效时可以使用该命令。</p>
-<p><code>hexo g / hexo generate</code><br>生成静态文件，之后可启动服务器或者部署网站。</p>
-<p><code>hexo s / hexo server</code><br>启动服务器，可访问<a href="http://localhost:4000/%E6%9F%A5%E7%9C%8B%E3%80%82">http://localhost:4000/查看。</a></p>
-<p><code>hexo d / hexo deploy</code><br>部署网站，可访问网站链接查看。</p>
-<h1 id="上传文件："><a href="#上传文件：" class="headerlink" title="上传文件："></a>上传文件：</h1><p>在github上code下载处复制<a href="https://github.com/xxx.git">https://github.com/xxx.git</a> 的链接，<br>在本地git bash中输入<code>git clone https://github.com/xxx.git</code> 克隆仓库到本地，<br>将需要上传的文件复制到本地生成的文件夹中，输入命令：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add . #将文件夹下的所有文件都添加进来</span><br><span class="line">git commit  -m  &quot;first commit&quot;  #“first commit”可替换成任意需要的注释信息</span><br><span class="line">git push -u origin main  #将本地仓库push到github上面，2020年10月1日之后，github新创建的仓库默认分支都将使用main，而不是之前的master，要注意。</span><br></pre></td></tr></table></figure>
-
-<h1 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h1><p>采用同上传文件的方式来备份网站源文件，在github上建立一个private仓库，将网站的文件夹整体移动到克隆到本地的备份文件夹中，每隔一段时间上传最新的文件来备份网站。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit  -m  &quot;backup&quot;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>other</category>
-        <category>github</category>
-      </categories>
-  </entry>
-  <entry>
     <title>线性规划_GLPK工具</title>
     <url>/2021/11/27/LP-GLPK/</url>
     <content><![CDATA[<blockquote>
@@ -70,6 +45,89 @@
       </categories>
   </entry>
   <entry>
+    <title>github博客常用命令</title>
+    <url>/2021/05/27/blog-instructions/</url>
+    <content><![CDATA[<blockquote>
+<p>汇总一些博客常用命令和备份博客的方法。</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="新建："><a href="#新建：" class="headerlink" title="新建："></a>新建：</h1><p><code>hexo init [folder]</code><br>新建网站，有folder就新建一个名为folder的文件夹并将网站存在该文件夹下，没有folder就将网站存在当前目录下。</p>
+<p><code>hexo new [layout] “title”</code><br>新建文章，如果没有设置 layout 的话，默认使用 _config.yml 中的 default_layout 参数代替，文章标题用双引号括起来。</p>
+<h1 id="部署更改"><a href="#部署更改" class="headerlink" title="部署更改:"></a>部署更改:</h1><p><code>hexo clean</code><br>清除缓存文件(db.json)和已生成的静态文件(public)，当更改不生效时可以使用该命令。</p>
+<p><code>hexo g / hexo generate</code><br>生成静态文件，之后可启动服务器或者部署网站。</p>
+<p><code>hexo s / hexo server</code><br>启动服务器，可访问<a href="http://localhost:4000/%E6%9F%A5%E7%9C%8B%E3%80%82">http://localhost:4000/查看。</a></p>
+<p><code>hexo d / hexo deploy</code><br>部署网站，可访问网站链接查看。</p>
+<h1 id="上传文件："><a href="#上传文件：" class="headerlink" title="上传文件："></a>上传文件：</h1><p>在github上code下载处复制<a href="https://github.com/xxx.git">https://github.com/xxx.git</a> 的链接，<br>在本地git bash中输入<code>git clone https://github.com/xxx.git</code> 克隆仓库到本地，<br>将需要上传的文件复制到本地生成的文件夹中，输入命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add . #将文件夹下的所有文件都添加进来</span><br><span class="line">git commit  -m  &quot;first commit&quot;  #“first commit”可替换成任意需要的注释信息</span><br><span class="line">git push -u origin main  #将本地仓库push到github上面，2020年10月1日之后，github新创建的仓库默认分支都将使用main，而不是之前的master，要注意。</span><br></pre></td></tr></table></figure>
+
+<h1 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h1><p>采用同上传文件的方式来备份网站源文件，在github上建立一个private仓库，将网站的文件夹整体移动到克隆到本地的备份文件夹中，每隔一段时间上传最新的文件来备份网站。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit  -m  &quot;backup&quot;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>other</category>
+        <category>github</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>environment</title>
+    <url>/2022/03/19/environment/</url>
+    <content><![CDATA[<blockquote>
+<p>linux上环境搭建记录（gpu）。</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h1><p>anaconda安装</p>
+<p>pytorch（cuda版本）安装</p>
+<p>fairseq安装</p>
+<p>huggingface安装</p>
+<h1 id="1-anaconda安装"><a href="#1-anaconda安装" class="headerlink" title="1 anaconda安装"></a>1 anaconda安装</h1><p>在<a href="https://www.anaconda.com/products/individual">anaconda官网</a>上找到符合系统和配置的版本，复制下载链接，使用wget命令安装：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+
+<p>执行安装程序：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bash Anaconda3-2021.11-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+
+<p>中间过程选择yes，将conda加入环境变量，结束后输入：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">conda -V</span><br></pre></td></tr></table></figure>
+
+<p>如出现版本号说明安装成功。</p>
+<p>创建虚拟环境，为配置特定环境做准备：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">conda create -n envname python&#x3D;3.x</span><br></pre></td></tr></table></figure>
+
+
+
+<p><em>tips</em>：</p>
+<p>查看linux的系统构架的命令：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">~$</span><span class="bash"> arch</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="2-pytorch-cuda安装"><a href="#2-pytorch-cuda安装" class="headerlink" title="2 pytorch+cuda安装"></a>2 pytorch+cuda安装</h1><p>在<a href="https://pytorch.org/get-started/locally/">pytorch官网</a>根据系统和版本复制安装命令，如果首页没有所需版本可在“You can also <a href="https://pytorch.org/get-started/previous-versions">install previous versions of PyTorch</a>“处查找。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch</span><br></pre></td></tr></table></figure>
+
+<p>测试是否安装成功：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">import torch</span><br><span class="line">flag = torch.cuda.is_available()</span><br><span class="line">print(flag)</span><br><span class="line">ngpu= 1</span><br><span class="line">device = torch.device(&quot;cuda:0&quot; if (torch.cuda.is_available() and ngpu &gt; 0) else &quot;cpu&quot;)</span><br><span class="line">print(device)</span><br><span class="line">print(torch.cuda.get_device_name(0))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">True</span><br><span class="line">cuda:0</span><br><span class="line">NVIDIA GeForce RTX 3090</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="3-huggingface安装"><a href="#3-huggingface安装" class="headerlink" title="3 huggingface安装"></a>3 huggingface安装</h1><p>此处选择源码方式安装huggingface便于自行修改，其它安装方式在<a href="https://huggingface.co/docs/transformers/installation">官网</a>中有介绍。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;huggingface&#x2F;transformers.git</span><br><span class="line">cd transformers</span><br><span class="line">pip install -e .</span><br></pre></td></tr></table></figure>
+
+<p><em>tips</em>：</p>
+<p><code>pip install -e</code>的作用是添加非官方的模块，先下载源码，进入源码目录，并执行该命令可解决<code>No module named &#39;XXX&#39;</code>的报错，它进行的操作有：</p>
+<ul>
+<li>安装site-packages/PackageName.egg-link文件</li>
+<li>添加路径 site-packages/easy-install.pth</li>
+</ul>
+<h2 id="1-1-相关工具"><a href="#1-1-相关工具" class="headerlink" title="1.1 相关工具"></a>1.1 相关工具</h2>]]></content>
+      <categories>
+        <category>other</category>
+        <category>linux</category>
+      </categories>
+  </entry>
+  <entry>
     <title>fairseq代码位置记录</title>
     <url>/2021/05/21/fairseq-tips/</url>
     <content><![CDATA[<blockquote>
@@ -78,41 +136,6 @@
 <span id="more"></span>
 
 <h1 id="ensemble集成"><a href="#ensemble集成" class="headerlink" title="ensemble集成"></a>ensemble集成</h1><p>在fairseq/sequence_generator.py中760行，ensemble在beam search之前。</p>
-]]></content>
-      <categories>
-        <category>code</category>
-        <category>pytorch</category>
-        <category>fairseq</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>fairseq踩坑记录</title>
-    <url>/2021/05/27/fairseq-tips1/</url>
-    <content><![CDATA[<blockquote>
-<p>记录一些fairseq中遇到的bug和解决方案。<br>fairseq版本: 0.9.0</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="torch-max返回值"><a href="#torch-max返回值" class="headerlink" title="torch.max返回值"></a>torch.max返回值</h1><p>报错：<code>TypeError: expected Tensor as element 0 in argument 0, but got torch.return_types.max</code></p>
-<p>原因是torch.max(a, dim=)返回值是tuple类型，第一个元素是值，第二个元素是索引，因此只需要返回值的tensor时，torch.max(a, dim=).values即可</p>
-<h1 id="导致维度变化的命令"><a href="#导致维度变化的命令" class="headerlink" title="导致维度变化的命令"></a>导致维度变化的命令</h1><p>torch.max=tf.reduce_sum，都会使维度减一</p>
-<p>a = a[:-1:] 也会使维度减一</p>
-<p>cat维度不变，stack使维度加一，都是tensor拼接的功能</p>
-<h1 id="cpu和gpu上变量的类型不匹配问题"><a href="#cpu和gpu上变量的类型不匹配问题" class="headerlink" title="cpu和gpu上变量的类型不匹配问题"></a>cpu和gpu上变量的类型不匹配问题</h1><p>报错：RuntimeError: expected device cpu but got device cuda:0</p>
-<p>可能出现错误的位置：</p>
-<ul>
-<li><p>等号左边和右边类型不一样</p>
-</li>
-<li><p>运算符左右两端类型不同，例：+ - * /</p>
-</li>
-<li><p>同一个函数内，传入参数的类型不同，例matmul等</p>
-</li>
-</ul>
-<p>把tensor转移到相同的设备上解决问题</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-&gt;cuda : data.cuda()</span><br><span class="line">-&gt;cpu: data.cpu()</span><br><span class="line">-&gt;numpy：</span><br><span class="line">cuda类型不能直接转numpy 须先转成cpu类型，data.cpu().numpy()</span><br><span class="line">在cuda下训练中的数据不能直接转换为numpy，data.cpu().detach().numpy()</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>参考: <a href="https://blog.csdn.net/qq_41368074/article/details/105942534">https://blog.csdn.net/qq_41368074/article/details/105942534</a></p>
-</blockquote>
 ]]></content>
       <categories>
         <category>code</category>
@@ -174,6 +197,41 @@
         <category>other</category>
         <category>hexo</category>
         <category>next</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>fairseq踩坑记录</title>
+    <url>/2021/05/27/fairseq-tips1/</url>
+    <content><![CDATA[<blockquote>
+<p>记录一些fairseq中遇到的bug和解决方案。<br>fairseq版本: 0.9.0</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="torch-max返回值"><a href="#torch-max返回值" class="headerlink" title="torch.max返回值"></a>torch.max返回值</h1><p>报错：<code>TypeError: expected Tensor as element 0 in argument 0, but got torch.return_types.max</code></p>
+<p>原因是torch.max(a, dim=)返回值是tuple类型，第一个元素是值，第二个元素是索引，因此只需要返回值的tensor时，torch.max(a, dim=).values即可</p>
+<h1 id="导致维度变化的命令"><a href="#导致维度变化的命令" class="headerlink" title="导致维度变化的命令"></a>导致维度变化的命令</h1><p>torch.max=tf.reduce_sum，都会使维度减一</p>
+<p>a = a[:-1:] 也会使维度减一</p>
+<p>cat维度不变，stack使维度加一，都是tensor拼接的功能</p>
+<h1 id="cpu和gpu上变量的类型不匹配问题"><a href="#cpu和gpu上变量的类型不匹配问题" class="headerlink" title="cpu和gpu上变量的类型不匹配问题"></a>cpu和gpu上变量的类型不匹配问题</h1><p>报错：RuntimeError: expected device cpu but got device cuda:0</p>
+<p>可能出现错误的位置：</p>
+<ul>
+<li><p>等号左边和右边类型不一样</p>
+</li>
+<li><p>运算符左右两端类型不同，例：+ - * /</p>
+</li>
+<li><p>同一个函数内，传入参数的类型不同，例matmul等</p>
+</li>
+</ul>
+<p>把tensor转移到相同的设备上解决问题</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-&gt;cuda : data.cuda()</span><br><span class="line">-&gt;cpu: data.cpu()</span><br><span class="line">-&gt;numpy：</span><br><span class="line">cuda类型不能直接转numpy 须先转成cpu类型，data.cpu().numpy()</span><br><span class="line">在cuda下训练中的数据不能直接转换为numpy，data.cpu().detach().numpy()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参考: <a href="https://blog.csdn.net/qq_41368074/article/details/105942534">https://blog.csdn.net/qq_41368074/article/details/105942534</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>pytorch</category>
+        <category>fairseq</category>
       </categories>
   </entry>
   <entry>
@@ -324,6 +382,12 @@
 <p><code>grep &quot;^-&quot;</code>过滤<code>ls</code>的输出信息，只保留一般文件。</p>
 <p><code>grep &quot;^d&quot;</code>过滤<code>ls</code>的输出信息，只保留子文件夹。</p>
 <p><code>wc -l</code>命令统计输出信息的行数。</p>
+<h1 id="10-查看系统构架"><a href="#10-查看系统构架" class="headerlink" title="10 查看系统构架"></a>10 查看系统构架</h1><p>方法1：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">~$</span><span class="bash"> uname -a</span></span><br><span class="line">Linux alt 5.4.0-104-generic #118-Ubuntu SMP Wed Mar 2 19:02:41 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux</span><br></pre></td></tr></table></figure>
+
+<p>方法2：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">~$</span><span class="bash"> arch</span></span><br><span class="line">x86_64</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>参考：</p>
 <p><a href="https://hannlp.github.io/2021-01-15-Linux-&amp;-Shell-Usage-Record/">https://hannlp.github.io/2021-01-15-Linux-&amp;-Shell-Usage-Record/</a></p>
@@ -345,6 +409,21 @@
 <span id="more"></span>
 
 <h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>内容。</p>
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>oj</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>DP动态规划</title>
+    <url>/2021/10/15/oj-DP/</url>
+    <content><![CDATA[<blockquote>
+<p>算法课笔记-动态规划<br>语言: C++</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="中文标题"><a href="#中文标题" class="headerlink" title="中文标题"></a>中文标题</h1><p>内容。</p>
 ]]></content>
       <categories>
         <category>code</category>
@@ -494,21 +573,6 @@
       </categories>
   </entry>
   <entry>
-    <title>DP动态规划</title>
-    <url>/2021/10/15/oj-DP/</url>
-    <content><![CDATA[<blockquote>
-<p>算法课笔记-动态规划<br>语言: C++</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="中文标题"><a href="#中文标题" class="headerlink" title="中文标题"></a>中文标题</h1><p>内容。</p>
-]]></content>
-      <categories>
-        <category>code</category>
-        <category>oj</category>
-      </categories>
-  </entry>
-  <entry>
     <title>tf-tensor变换</title>
     <url>/2021/05/27/tf-tensor-conversion/</url>
     <content><![CDATA[<blockquote>
@@ -567,9 +631,6 @@
     <title>每周知识碎片2</title>
     <url>/2022/01/20/weekly-220120/</url>
     <content><![CDATA[<blockquote>
-<p>疯狂写大作业的一周。</p>
-</blockquote>
-<blockquote>
 <p>力扣力扣力扣！</p>
 </blockquote>
 <span id="more"></span>
@@ -598,6 +659,50 @@
 <p>把0换成-1就和上一道题的和为k的子数组一样了，用字典记录一下最开头的相同前缀和的位置即可。</p>
 <p>Ⅱ013：</p>
 <p>二维前缀和，需要注意的是二维全零列表的初始化方式（错误的初始化方式会导致在后期赋值的时候出现错误）</p>
+<h1 id="如何判断研究工作的价值（李沐）"><a href="#如何判断研究工作的价值（李沐）" class="headerlink" title="如何判断研究工作的价值（李沐）"></a>如何判断研究工作的价值（李沐）</h1><h2 id="一句话：用有新意的方法有效的解决一个研究问题。"><a href="#一句话：用有新意的方法有效的解决一个研究问题。" class="headerlink" title="一句话：用有新意的方法有效的解决一个研究问题。"></a>一句话：用有<strong>新意</strong>的方法<strong>有效</strong>的解决一个<strong>研究</strong>问题。</h2><p><strong>研究</strong>：<br>工程问题：例如内存，精度等问题，对于一个问题可以提出几个解决方案（买内存，标数据），并且在方案没有实验的时候就知道一定可以解决问题，那么属于工程问题。<br>研究问题：比较困难，可以想到的解决方案在实验前不能确定是否可以解决问题。</p>
+<p><strong>有效</strong>：</p>
+<p>相对于之前的工作，我解决这个问题的有效性有所提升。</p>
+<p><strong>新意</strong>：</p>
+<p>对所在研究社区里面的绝大多数研究者是有新意的，可能是很久之前的方法，或者在别的领域有研究者在使用的方法。</p>
+<p><em>这也可以体现在自己写论文摘要的时候</em>：</p>
+<p>我要解决一个什么研究问题，我用的方法新意在哪，最后我的结果如何。</p>
+<h2 id="价值-新意度-有效性-问题大小"><a href="#价值-新意度-有效性-问题大小" class="headerlink" title="价值 = 新意度 * 有效性 * 问题大小"></a>价值 = 新意度 * 有效性 * 问题大小</h2><p><strong>问题大小</strong>：</p>
+<p>1：对前一个工作不好的地方进行改进</p>
+<p>10：对一个领域的某个子任务进行提升</p>
+<p>100：提升机器对文字/图片的理解</p>
+<p><strong>有效性</strong>：</p>
+<p>1：可能多次实验精度提升不明显</p>
+<p>10：一个点</p>
+<p>100：五个点</p>
+<p>效果好，规模做大（成本降低），安全</p>
+<p><strong>新意度</strong>：</p>
+<p>1：大家都不意外方法，同时看到方法的时候不意外结果</p>
+<p>10：在某一个方面用某个技术聪明的解决问题</p>
+<p>100：用了一个大家不熟悉的技术</p>
+<p><em>在某一个指标上达到较好算一个有价值的工作。</em></p>
+<h1 id="怎样读论文（李沐）"><a href="#怎样读论文（李沐）" class="headerlink" title="怎样读论文（李沐）"></a>怎样读论文（李沐）</h1><p><strong>第一遍</strong>：</p>
+<p>标题、摘要、结论。可以看一看方法和实验部分重要的图和表。花费十几分钟时间了解到论文是否适合你的研究方向。</p>
+<p><strong>第二遍</strong>：</p>
+<p>确定论文值得读之后，可以快速的把整个论文过一遍，不需要知道所有的细节，需要了解重要的图和表，知道每一个部分在干什么，圈出相关文献。觉得文章太难，可以读引用的文献。</p>
+<p><strong>第三遍</strong>：</p>
+<p>要知道每一句话每一段在说什么，在心里复述一下文章提出什么问题，用什么方法来解决这个问题，实验是怎么做的。想一下如果是我来做我要怎么做，作者没有解决的问题我是否有合适的方法可以继续解决。合上文章，回忆每一个部分在讲什么。</p>
+]]></content>
+      <categories>
+        <category>weekly</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>每周知识碎片3</title>
+    <url>/2022/03/31/weekly-220331/</url>
+    <content><![CDATA[<blockquote>
+<p>huggingface🤗！</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="python中的-staticmethod方法"><a href="#python中的-staticmethod方法" class="headerlink" title="python中的@staticmethod方法"></a>python中的@staticmethod方法</h1><p>作用：方便外部函数集成到类中，可以<strong>在不实例化类的情况下直接访问该方法</strong>。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,num</span>):</span></span><br><span class="line">            self.num = num;</span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">cout_num</span>(<span class="params">self</span>):</span></span><br><span class="line">            <span class="built_in">print</span>(self.num)</span><br><span class="line"><span class="meta">      @staticmethod</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">print_num</span>():</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Hello World&quot;</span>)         </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化&quot;&quot;&quot;</span></span><br><span class="line">      obj = Test(<span class="number">10</span>)</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化成员方法&quot;&quot;&quot;</span></span><br><span class="line">      obj.cout_num()</span><br><span class="line">      <span class="string">&quot;&quot;&quot;直接访问静态方法&quot;&quot;&quot;</span></span><br><span class="line">      Test.print_num()</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化 访问静态方法&quot;&quot;&quot;</span></span><br><span class="line">      obj.print_num()</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;输出结果&quot;&quot;&quot;</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line">Hello World</span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
+
+<p>在读embedding类的代码（<a href="https://github.com/UKPLab/sentence-transformers/blob/master/sentence_transformers/models/WordEmbeddings.py">sentence-transformers/sentence-transformers/models/WordEmbeddings.py</a>）时看到该方法，实例化方法需要传入embedding_weight变量，通过staticmethod可以直接通过txt文件或者模型来创建实例，相当于提供了三种创建方法。</p>
 ]]></content>
       <categories>
         <category>weekly</category>

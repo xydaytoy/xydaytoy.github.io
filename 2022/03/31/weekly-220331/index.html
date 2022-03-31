@@ -20,15 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="札记">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+  <meta name="description" content="huggingface🤗！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每周知识碎片3">
+<meta property="og:url" content="http://example.com/2022/03/31/weekly-220331/index.html">
 <meta property="og:site_name" content="札记">
+<meta property="og:description" content="huggingface🤗！">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-31T12:17:50.000Z">
+<meta property="article:modified_time" content="2022-03-31T12:28:24.631Z">
 <meta property="article:author" content="xydaytoy">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/archives/2021/">
+<link rel="canonical" href="http://example.com/2022/03/31/weekly-220331/">
 
 
 <script id="page-configurations">
@@ -36,12 +40,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | 札记</title>
+  <title>每周知识碎片3 | 札记</title>
   
 
 
@@ -178,234 +182,139 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 18 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/31/weekly-220331/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xydaytoy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="札记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          每周知识碎片3
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-03-31 20:17:50 / 修改时间：20:28:24" itemprop="dateCreated datePublished" datetime="2022-03-31T20:17:50+08:00">2022-03-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/weekly/" itemprop="url" rel="index"><span itemprop="name">weekly</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
-    </div>
+        <blockquote>
+<p>huggingface🤗！</p>
+</blockquote>
+<span id="more"></span>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<h1 id="python中的-staticmethod方法"><a href="#python中的-staticmethod方法" class="headerlink" title="python中的@staticmethod方法"></a>python中的@staticmethod方法</h1><p>作用：方便外部函数集成到类中，可以<strong>在不实例化类的情况下直接访问该方法</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,num</span>):</span></span><br><span class="line">            self.num = num;</span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">cout_num</span>(<span class="params">self</span>):</span></span><br><span class="line">            <span class="built_in">print</span>(self.num)</span><br><span class="line"><span class="meta">      @staticmethod</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">print_num</span>():</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Hello World&quot;</span>)         </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化&quot;&quot;&quot;</span></span><br><span class="line">      obj = Test(<span class="number">10</span>)</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化成员方法&quot;&quot;&quot;</span></span><br><span class="line">      obj.cout_num()</span><br><span class="line">      <span class="string">&quot;&quot;&quot;直接访问静态方法&quot;&quot;&quot;</span></span><br><span class="line">      Test.print_num()</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化 访问静态方法&quot;&quot;&quot;</span></span><br><span class="line">      obj.print_num()</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;输出结果&quot;&quot;&quot;</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line">Hello World</span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-11-29T15:49:47+08:00"
-              content="2021-11-29">
-          11-29
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/11/29/weekly-211129/" itemprop="url">
-            <span itemprop="name">每周知识碎片1</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-11-28T13:29:06+08:00"
-              content="2021-11-28">
-          11-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/11/28/linux-tips/" itemprop="url">
-            <span itemprop="name">linux-tips</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-11-28T13:16:23+08:00"
-              content="2021-11-28">
-          11-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/11/28/chinese-text-classify/" itemprop="url">
-            <span itemprop="name">chinese_text_classify</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-11-27T23:35:07+08:00"
-              content="2021-11-27">
-          11-27
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/11/27/data-preprocess/" itemprop="url">
-            <span itemprop="name">data_preprocess</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-11-27T23:05:54+08:00"
-              content="2021-11-27">
-          11-27
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/11/27/latex-tips/" itemprop="url">
-            <span itemprop="name">latex-tips</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-11-27T22:16:28+08:00"
-              content="2021-11-27">
-          11-27
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/11/27/LP-GLPK/" itemprop="url">
-            <span itemprop="name">线性规划_GLPK工具</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-10-15T12:33:12+08:00"
-              content="2021-10-15">
-          10-15
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/10/15/oj-DP/" itemprop="url">
-            <span itemprop="name">DP动态规划</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-10-15T12:28:54+08:00"
-              content="2021-10-15">
-          10-15
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/10/15/oj-DC/" itemprop="url">
-            <span itemprop="name">DC分治</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-05-31T17:07:14+08:00"
-              content="2021-05-31">
-          05-31
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/05/31/python-note/" itemprop="url">
-            <span itemprop="name">python笔记</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-05-28T16:25:31+08:00"
-              content="2021-05-28">
-          05-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/05/28/pytorch-note/" itemprop="url">
-            <span itemprop="name">pytorch笔记</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+<p>在读embedding类的代码（<a target="_blank" rel="noopener" href="https://github.com/UKPLab/sentence-transformers/blob/master/sentence_transformers/models/WordEmbeddings.py">sentence-transformers/sentence-transformers/models/WordEmbeddings.py</a>）时看到该方法，实例化方法需要传入embedding_weight变量，通过staticmethod可以直接通过txt文件或者模型来创建实例，相当于提供了三种创建方法。</p>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+    <!--添加版权信息-->
+    <div>
+        
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2021/page/2/">2</a><a class="extend next" rel="next" href="/archives/2021/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+
+  <p><span>本文标题:</span>每周知识碎片3</a></p>
+  <p><span>本文作者:</span>xydaytoy</a></p>
+  <p><span>本文链接:</span><a href="/2022/03/31/weekly-220331/" title="每周知识碎片3">http://example.com/2022/03/31/weekly-220331/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://example.com/2022/03/31/weekly-220331/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>版权声明:</span>本博客所有文章除特别声明外，均采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND</a>许可协议。转载请注明出处！</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+        
+    </div>
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/19/environment/" rel="prev" title="environment">
+      <i class="fa fa-chevron-left"></i> environment
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
 
 
 
@@ -457,6 +366,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python%E4%B8%AD%E7%9A%84-staticmethod%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">python中的@staticmethod方法</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
