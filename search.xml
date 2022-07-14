@@ -344,42 +344,6 @@
       </categories>
   </entry>
   <entry>
-    <title>latex-tips</title>
-    <url>/2021/11/27/latex-tips/</url>
-    <content><![CDATA[<blockquote>
-<p>latex/overleaf一些笔记。</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="图片排版"><a href="#图片排版" class="headerlink" title="图片排版"></a>图片排版</h1><h2 id="宏包："><a href="#宏包：" class="headerlink" title="宏包："></a>宏包：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\usepackage&#123;graphicx&#125; %插图宏包</span><br><span class="line">\usepackage&#123;subfig&#125; %子图包含宏包，较新</span><br><span class="line">\usepackage&#123;subfigure&#125; %子图包含宏包，较旧</span><br></pre></td></tr></table></figure>
-
-<h2 id="基本命令："><a href="#基本命令：" class="headerlink" title="基本命令："></a>基本命令：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[ht]</span><br><span class="line">\centering</span><br><span class="line">\includegraphics[width&#x3D;10cm]&#123;example.png&#125;</span><br><span class="line">\caption&#123;this is a figure&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
-
-<p>\centering表示的是里面紧跟的内容都居中；</p>
-<p>\includegrapics[参数1]{参数2}</p>
-<p>参数1：对图片进行一些调整，例如宽高缩放width=10cm,height=8cm,scale=0.4</p>
-<p>参数2：图片名</p>
-<p>\caption{标题}设置图片的一个编号以及为图片添加标题；</p>
-<h2 id="图片位置："><a href="#图片位置：" class="headerlink" title="图片位置："></a>图片位置：</h2><p>\begin{figure}[参数1]</p>
-<p>参数1：对图片在文中的位置进行设置，h 此处（here）t 页顶（top）b 页底（bottom）p 独立一页（page），<strong>H 固定位置</strong>；</p>
-<h2 id="subfig和subfigure的区别："><a href="#subfig和subfigure的区别：" class="headerlink" title="subfig和subfigure的区别："></a>subfig和subfigure的区别：</h2><p>subfig：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[tbp]</span><br><span class="line">	\centering</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:a&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\quad</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:b&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\\	</span><br><span class="line">	\caption&#123;Capital Roman numerals.&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
-
-<p>subfigure：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125; \centering </span><br><span class="line">\subfigure[figure 1 title.] &#123; \label&#123;fig:a&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig1.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\subfigure[figure 2 title.] &#123; \label&#123;fig:b&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig2.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\caption&#123; general title. &#125; </span><br><span class="line">\label&#123;fig&#125; </span><br><span class="line">\end&#123;figure&#125; </span><br></pre></td></tr></table></figure>
-
-
-<blockquote>
-<p>参考：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/143529262">https://zhuanlan.zhihu.com/p/143529262</a></p>
-<p><a href="https://blog.csdn.net/yq_forever/article/details/84796802">https://blog.csdn.net/yq_forever/article/details/84796802</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>other</category>
-      </categories>
-  </entry>
-  <entry>
     <title>hexo-next框架附加功能</title>
     <url>/2021/05/27/hexo-next-tips/</url>
     <content><![CDATA[<blockquote>
@@ -433,6 +397,42 @@
         <category>other</category>
         <category>hexo</category>
         <category>next</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>latex-tips</title>
+    <url>/2021/11/27/latex-tips/</url>
+    <content><![CDATA[<blockquote>
+<p>latex/overleaf一些笔记。</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="图片排版"><a href="#图片排版" class="headerlink" title="图片排版"></a>图片排版</h1><h2 id="宏包："><a href="#宏包：" class="headerlink" title="宏包："></a>宏包：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\usepackage&#123;graphicx&#125; %插图宏包</span><br><span class="line">\usepackage&#123;subfig&#125; %子图包含宏包，较新</span><br><span class="line">\usepackage&#123;subfigure&#125; %子图包含宏包，较旧</span><br></pre></td></tr></table></figure>
+
+<h2 id="基本命令："><a href="#基本命令：" class="headerlink" title="基本命令："></a>基本命令：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[ht]</span><br><span class="line">\centering</span><br><span class="line">\includegraphics[width&#x3D;10cm]&#123;example.png&#125;</span><br><span class="line">\caption&#123;this is a figure&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+
+<p>\centering表示的是里面紧跟的内容都居中；</p>
+<p>\includegrapics[参数1]{参数2}</p>
+<p>参数1：对图片进行一些调整，例如宽高缩放width=10cm,height=8cm,scale=0.4</p>
+<p>参数2：图片名</p>
+<p>\caption{标题}设置图片的一个编号以及为图片添加标题；</p>
+<h2 id="图片位置："><a href="#图片位置：" class="headerlink" title="图片位置："></a>图片位置：</h2><p>\begin{figure}[参数1]</p>
+<p>参数1：对图片在文中的位置进行设置，h 此处（here）t 页顶（top）b 页底（bottom）p 独立一页（page），<strong>H 固定位置</strong>；</p>
+<h2 id="subfig和subfigure的区别："><a href="#subfig和subfigure的区别：" class="headerlink" title="subfig和subfigure的区别："></a>subfig和subfigure的区别：</h2><p>subfig：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[tbp]</span><br><span class="line">	\centering</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:a&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\quad</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:b&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\\	</span><br><span class="line">	\caption&#123;Capital Roman numerals.&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+
+<p>subfigure：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125; \centering </span><br><span class="line">\subfigure[figure 1 title.] &#123; \label&#123;fig:a&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig1.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\subfigure[figure 2 title.] &#123; \label&#123;fig:b&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig2.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\caption&#123; general title. &#125; </span><br><span class="line">\label&#123;fig&#125; </span><br><span class="line">\end&#123;figure&#125; </span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>参考：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/143529262">https://zhuanlan.zhihu.com/p/143529262</a></p>
+<p><a href="https://blog.csdn.net/yq_forever/article/details/84796802">https://blog.csdn.net/yq_forever/article/details/84796802</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>other</category>
       </categories>
   </entry>
   <entry>
