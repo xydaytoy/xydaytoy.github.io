@@ -70,7 +70,7 @@
       </categories>
   </entry>
   <entry>
-    <title>environment</title>
+    <title>linux环境搭建</title>
     <url>/2022/03/19/environment/</url>
     <content><![CDATA[<blockquote>
 <p>linux上环境搭建记录（gpu）。</p>
@@ -81,6 +81,7 @@
 <p>pytorch（cuda版本）安装</p>
 <p>fairseq安装</p>
 <p>huggingface安装</p>
+<p>requirements.txt生成</p>
 <h1 id="1-anaconda安装"><a href="#1-anaconda安装" class="headerlink" title="1 anaconda安装"></a>1 anaconda安装</h1><p>在<a href="https://www.anaconda.com/products/individual">anaconda官网</a>上找到符合系统和配置的版本，复制下载链接，使用wget命令安装：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
 
@@ -121,10 +122,160 @@
 <li>安装site-packages/PackageName.egg-link文件</li>
 <li>添加路径 site-packages/easy-install.pth</li>
 </ul>
-<h2 id="1-1-相关工具"><a href="#1-1-相关工具" class="headerlink" title="1.1 相关工具"></a>1.1 相关工具</h2>]]></content>
+<h1 id="4-清华源加速"><a href="#4-清华源加速" class="headerlink" title="4 清华源加速"></a>4 清华源加速</h1><p>pip速度慢或出现超时错误时，考虑换成清华源下载包。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple xxx</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="5-requirements-txt生成"><a href="#5-requirements-txt生成" class="headerlink" title="5 requirements.txt生成"></a>5 requirements.txt生成</h1><p>5.1 生成当前环境下的所有依赖：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
+
+<p>5.2 生成指定项目下的所有依赖：</p>
+<p><em>tips：根据import，即项目引入了哪些包才会写进requirements.txt中，相比前一种方法更简洁，但可能包含的包不全。</em></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install pipreqs</span><br><span class="line">pipreqs ./ [--encoding=utf-8]</span><br></pre></td></tr></table></figure>
+
+<p>5.3 安装requirements.txt要求的所有模块:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install -r requirements.txt [-i HTTPS://mirrors.aliyun.com/pypi/simple/]</span><br></pre></td></tr></table></figure>
+
+]]></content>
       <categories>
         <category>other</category>
         <category>linux</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>git版本控制</title>
+    <url>/2022/07/13/git-note/</url>
+    <content><![CDATA[<blockquote>
+<p>git在linux系统和windows系统中进行版本控制的学习记录。</p>
+<p>想要完成两个目标：</p>
+<p>一是在个人电脑和实验室电脑都能写博客并同步备份到github；</p>
+<p>二是将linux服务器的代码备份到本地计算机中一份，防止丢失。</p>
+<span id="more"></span>
+</blockquote>
+<h1 id="Git安装"><a href="#Git安装" class="headerlink" title="Git安装"></a>Git安装</h1><p>在windows系统中，可以通过官网直接下载，在文件夹空白处右击打开<code>git bash</code>，其余操作和linux中相同，下面统一描述。</p>
+<p>在linux系统中直接在命令行中进行安装：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install git</span><br></pre></td></tr></table></figure>
+
+<p>检查是否已经安装：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git</span><br></pre></td></tr></table></figure>
+
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><h2 id="创建版本库："><a href="#创建版本库：" class="headerlink" title="创建版本库："></a>创建版本库：</h2><p>将一个目录变为git可管理的仓库，创建后会在文件夹下多一个<code>.git</code>文件，用于跟踪管理版本库，是隐藏文件夹。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir learngit</span><br><span class="line">cd learngit</span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加文件到版本库"><a href="#添加文件到版本库" class="headerlink" title="添加文件到版本库"></a>添加文件到版本库</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git add readme.md</span><br></pre></td></tr></table></figure>
+
+<h2 id="将文件提交到仓库"><a href="#将文件提交到仓库" class="headerlink" title="将文件提交到仓库"></a>将文件提交到仓库</h2><p>引号中是对本次提交的描述，可以多次添加文件后进行统一提交。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git commit -m &quot;add a readme file&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="提交修改相关操作"><a href="#提交修改相关操作" class="headerlink" title="提交修改相关操作"></a>提交修改相关操作</h2><p><code>git status</code>可以查看哪些文件被修改了还没有被提交。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<p>在文件被<code>git add</code>命令添加之前，<code>git status</code>命令的输出，注意是有add提示的：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">	modified:   readme.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>在文件被<code>git add</code>命令添加之后，<code>git status</code>命令的输出：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">	modified:   readme.txt</span><br></pre></td></tr></table></figure>
+
+<p>在文件被<code>git commit</code>命令提交之后，<code>git status</code>命令的输出：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">On branch master</span><br><span class="line">nothing to commit, working tree clean</span><br></pre></td></tr></table></figure>
+
+<p><code>git diff</code>可以查看文件的具体的更改</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git diff readme.md</span><br></pre></td></tr></table></figure>
+
+<h2 id="版本回退相关操作"><a href="#版本回退相关操作" class="headerlink" title="版本回退相关操作"></a>版本回退相关操作</h2><p>查看版本控制的历史记录，从近到远，可选项可以让每条记录单行呈现：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git log [--pretty=oneline]</span><br></pre></td></tr></table></figure>
+
+<p>在git中，<code>HEAD</code>表示当前版本，<code>HEAD^</code>表示上一个版本，<code>HEAD~100</code>表示往上第100个版本。</p>
+<p>回退一个版本：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git reset --hard HEAD^</span><br></pre></td></tr></table></figure>
+
+<p>这时，log中已经没有回退之前的版本了，如果想要恢复，需要找到回退之前版本的commit id（不需要写全，不产生歧义就行），可以通过以下命令记录来找到：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
+
+<h2 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h2><p>已经add但没有commit，需要将暂存区的修改撤销到工作区</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git reset HEAD &lt;file&gt;</span><br></pre></td></tr></table></figure>
+
+<p>将没有add的工作区修改撤销</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git checkout -- &lt;file&gt;</span><br></pre></td></tr></table></figure>
+
+<p>删除文件也是一样，当用rm操作后，工作区和版本库不一样，若确实需要删除，则</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git rm &lt;file&gt;</span><br><span class="line">git commit -m &quot;remove file&quot;</span><br></pre></td></tr></table></figure>
+
+<p>若删除错了，则可以从版本库中恢复</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git checkout -- &lt;file&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>git checkout</code>是用版本库中的版本代替工作区，因此两种情况都可以用作撤回。</p>
+<h1 id="远程仓库github"><a href="#远程仓库github" class="headerlink" title="远程仓库github"></a>远程仓库github</h1><h2 id="创建ssh密钥"><a href="#创建ssh密钥" class="headerlink" title="创建ssh密钥"></a>创建ssh密钥</h2><p>在linux的用户根目录下，windows的<code>C:\Users\username</code>下，查看有没有<code>.ssh</code>目录，和这个目录下有没有<code>id_rsa</code>和<code>id_rsa.pub</code>这两个文件，如果已经有了，可直接跳到下一步。如果没有则创建SSH Key：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</span><br></pre></td></tr></table></figure>
+
+<p>登陆GitHub，打开“Account settings”，“SSH Keys”页面，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴<code>id_rsa.pub</code>文件的内容，点“Add Key”，你就应该看到已经添加的Key。</p>
+<h2 id="有远程仓库时如何克隆到本地"><a href="#有远程仓库时如何克隆到本地" class="headerlink" title="有远程仓库时如何克隆到本地"></a>有远程仓库时如何克隆到本地</h2><p>先创建远程仓库可以直接生成readme文件，在远程库准备好后，通过<code>git clone</code>克隆到本地</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone git@github.com:michaelliao/gitskills.git</span><br></pre></td></tr></table></figure>
+
+<p>注：<code>michaelliao/gitskills</code>要改成自己的用户名和仓库名，这里如果报错<code>The authenticity of host can’t be established.</code>的话，可能是文件夹内少了一个known_hosts文件，可以yes回车解决。</p>
+<h2 id="先有本地仓库时如何关联远程仓库"><a href="#先有本地仓库时如何关联远程仓库" class="headerlink" title="先有本地仓库时如何关联远程仓库"></a>先有本地仓库时如何关联远程仓库</h2><p>首先创建一个github空仓库，然后在本地仓库下运行：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git remote add origin git@github.com:michaelliao/learngit.git</span><br></pre></td></tr></table></figure>
+
+<p><code>michaelliao/learngit</code>用自己的用户名和仓库名，<code>origin</code>是git默认的远程仓库名，也可以改成别的</p>
+<h2 id="将本地仓库推送到远程仓库"><a href="#将本地仓库推送到远程仓库" class="headerlink" title="将本地仓库推送到远程仓库"></a>将本地仓库推送到远程仓库</h2><p>将<code>main</code>分支推送到<code>origin</code>远程仓库，第一次推送<code>master</code>分支时，加上了<code>-u</code>参数，Git不但会把本地的<code>master</code>分支内容推送的远程新的<code>master</code>分支，还会把本地的<code>master</code>分支和远程的<code>master</code>分支关联起来，在以后的推送或者拉取时就可以简化命令。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+
+<p>以后的推送可以用命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+
+<h2 id="解除关联"><a href="#解除关联" class="headerlink" title="解除关联"></a>解除关联</h2><p>先查看远程库的信息</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+
+<p>解除关联</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git remote rm origin</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="总结一下"><a href="#总结一下" class="headerlink" title="总结一下"></a>总结一下</h1><p>对第一个需求，Github允许添加多个key，可以将每台电脑的key都添加到github中，即可实现多个设备对同一个库的同步更新。</p>
+<p>对第二个需求，</p>
+<blockquote>
+<p>参考：<a href="https://www.liaoxuefeng.com/wiki/896043488029600/">https://www.liaoxuefeng.com/wiki/896043488029600/</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>other</category>
+        <category>git</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>fairseq踩坑记录</title>
+    <url>/2021/05/27/fairseq-tips1/</url>
+    <content><![CDATA[<blockquote>
+<p>记录一些fairseq中遇到的bug和解决方案。<br>fairseq版本: 0.9.0</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="torch-max返回值"><a href="#torch-max返回值" class="headerlink" title="torch.max返回值"></a>torch.max返回值</h1><p>报错：<code>TypeError: expected Tensor as element 0 in argument 0, but got torch.return_types.max</code></p>
+<p>原因是torch.max(a, dim=)返回值是tuple类型，第一个元素是值，第二个元素是索引，因此只需要返回值的tensor时，torch.max(a, dim=).values即可</p>
+<h1 id="导致维度变化的命令"><a href="#导致维度变化的命令" class="headerlink" title="导致维度变化的命令"></a>导致维度变化的命令</h1><p>torch.max=tf.reduce_sum，都会使维度减一</p>
+<p>a = a[:-1:] 也会使维度减一</p>
+<p>cat维度不变，stack使维度加一，都是tensor拼接的功能</p>
+<h1 id="cpu和gpu上变量的类型不匹配问题"><a href="#cpu和gpu上变量的类型不匹配问题" class="headerlink" title="cpu和gpu上变量的类型不匹配问题"></a>cpu和gpu上变量的类型不匹配问题</h1><p>报错：RuntimeError: expected device cpu but got device cuda:0</p>
+<p>可能出现错误的位置：</p>
+<ul>
+<li><p>等号左边和右边类型不一样</p>
+</li>
+<li><p>运算符左右两端类型不同，例：+ - * /</p>
+</li>
+<li><p>同一个函数内，传入参数的类型不同，例matmul等</p>
+</li>
+</ul>
+<p>把tensor转移到相同的设备上解决问题</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-&gt;cuda : data.cuda()</span><br><span class="line">-&gt;cpu: data.cpu()</span><br><span class="line">-&gt;numpy：</span><br><span class="line">cuda类型不能直接转numpy 须先转成cpu类型，data.cpu().numpy()</span><br><span class="line">在cuda下训练中的数据不能直接转换为numpy，data.cpu().detach().numpy()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参考: <a href="https://blog.csdn.net/qq_41368074/article/details/105942534">https://blog.csdn.net/qq_41368074/article/details/105942534</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>pytorch</category>
+        <category>fairseq</category>
       </categories>
   </entry>
   <entry>
@@ -200,74 +351,18 @@
       </categories>
   </entry>
   <entry>
-    <title>fairseq踩坑记录</title>
-    <url>/2021/05/27/fairseq-tips1/</url>
+    <title>DC分治</title>
+    <url>/2021/10/15/oj-DC/</url>
     <content><![CDATA[<blockquote>
-<p>记录一些fairseq中遇到的bug和解决方案。<br>fairseq版本: 0.9.0</p>
+<p>算法课笔记-分治<br>语言：C++</p>
 </blockquote>
 <span id="more"></span>
 
-<h1 id="torch-max返回值"><a href="#torch-max返回值" class="headerlink" title="torch.max返回值"></a>torch.max返回值</h1><p>报错：<code>TypeError: expected Tensor as element 0 in argument 0, but got torch.return_types.max</code></p>
-<p>原因是torch.max(a, dim=)返回值是tuple类型，第一个元素是值，第二个元素是索引，因此只需要返回值的tensor时，torch.max(a, dim=).values即可</p>
-<h1 id="导致维度变化的命令"><a href="#导致维度变化的命令" class="headerlink" title="导致维度变化的命令"></a>导致维度变化的命令</h1><p>torch.max=tf.reduce_sum，都会使维度减一</p>
-<p>a = a[:-1:] 也会使维度减一</p>
-<p>cat维度不变，stack使维度加一，都是tensor拼接的功能</p>
-<h1 id="cpu和gpu上变量的类型不匹配问题"><a href="#cpu和gpu上变量的类型不匹配问题" class="headerlink" title="cpu和gpu上变量的类型不匹配问题"></a>cpu和gpu上变量的类型不匹配问题</h1><p>报错：RuntimeError: expected device cpu but got device cuda:0</p>
-<p>可能出现错误的位置：</p>
-<ul>
-<li><p>等号左边和右边类型不一样</p>
-</li>
-<li><p>运算符左右两端类型不同，例：+ - * /</p>
-</li>
-<li><p>同一个函数内，传入参数的类型不同，例matmul等</p>
-</li>
-</ul>
-<p>把tensor转移到相同的设备上解决问题</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-&gt;cuda : data.cuda()</span><br><span class="line">-&gt;cpu: data.cpu()</span><br><span class="line">-&gt;numpy：</span><br><span class="line">cuda类型不能直接转numpy 须先转成cpu类型，data.cpu().numpy()</span><br><span class="line">在cuda下训练中的数据不能直接转换为numpy，data.cpu().detach().numpy()</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>参考: <a href="https://blog.csdn.net/qq_41368074/article/details/105942534">https://blog.csdn.net/qq_41368074/article/details/105942534</a></p>
-</blockquote>
+<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>内容。</p>
 ]]></content>
       <categories>
         <category>code</category>
-        <category>pytorch</category>
-        <category>fairseq</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>latex-tips</title>
-    <url>/2021/11/27/latex-tips/</url>
-    <content><![CDATA[<blockquote>
-<p>latex/overleaf一些笔记。</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="图片排版"><a href="#图片排版" class="headerlink" title="图片排版"></a>图片排版</h1><h2 id="宏包："><a href="#宏包：" class="headerlink" title="宏包："></a>宏包：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\usepackage&#123;graphicx&#125; %插图宏包</span><br><span class="line">\usepackage&#123;subfig&#125; %子图包含宏包，较新</span><br><span class="line">\usepackage&#123;subfigure&#125; %子图包含宏包，较旧</span><br></pre></td></tr></table></figure>
-
-<h2 id="基本命令："><a href="#基本命令：" class="headerlink" title="基本命令："></a>基本命令：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[ht]</span><br><span class="line">\centering</span><br><span class="line">\includegraphics[width&#x3D;10cm]&#123;example.png&#125;</span><br><span class="line">\caption&#123;this is a figure&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
-
-<p>\centering表示的是里面紧跟的内容都居中；</p>
-<p>\includegrapics[参数1]{参数2}</p>
-<p>参数1：对图片进行一些调整，例如宽高缩放width=10cm,height=8cm,scale=0.4</p>
-<p>参数2：图片名</p>
-<p>\caption{标题}设置图片的一个编号以及为图片添加标题；</p>
-<h2 id="图片位置："><a href="#图片位置：" class="headerlink" title="图片位置："></a>图片位置：</h2><p>\begin{figure}[参数1]</p>
-<p>参数1：对图片在文中的位置进行设置，h 此处（here）t 页顶（top）b 页底（bottom）p 独立一页（page），<strong>H 固定位置</strong>；</p>
-<h2 id="subfig和subfigure的区别："><a href="#subfig和subfigure的区别：" class="headerlink" title="subfig和subfigure的区别："></a>subfig和subfigure的区别：</h2><p>subfig：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[tbp]</span><br><span class="line">	\centering</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:a&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\quad</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:b&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\\	</span><br><span class="line">	\caption&#123;Capital Roman numerals.&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
-
-<p>subfigure：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125; \centering </span><br><span class="line">\subfigure[figure 1 title.] &#123; \label&#123;fig:a&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig1.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\subfigure[figure 2 title.] &#123; \label&#123;fig:b&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig2.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\caption&#123; general title. &#125; </span><br><span class="line">\label&#123;fig&#125; </span><br><span class="line">\end&#123;figure&#125; </span><br></pre></td></tr></table></figure>
-
-
-<blockquote>
-<p>参考：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/143529262">https://zhuanlan.zhihu.com/p/143529262</a></p>
-<p><a href="https://blog.csdn.net/yq_forever/article/details/84796802">https://blog.csdn.net/yq_forever/article/details/84796802</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>other</category>
+        <category>oj</category>
       </categories>
   </entry>
   <entry>
@@ -401,18 +496,39 @@
       </categories>
   </entry>
   <entry>
-    <title>DC分治</title>
-    <url>/2021/10/15/oj-DC/</url>
+    <title>latex-tips</title>
+    <url>/2021/11/27/latex-tips/</url>
     <content><![CDATA[<blockquote>
-<p>算法课笔记-分治<br>语言：C++</p>
+<p>latex/overleaf一些笔记。</p>
 </blockquote>
 <span id="more"></span>
 
-<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>内容。</p>
+<h1 id="图片排版"><a href="#图片排版" class="headerlink" title="图片排版"></a>图片排版</h1><h2 id="宏包："><a href="#宏包：" class="headerlink" title="宏包："></a>宏包：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\usepackage&#123;graphicx&#125; %插图宏包</span><br><span class="line">\usepackage&#123;subfig&#125; %子图包含宏包，较新</span><br><span class="line">\usepackage&#123;subfigure&#125; %子图包含宏包，较旧</span><br></pre></td></tr></table></figure>
+
+<h2 id="基本命令："><a href="#基本命令：" class="headerlink" title="基本命令："></a>基本命令：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[ht]</span><br><span class="line">\centering</span><br><span class="line">\includegraphics[width&#x3D;10cm]&#123;example.png&#125;</span><br><span class="line">\caption&#123;this is a figure&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+
+<p>\centering表示的是里面紧跟的内容都居中；</p>
+<p>\includegrapics[参数1]{参数2}</p>
+<p>参数1：对图片进行一些调整，例如宽高缩放width=10cm,height=8cm,scale=0.4</p>
+<p>参数2：图片名</p>
+<p>\caption{标题}设置图片的一个编号以及为图片添加标题；</p>
+<h2 id="图片位置："><a href="#图片位置：" class="headerlink" title="图片位置："></a>图片位置：</h2><p>\begin{figure}[参数1]</p>
+<p>参数1：对图片在文中的位置进行设置，h 此处（here）t 页顶（top）b 页底（bottom）p 独立一页（page），<strong>H 固定位置</strong>；</p>
+<h2 id="subfig和subfigure的区别："><a href="#subfig和subfigure的区别：" class="headerlink" title="subfig和subfigure的区别："></a>subfig和subfigure的区别：</h2><p>subfig：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[tbp]</span><br><span class="line">	\centering</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:a&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\quad</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:b&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\\	</span><br><span class="line">	\caption&#123;Capital Roman numerals.&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+
+<p>subfigure：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125; \centering </span><br><span class="line">\subfigure[figure 1 title.] &#123; \label&#123;fig:a&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig1.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\subfigure[figure 2 title.] &#123; \label&#123;fig:b&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig2.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\caption&#123; general title. &#125; </span><br><span class="line">\label&#123;fig&#125; </span><br><span class="line">\end&#123;figure&#125; </span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>参考：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/143529262">https://zhuanlan.zhihu.com/p/143529262</a></p>
+<p><a href="https://blog.csdn.net/yq_forever/article/details/84796802">https://blog.csdn.net/yq_forever/article/details/84796802</a></p>
+</blockquote>
 ]]></content>
       <categories>
-        <category>code</category>
-        <category>oj</category>
+        <category>other</category>
       </categories>
   </entry>
   <entry>
@@ -506,73 +622,6 @@
       </categories>
   </entry>
   <entry>
-    <title>pytorch笔记</title>
-    <url>/2021/05/28/pytorch-note/</url>
-    <content><![CDATA[<blockquote>
-<p>pytorch-学习笔记</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="0-pytorch的组件"><a href="#0-pytorch的组件" class="headerlink" title="0 pytorch的组件"></a>0 pytorch的组件</h1><table>
-<thead>
-<tr>
-<th>Component</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><a href="https://pytorch.org/docs/stable/torch.html"><strong>torch</strong></a></td>
-<td>在GPU上的类似Numpy的张量库，一些基本操作</td>
-</tr>
-<tr>
-<td><a href="https://pytorch.org/docs/stable/autograd.html"><strong>torch.autograd</strong></a></td>
-<td>支持torch中张量的微分操作</td>
-</tr>
-<tr>
-<td><a href="https://pytorch.org/docs/stable/jit.html"><strong>torch.jit</strong></a></td>
-<td>创建可序列化和可优化的编译堆栈(TorchScript)</td>
-</tr>
-<tr>
-<td><a href="https://pytorch.org/docs/stable/nn.html"><strong>torch.nn</strong></a></td>
-<td>与autograd深度集成的神经网络库</td>
-</tr>
-<tr>
-<td><a href="https://pytorch.org/docs/stable/multiprocessing.html"><strong>torch.multiprocessing</strong></a></td>
-<td>对数据加载Hogwild训练起效的多进程</td>
-</tr>
-<tr>
-<td><a href="https://pytorch.org/docs/stable/data.html"><strong>torch.utils</strong></a></td>
-<td>数据加载和其他实用程序功能</td>
-</tr>
-</tbody></table>
-<h1 id="1-pytorch手册"><a href="#1-pytorch手册" class="headerlink" title="1 pytorch手册"></a>1 pytorch手册</h1><h2 id="1-1-官方备忘录"><a href="#1-1-官方备忘录" class="headerlink" title="1.1 官方备忘录"></a><a href="https://pytorch.org/tutorials/beginner/ptcheat.html">1.1 官方备忘录</a></h2><p><strong>import:</strong></p>
-<p>一般的：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch                                        <span class="comment"># root package</span></span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> Dataset, DataLoader    <span class="comment"># dataset representation and loading</span></span><br></pre></td></tr></table></figure>
-
-<p>神经网络API：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.autograd <span class="keyword">as</span> autograd         <span class="comment"># computation graph</span></span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> Tensor                  <span class="comment"># tensor node in the computation graph</span></span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn                     <span class="comment"># neural networks</span></span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F           <span class="comment"># layers, activations and more</span></span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim               <span class="comment"># optimizers e.g. gradient descent, ADAM, etc.</span></span><br><span class="line"><span class="keyword">from</span> torch.jit <span class="keyword">import</span> script, trace       <span class="comment"># hybrid frontend decorator and tracing jit</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>Tensor:</strong></p>
-<p>创建：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.randn(*size)              <span class="comment"># tensor with independent N(0,1) entries</span></span><br><span class="line">x = torch.[ones|zeros](*size)       <span class="comment"># tensor with all 1&#x27;s [or 0&#x27;s]</span></span><br><span class="line">x = torch.tensor(L)                 <span class="comment"># create tensor from [nested] list or ndarray L</span></span><br><span class="line">y = x.clone()                       <span class="comment"># clone of x</span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():               <span class="comment"># code wrap that stops autograd from tracking tensor history</span></span><br><span class="line">requires_grad=<span class="literal">True</span>                  <span class="comment"># arg, when set to True, tracks computation</span></span><br><span class="line">                                    <span class="comment"># history for future derivative calculations</span></span><br></pre></td></tr></table></figure>
-
-<p>维度：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x.size()                                  <span class="comment"># return tuple-like object of dimensions</span></span><br><span class="line">x = torch.cat(tensor_seq, dim=<span class="number">0</span>)          <span class="comment"># concatenates tensors along dim</span></span><br><span class="line">y = x.view(a,b,...)                       <span class="comment"># reshapes x into size (a,b,...)</span></span><br><span class="line">y = x.view(-<span class="number">1</span>,a)                          <span class="comment"># reshapes x into size (b,a) for some b</span></span><br><span class="line">y = x.transpose(a,b)                      <span class="comment"># swaps dimensions a and b</span></span><br><span class="line">y = x.permute(*dims)                      <span class="comment"># permutes dimensions</span></span><br><span class="line">y = x.unsqueeze(dim)                      <span class="comment"># tensor with added axis</span></span><br><span class="line">y = x.unsqueeze(dim=<span class="number">2</span>)                    <span class="comment"># (a,b,c) tensor -&gt; (a,b,1,c) tensor</span></span><br><span class="line">y = x.squeeze()                           <span class="comment"># removes all dimensions of size 1 (a,1,b,1) -&gt; (a,b)</span></span><br><span class="line">y = x.squeeze(dim=<span class="number">1</span>)                      <span class="comment"># removes specified dimension of size 1 (a,1,b,1) -&gt; (a,b,1)</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h1><h2 id="访问元素"><a href="#访问元素" class="headerlink" title="访问元素"></a>访问元素</h2><p><code>[1,:]</code>其中:表示选择范围，只有:表示全选，与数字结合表示范围。</p>
-<p><code>[::3,::2]</code>其中::表示跳选，每隔x个选择一个。</p>
-<p>张量:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">x &#x3D; torch.arange(12) #生成</span><br><span class="line">x.shape #形状</span><br><span class="line">x.numel() #元素总数</span><br><span class="line">x &#x3D; x.reshape(3,4) #变换</span><br><span class="line">x &#x3D; torch.zeros((1,2,3)) #全零</span><br><span class="line">x &#x3D; torch.ones((2,3,4)) #全一</span><br><span class="line">x &#x3D; torch.tensor(list) #根据list生成tensor</span><br><span class="line">+ - * &#x2F; ** #对元素进行运算</span><br><span class="line">torch.exp(x) #指数运算</span><br><span class="line">torch.cat((x,y),dim&#x3D;0) #在第零维拼接，零维是最外侧</span><br><span class="line">x &#x3D;&#x3D; y #构建二元张量，是元素比较的结果</span><br><span class="line">x.sum() #求和，结果是一个元素的tensor</span><br><span class="line">x[0:2,:]&#x3D;12 #区域赋值</span><br><span class="line">x[:]&#x3D;x+y &#x2F; x+&#x3D;y #减少内存开销，前后不变</span><br><span class="line">y &#x3D; x.numpy() #tensor转ndarray</span><br><span class="line">x &#x3D; torch.tensor(y) #ndarray转tensor</span><br><span class="line">x.item() &#x2F; float(x) &#x2F; int(x) #0维张量转标量</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>code</category>
-        <category>pytorch</category>
-      </categories>
-  </entry>
-  <entry>
     <title>tf-tensor变换</title>
     <url>/2021/05/27/tf-tensor-conversion/</url>
     <content><![CDATA[<blockquote>
@@ -593,38 +642,6 @@
       <categories>
         <category>code</category>
         <category>tensorflow</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>每周知识碎片1</title>
-    <url>/2021/11/29/weekly-211129/</url>
-    <content><![CDATA[<blockquote>
-<p>疯狂写大作业的一周。</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="python-获取路径相关"><a href="#python-获取路径相关" class="headerlink" title="python 获取路径相关"></a>python 获取路径相关</h1><p>获取linux下的用户根路径</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> os</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>os.envrion[<span class="string">&#x27;HOME&#x27;</span>]</span><br><span class="line"><span class="string">&#x27;/home/user&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>连接路径</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; import os</span><br><span class="line">&gt;&gt;&gt; os.path.join(os.envrion[&#39;HOME&#39;], &#39;xxx&#39;, &#39;yyy.txt&#39;)</span><br><span class="line">&#39;&#x2F;home&#x2F;user&#x2F;xxx&#x2F;yyy.txt&#39;</span><br></pre></td></tr></table></figure>
-
-<p>glob返回所有匹配的文件路径列表</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; from glob import glob</span><br><span class="line">&gt;&gt;&gt; files &#x3D; glob(os.path.join(ROOT, cat, &#39;*.txt&#39;))</span><br><span class="line">[&#39;xxx.txt&#39;, &#39;111.txt&#39;]</span><br></pre></td></tr></table></figure>
-
-<h1 id="错误：AttributeError-module-‘threading’-has-no-attribute-‘RLock’"><a href="#错误：AttributeError-module-‘threading’-has-no-attribute-‘RLock’" class="headerlink" title="错误：AttributeError: module ‘threading’ has no attribute ‘RLock’"></a>错误：AttributeError: module ‘threading’ has no attribute ‘RLock’</h1><p><strong>错误原因</strong>：自己的代码文件与python自带的脚本文件重名，导致import引入包的时候引入错误。</p>
-<p><strong>修改办法</strong>：根据错误提示，修改相关文件的文件名，要注意除了提示的包，在引入该包的过程中引入的其他包的错误也可能导致这个错误提示，例如该错误提示为：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nohup: ignoring input</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;data/split_data.py&quot;, line 4, in &lt;module&gt;</span><br><span class="line">    import pandas as pd</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/site-packages/pandas/__init__.py&quot;, line 11, in &lt;module&gt;</span><br><span class="line">    __import__(dependency)</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/site-packages/numpy/__init__.py&quot;, line 142, in &lt;module&gt;</span><br><span class="line">    from . import core</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/site-packages/numpy/core/__init__.py&quot;, line 103, in &lt;module&gt;</span><br><span class="line">    from . import _internal</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/site-packages/numpy/core/_internal.py&quot;, line 11, in &lt;module&gt;</span><br><span class="line">    import platform</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/platform.py&quot;, line 117, in &lt;module&gt;</span><br><span class="line">    import sys, os, re, subprocess</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/subprocess.py&quot;, line 131, in &lt;module&gt;</span><br><span class="line">    import threading</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/threading.py&quot;, line 7, in &lt;module&gt;</span><br><span class="line">    from traceback import format_exc as _format_exc</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/traceback.py&quot;, line 5, in &lt;module&gt;</span><br><span class="line">    import linecache</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/linecache.py&quot;, line 11, in &lt;module&gt;</span><br><span class="line">    import tokenize</span><br><span class="line">  File &quot;/home/user/text-classify/Bert-THUCNews-Classification-master/data/tokenize.py&quot;, line 2, in &lt;module&gt;</span><br><span class="line">    from pytorch_pretrained_bert import BertTokenizer</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/site-packages/pytorch_pretrained_bert/__init__.py&quot;, line 2, in &lt;module&gt;</span><br><span class="line">    from .tokenization import BertTokenizer, BasicTokenizer, WordpieceTokenizer</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/site-packages/pytorch_pretrained_bert/tokenization.py&quot;, line 20, in &lt;module&gt;</span><br><span class="line">    import logging</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/logging/__init__.py&quot;, line 212, in &lt;module&gt;</span><br><span class="line">    _lock = threading.RLock()</span><br><span class="line">AttributeError: module &#x27;threading&#x27; has no attribute &#x27;RLock&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>但并不是<code>threading</code>包有重名问题，而是在<code>import tokenize</code>这步中，本文件夹下有一个<code>tokenize.py</code>文件，可以看到引入的file路径和其他明显不同。</p>
-<h1 id="错误：No-module-named-xxx"><a href="#错误：No-module-named-xxx" class="headerlink" title="错误：No module named xxx"></a>错误：No module named xxx</h1><p>引入自己写的代码中的文件时<code>from filename import xxx</code>，出现这个错误，检查下面两点：</p>
-<p>1.在被引入(import)的目录下需要有一个<code>__init__.py</code>文件，该文件可以为空。</p>
-<p>2.同级目录不可以直接导入，需要加上上一级的文件名，例如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from folder.filename import xxx</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>weekly</category>
       </categories>
   </entry>
   <entry>
@@ -695,7 +712,7 @@
     <title>每周知识碎片3</title>
     <url>/2022/03/31/weekly-220331/</url>
     <content><![CDATA[<blockquote>
-<p>huggingface🤗！</p>
+<p>三月的最后一天！太阳很好的一天！huggingface🤗！</p>
 </blockquote>
 <span id="more"></span>
 
@@ -706,6 +723,105 @@
 ]]></content>
       <categories>
         <category>weekly</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>每周知识碎片1</title>
+    <url>/2021/11/29/weekly-211129/</url>
+    <content><![CDATA[<blockquote>
+<p>疯狂写大作业的一周。</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="python-获取路径相关"><a href="#python-获取路径相关" class="headerlink" title="python 获取路径相关"></a>python 获取路径相关</h1><p>获取linux下的用户根路径</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> os</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>os.envrion[<span class="string">&#x27;HOME&#x27;</span>]</span><br><span class="line"><span class="string">&#x27;/home/user&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>连接路径</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; import os</span><br><span class="line">&gt;&gt;&gt; os.path.join(os.envrion[&#39;HOME&#39;], &#39;xxx&#39;, &#39;yyy.txt&#39;)</span><br><span class="line">&#39;&#x2F;home&#x2F;user&#x2F;xxx&#x2F;yyy.txt&#39;</span><br></pre></td></tr></table></figure>
+
+<p>glob返回所有匹配的文件路径列表</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; from glob import glob</span><br><span class="line">&gt;&gt;&gt; files &#x3D; glob(os.path.join(ROOT, cat, &#39;*.txt&#39;))</span><br><span class="line">[&#39;xxx.txt&#39;, &#39;111.txt&#39;]</span><br></pre></td></tr></table></figure>
+
+<h1 id="错误：AttributeError-module-‘threading’-has-no-attribute-‘RLock’"><a href="#错误：AttributeError-module-‘threading’-has-no-attribute-‘RLock’" class="headerlink" title="错误：AttributeError: module ‘threading’ has no attribute ‘RLock’"></a>错误：AttributeError: module ‘threading’ has no attribute ‘RLock’</h1><p><strong>错误原因</strong>：自己的代码文件与python自带的脚本文件重名，导致import引入包的时候引入错误。</p>
+<p><strong>修改办法</strong>：根据错误提示，修改相关文件的文件名，要注意除了提示的包，在引入该包的过程中引入的其他包的错误也可能导致这个错误提示，例如该错误提示为：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nohup: ignoring input</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;data/split_data.py&quot;, line 4, in &lt;module&gt;</span><br><span class="line">    import pandas as pd</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/site-packages/pandas/__init__.py&quot;, line 11, in &lt;module&gt;</span><br><span class="line">    __import__(dependency)</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/site-packages/numpy/__init__.py&quot;, line 142, in &lt;module&gt;</span><br><span class="line">    from . import core</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/site-packages/numpy/core/__init__.py&quot;, line 103, in &lt;module&gt;</span><br><span class="line">    from . import _internal</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/site-packages/numpy/core/_internal.py&quot;, line 11, in &lt;module&gt;</span><br><span class="line">    import platform</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/platform.py&quot;, line 117, in &lt;module&gt;</span><br><span class="line">    import sys, os, re, subprocess</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/subprocess.py&quot;, line 131, in &lt;module&gt;</span><br><span class="line">    import threading</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/threading.py&quot;, line 7, in &lt;module&gt;</span><br><span class="line">    from traceback import format_exc as _format_exc</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/traceback.py&quot;, line 5, in &lt;module&gt;</span><br><span class="line">    import linecache</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/linecache.py&quot;, line 11, in &lt;module&gt;</span><br><span class="line">    import tokenize</span><br><span class="line">  File &quot;/home/user/text-classify/Bert-THUCNews-Classification-master/data/tokenize.py&quot;, line 2, in &lt;module&gt;</span><br><span class="line">    from pytorch_pretrained_bert import BertTokenizer</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/site-packages/pytorch_pretrained_bert/__init__.py&quot;, line 2, in &lt;module&gt;</span><br><span class="line">    from .tokenization import BertTokenizer, BasicTokenizer, WordpieceTokenizer</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/site-packages/pytorch_pretrained_bert/tokenization.py&quot;, line 20, in &lt;module&gt;</span><br><span class="line">    import logging</span><br><span class="line">  File &quot;/home/user/anaconda3/envs/bert/lib/python3.5/logging/__init__.py&quot;, line 212, in &lt;module&gt;</span><br><span class="line">    _lock = threading.RLock()</span><br><span class="line">AttributeError: module &#x27;threading&#x27; has no attribute &#x27;RLock&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>但并不是<code>threading</code>包有重名问题，而是在<code>import tokenize</code>这步中，本文件夹下有一个<code>tokenize.py</code>文件，可以看到引入的file路径和其他明显不同。</p>
+<h1 id="错误：No-module-named-xxx"><a href="#错误：No-module-named-xxx" class="headerlink" title="错误：No module named xxx"></a>错误：No module named xxx</h1><p>引入自己写的代码中的文件时<code>from filename import xxx</code>，出现这个错误，检查下面两点：</p>
+<p>1.在被引入(import)的目录下需要有一个<code>__init__.py</code>文件，该文件可以为空。</p>
+<p>2.同级目录不可以直接导入，需要加上上一级的文件名，例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from folder.filename import xxx</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>weekly</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>pytorch笔记</title>
+    <url>/2021/05/28/pytorch-note/</url>
+    <content><![CDATA[<blockquote>
+<p>pytorch-学习笔记</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="0-pytorch的组件"><a href="#0-pytorch的组件" class="headerlink" title="0 pytorch的组件"></a>0 pytorch的组件</h1><table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://pytorch.org/docs/stable/torch.html"><strong>torch</strong></a></td>
+<td>在GPU上的类似Numpy的张量库，一些基本操作</td>
+</tr>
+<tr>
+<td><a href="https://pytorch.org/docs/stable/autograd.html"><strong>torch.autograd</strong></a></td>
+<td>支持torch中张量的微分操作</td>
+</tr>
+<tr>
+<td><a href="https://pytorch.org/docs/stable/jit.html"><strong>torch.jit</strong></a></td>
+<td>创建可序列化和可优化的编译堆栈(TorchScript)</td>
+</tr>
+<tr>
+<td><a href="https://pytorch.org/docs/stable/nn.html"><strong>torch.nn</strong></a></td>
+<td>与autograd深度集成的神经网络库</td>
+</tr>
+<tr>
+<td><a href="https://pytorch.org/docs/stable/multiprocessing.html"><strong>torch.multiprocessing</strong></a></td>
+<td>对数据加载Hogwild训练起效的多进程</td>
+</tr>
+<tr>
+<td><a href="https://pytorch.org/docs/stable/data.html"><strong>torch.utils</strong></a></td>
+<td>数据加载和其他实用程序功能</td>
+</tr>
+</tbody></table>
+<h1 id="1-pytorch手册"><a href="#1-pytorch手册" class="headerlink" title="1 pytorch手册"></a>1 pytorch手册</h1><h2 id="1-1-官方备忘录"><a href="#1-1-官方备忘录" class="headerlink" title="1.1 官方备忘录"></a><a href="https://pytorch.org/tutorials/beginner/ptcheat.html">1.1 官方备忘录</a></h2><p><strong>import:</strong></p>
+<p>一般的：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch                                        <span class="comment"># root package</span></span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> Dataset, DataLoader    <span class="comment"># dataset representation and loading</span></span><br></pre></td></tr></table></figure>
+
+<p>神经网络API：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.autograd <span class="keyword">as</span> autograd         <span class="comment"># computation graph</span></span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> Tensor                  <span class="comment"># tensor node in the computation graph</span></span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn                     <span class="comment"># neural networks</span></span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F           <span class="comment"># layers, activations and more</span></span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim               <span class="comment"># optimizers e.g. gradient descent, ADAM, etc.</span></span><br><span class="line"><span class="keyword">from</span> torch.jit <span class="keyword">import</span> script, trace       <span class="comment"># hybrid frontend decorator and tracing jit</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Tensor:</strong></p>
+<p>创建：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.randn(*size)              <span class="comment"># tensor with independent N(0,1) entries</span></span><br><span class="line">x = torch.[ones|zeros](*size)       <span class="comment"># tensor with all 1&#x27;s [or 0&#x27;s]</span></span><br><span class="line">x = torch.tensor(L)                 <span class="comment"># create tensor from [nested] list or ndarray L</span></span><br><span class="line">y = x.clone()                       <span class="comment"># clone of x</span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():               <span class="comment"># code wrap that stops autograd from tracking tensor history</span></span><br><span class="line">requires_grad=<span class="literal">True</span>                  <span class="comment"># arg, when set to True, tracks computation</span></span><br><span class="line">                                    <span class="comment"># history for future derivative calculations</span></span><br></pre></td></tr></table></figure>
+
+<p>维度：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x.size()                                  <span class="comment"># return tuple-like object of dimensions</span></span><br><span class="line">x = torch.cat(tensor_seq, dim=<span class="number">0</span>)          <span class="comment"># concatenates tensors along dim</span></span><br><span class="line">y = x.view(a,b,...)                       <span class="comment"># reshapes x into size (a,b,...)</span></span><br><span class="line">y = x.view(-<span class="number">1</span>,a)                          <span class="comment"># reshapes x into size (b,a) for some b</span></span><br><span class="line">y = x.transpose(a,b)                      <span class="comment"># swaps dimensions a and b</span></span><br><span class="line">y = x.permute(*dims)                      <span class="comment"># permutes dimensions</span></span><br><span class="line">y = x.unsqueeze(dim)                      <span class="comment"># tensor with added axis</span></span><br><span class="line">y = x.unsqueeze(dim=<span class="number">2</span>)                    <span class="comment"># (a,b,c) tensor -&gt; (a,b,1,c) tensor</span></span><br><span class="line">y = x.squeeze()                           <span class="comment"># removes all dimensions of size 1 (a,1,b,1) -&gt; (a,b)</span></span><br><span class="line">y = x.squeeze(dim=<span class="number">1</span>)                      <span class="comment"># removes specified dimension of size 1 (a,1,b,1) -&gt; (a,b,1)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h1><h2 id="访问元素"><a href="#访问元素" class="headerlink" title="访问元素"></a>访问元素</h2><p><code>[1,:]</code>其中:表示选择范围，只有:表示全选，与数字结合表示范围。</p>
+<p><code>[::3,::2]</code>其中::表示跳选，每隔x个选择一个。</p>
+<p>张量:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">x &#x3D; torch.arange(12) #生成</span><br><span class="line">x.shape #形状</span><br><span class="line">x.numel() #元素总数</span><br><span class="line">x &#x3D; x.reshape(3,4) #变换</span><br><span class="line">x &#x3D; torch.zeros((1,2,3)) #全零</span><br><span class="line">x &#x3D; torch.ones((2,3,4)) #全一</span><br><span class="line">x &#x3D; torch.tensor(list) #根据list生成tensor</span><br><span class="line">+ - * &#x2F; ** #对元素进行运算</span><br><span class="line">torch.exp(x) #指数运算</span><br><span class="line">torch.cat((x,y),dim&#x3D;0) #在第零维拼接，零维是最外侧</span><br><span class="line">x &#x3D;&#x3D; y #构建二元张量，是元素比较的结果</span><br><span class="line">x.sum() #求和，结果是一个元素的tensor</span><br><span class="line">x[0:2,:]&#x3D;12 #区域赋值</span><br><span class="line">x[:]&#x3D;x+y &#x2F; x+&#x3D;y #减少内存开销，前后不变</span><br><span class="line">y &#x3D; x.numpy() #tensor转ndarray</span><br><span class="line">x &#x3D; torch.tensor(y) #ndarray转tensor</span><br><span class="line">x.item() &#x2F; float(x) &#x2F; int(x) #0维张量转标量</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>pytorch</category>
       </categories>
   </entry>
   <entry>
