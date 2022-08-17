@@ -168,6 +168,22 @@
       </categories>
   </entry>
   <entry>
+    <title>fairseq代码位置记录</title>
+    <url>/2021/05/21/fairseq-tips/</url>
+    <content><![CDATA[<blockquote>
+<p>记录一些fairseq中功能实现的代码位置。<br>fairseq版本: 0.9.0</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="ensemble集成"><a href="#ensemble集成" class="headerlink" title="ensemble集成"></a>ensemble集成</h1><p>在fairseq/sequence_generator.py中760行，ensemble在beam search之前。</p>
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>pytorch</category>
+        <category>fairseq</category>
+      </categories>
+  </entry>
+  <entry>
     <title>fairseq踩坑记录</title>
     <url>/2021/05/27/fairseq-tips1/</url>
     <content><![CDATA[<blockquote>
@@ -195,22 +211,6 @@
 <blockquote>
 <p>参考: <a href="https://blog.csdn.net/qq_41368074/article/details/105942534">https://blog.csdn.net/qq_41368074/article/details/105942534</a></p>
 </blockquote>
-]]></content>
-      <categories>
-        <category>code</category>
-        <category>pytorch</category>
-        <category>fairseq</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>fairseq代码位置记录</title>
-    <url>/2021/05/21/fairseq-tips/</url>
-    <content><![CDATA[<blockquote>
-<p>记录一些fairseq中功能实现的代码位置。<br>fairseq版本: 0.9.0</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="ensemble集成"><a href="#ensemble集成" class="headerlink" title="ensemble集成"></a>ensemble集成</h1><p>在fairseq/sequence_generator.py中760行，ensemble在beam search之前。</p>
 ]]></content>
       <categories>
         <category>code</category>
@@ -590,21 +590,6 @@
       </categories>
   </entry>
   <entry>
-    <title>DP动态规划</title>
-    <url>/2021/10/15/oj-DP/</url>
-    <content><![CDATA[<blockquote>
-<p>算法课笔记-动态规划<br>语言: C++</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="中文标题"><a href="#中文标题" class="headerlink" title="中文标题"></a>中文标题</h1><p>内容。</p>
-]]></content>
-      <categories>
-        <category>code</category>
-        <category>oj</category>
-      </categories>
-  </entry>
-  <entry>
     <title>DC分治</title>
     <url>/2021/10/15/oj-DC/</url>
     <content><![CDATA[<blockquote>
@@ -613,6 +598,21 @@
 <span id="more"></span>
 
 <h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>内容。</p>
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>oj</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>DP动态规划</title>
+    <url>/2021/10/15/oj-DP/</url>
+    <content><![CDATA[<blockquote>
+<p>算法课笔记-动态规划<br>语言: C++</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="中文标题"><a href="#中文标题" class="headerlink" title="中文标题"></a>中文标题</h1><p>内容。</p>
 ]]></content>
       <categories>
         <category>code</category>
@@ -975,23 +975,6 @@
       </categories>
   </entry>
   <entry>
-    <title>每周知识碎片3</title>
-    <url>/2022/03/31/weekly-220331/</url>
-    <content><![CDATA[<blockquote>
-<p>三月的最后一天！太阳很好的一天！huggingface🤗！</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="python中的-staticmethod方法"><a href="#python中的-staticmethod方法" class="headerlink" title="python中的@staticmethod方法"></a>python中的@staticmethod方法</h1><p>作用：方便外部函数集成到类中，可以<strong>在不实例化类的情况下直接访问该方法</strong>。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,num</span>):</span></span><br><span class="line">            self.num = num;</span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">cout_num</span>(<span class="params">self</span>):</span></span><br><span class="line">            <span class="built_in">print</span>(self.num)</span><br><span class="line"><span class="meta">      @staticmethod</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">print_num</span>():</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Hello World&quot;</span>)         </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化&quot;&quot;&quot;</span></span><br><span class="line">      obj = Test(<span class="number">10</span>)</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化成员方法&quot;&quot;&quot;</span></span><br><span class="line">      obj.cout_num()</span><br><span class="line">      <span class="string">&quot;&quot;&quot;直接访问静态方法&quot;&quot;&quot;</span></span><br><span class="line">      Test.print_num()</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化 访问静态方法&quot;&quot;&quot;</span></span><br><span class="line">      obj.print_num()</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;输出结果&quot;&quot;&quot;</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line">Hello World</span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
-
-<p>在读embedding类的代码（<a href="https://github.com/UKPLab/sentence-transformers/blob/master/sentence_transformers/models/WordEmbeddings.py">sentence-transformers/sentence-transformers/models/WordEmbeddings.py</a>）时看到该方法，实例化方法需要传入embedding_weight变量，通过staticmethod可以直接通过txt文件或者模型来创建实例，相当于提供了三种创建方法。</p>
-]]></content>
-      <categories>
-        <category>weekly</category>
-      </categories>
-  </entry>
-  <entry>
     <title>每周知识碎片2</title>
     <url>/2022/01/20/weekly-220120/</url>
     <content><![CDATA[<blockquote>
@@ -1050,6 +1033,23 @@
 <p>确定论文值得读之后，可以快速的把整个论文过一遍，不需要知道所有的细节，需要了解重要的图和表，知道每一个部分在干什么，圈出相关文献。觉得文章太难，可以读引用的文献。</p>
 <p><strong>第三遍</strong>：</p>
 <p>要知道每一句话每一段在说什么，在心里复述一下文章提出什么问题，用什么方法来解决这个问题，实验是怎么做的。想一下如果是我来做我要怎么做，作者没有解决的问题我是否有合适的方法可以继续解决。合上文章，回忆每一个部分在讲什么。</p>
+]]></content>
+      <categories>
+        <category>weekly</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>每周知识碎片3</title>
+    <url>/2022/03/31/weekly-220331/</url>
+    <content><![CDATA[<blockquote>
+<p>三月的最后一天！太阳很好的一天！huggingface🤗！</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="python中的-staticmethod方法"><a href="#python中的-staticmethod方法" class="headerlink" title="python中的@staticmethod方法"></a>python中的@staticmethod方法</h1><p>作用：方便外部函数集成到类中，可以<strong>在不实例化类的情况下直接访问该方法</strong>。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,num</span>):</span></span><br><span class="line">            self.num = num;</span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">cout_num</span>(<span class="params">self</span>):</span></span><br><span class="line">            <span class="built_in">print</span>(self.num)</span><br><span class="line"><span class="meta">      @staticmethod</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">print_num</span>():</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Hello World&quot;</span>)         </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化&quot;&quot;&quot;</span></span><br><span class="line">      obj = Test(<span class="number">10</span>)</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化成员方法&quot;&quot;&quot;</span></span><br><span class="line">      obj.cout_num()</span><br><span class="line">      <span class="string">&quot;&quot;&quot;直接访问静态方法&quot;&quot;&quot;</span></span><br><span class="line">      Test.print_num()</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化 访问静态方法&quot;&quot;&quot;</span></span><br><span class="line">      obj.print_num()</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;输出结果&quot;&quot;&quot;</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line">Hello World</span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
+
+<p>在读embedding类的代码（<a href="https://github.com/UKPLab/sentence-transformers/blob/master/sentence_transformers/models/WordEmbeddings.py">sentence-transformers/sentence-transformers/models/WordEmbeddings.py</a>）时看到该方法，实例化方法需要传入embedding_weight变量，通过staticmethod可以直接通过txt文件或者模型来创建实例，相当于提供了三种创建方法。</p>
 ]]></content>
       <categories>
         <category>weekly</category>
