@@ -168,113 +168,6 @@
       </categories>
   </entry>
   <entry>
-    <title>fairseq代码位置记录</title>
-    <url>/2021/05/21/fairseq-tips/</url>
-    <content><![CDATA[<blockquote>
-<p>记录一些fairseq中功能实现的代码位置。<br>fairseq版本: 0.9.0</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="ensemble集成"><a href="#ensemble集成" class="headerlink" title="ensemble集成"></a>ensemble集成</h1><p>在fairseq/sequence_generator.py中760行，ensemble在beam search之前。</p>
-]]></content>
-      <categories>
-        <category>code</category>
-        <category>pytorch</category>
-        <category>fairseq</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>fairseq踩坑记录</title>
-    <url>/2021/05/27/fairseq-tips1/</url>
-    <content><![CDATA[<blockquote>
-<p>记录一些fairseq中遇到的bug和解决方案。<br>fairseq版本: 0.9.0</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="torch-max返回值"><a href="#torch-max返回值" class="headerlink" title="torch.max返回值"></a>torch.max返回值</h1><p>报错：<code>TypeError: expected Tensor as element 0 in argument 0, but got torch.return_types.max</code></p>
-<p>原因是torch.max(a, dim=)返回值是tuple类型，第一个元素是值，第二个元素是索引，因此只需要返回值的tensor时，torch.max(a, dim=).values即可</p>
-<h1 id="导致维度变化的命令"><a href="#导致维度变化的命令" class="headerlink" title="导致维度变化的命令"></a>导致维度变化的命令</h1><p>torch.max=tf.reduce_sum，都会使维度减一</p>
-<p>a = a[:-1:] 也会使维度减一</p>
-<p>cat维度不变，stack使维度加一，都是tensor拼接的功能</p>
-<h1 id="cpu和gpu上变量的类型不匹配问题"><a href="#cpu和gpu上变量的类型不匹配问题" class="headerlink" title="cpu和gpu上变量的类型不匹配问题"></a>cpu和gpu上变量的类型不匹配问题</h1><p>报错：RuntimeError: expected device cpu but got device cuda:0</p>
-<p>可能出现错误的位置：</p>
-<ul>
-<li><p>等号左边和右边类型不一样</p>
-</li>
-<li><p>运算符左右两端类型不同，例：+ - * /</p>
-</li>
-<li><p>同一个函数内，传入参数的类型不同，例matmul等</p>
-</li>
-</ul>
-<p>把tensor转移到相同的设备上解决问题</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-&gt;cuda : data.cuda()</span><br><span class="line">-&gt;cpu: data.cpu()</span><br><span class="line">-&gt;numpy：</span><br><span class="line">cuda类型不能直接转numpy 须先转成cpu类型，data.cpu().numpy()</span><br><span class="line">在cuda下训练中的数据不能直接转换为numpy，data.cpu().detach().numpy()</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>参考: <a href="https://blog.csdn.net/qq_41368074/article/details/105942534">https://blog.csdn.net/qq_41368074/article/details/105942534</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>code</category>
-        <category>pytorch</category>
-        <category>fairseq</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>hexo-next框架附加功能</title>
-    <url>/2021/05/27/hexo-next-tips/</url>
-    <content><![CDATA[<blockquote>
-<p>hexo+next框架博客的一些附加功能记录。<br>hexo: 5.4.0<br>next: 7.8.0</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="版本信息："><a href="#版本信息：" class="headerlink" title="版本信息："></a>版本信息：</h1><p>hexo和next版本信息可在相应文件夹的package.json中搜索version查看。</p>
-<h1 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明:"></a>版权声明:</h1><p>在.\themes\next\layout_macro\目录下，新建my-copyright.swig文件，内容为：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% if page.copyright %&#125;</span><br><span class="line">&lt;div class&#x3D;&quot;my_post_copyright&quot;&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;&#x2F;cdn.bootcss.com&#x2F;clipboard.js&#x2F;1.5.10&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;!-- JS库 sweetalert 可修改路径 --&gt;</span><br><span class="line">  &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;http:&#x2F;&#x2F;jslibs.wuxubj.cn&#x2F;sweetalert_mini&#x2F;jquery-1.7.1.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;http:&#x2F;&#x2F;jslibs.wuxubj.cn&#x2F;sweetalert_mini&#x2F;sweetalert.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; type&#x3D;&quot;text&#x2F;css&quot; href&#x3D;&quot;http:&#x2F;&#x2F;jslibs.wuxubj.cn&#x2F;sweetalert_mini&#x2F;sweetalert.mini.css&quot;&gt;</span><br><span class="line"></span><br><span class="line">  &lt;p&gt;&lt;span&gt;本文标题:&lt;&#x2F;span&gt;&#123;&#123; page.title &#125;&#125;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;</span><br><span class="line">  &lt;p&gt;&lt;span&gt;本文作者:&lt;&#x2F;span&gt;xxx&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;</span><br><span class="line">  &lt;p&gt;&lt;span&gt;本文链接:&lt;&#x2F;span&gt;&lt;a href&#x3D;&quot;&#123;&#123; url_for(page.path) &#125;&#125;&quot; title&#x3D;&quot;&#123;&#123; page.title &#125;&#125;&quot;&gt;&#123;&#123; page.permalink &#125;&#125;&lt;&#x2F;a&gt;</span><br><span class="line">    &lt;span class&#x3D;&quot;copy-path&quot;  title&#x3D;&quot;点击复制文章链接&quot;&gt;&lt;i class&#x3D;&quot;fa fa-clipboard&quot; data-clipboard-text&#x3D;&quot;&#123;&#123; page.permalink &#125;&#125;&quot;  aria-label&#x3D;&quot;复制成功！&quot;&gt;&lt;&#x2F;i&gt;&lt;&#x2F;span&gt;</span><br><span class="line">  &lt;&#x2F;p&gt;</span><br><span class="line">  &lt;p&gt;&lt;span&gt;版权声明:&lt;&#x2F;span&gt;本博客所有文章除特别声明外，均采用&lt;a rel&#x3D;&quot;license&quot; href&#x3D;&quot;https:&#x2F;&#x2F;creativecommons.org&#x2F;licenses&#x2F;by-nc-nd&#x2F;4.0&#x2F;&quot; target&#x3D;&quot;_blank&quot; title&#x3D;&quot;Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)&quot;&gt;CC BY-NC-ND&lt;&#x2F;a&gt;许可协议。转载请注明出处！&lt;&#x2F;p&gt;  </span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;script&gt; </span><br><span class="line">    var clipboard &#x3D; new Clipboard(&#39;.fa-clipboard&#39;);</span><br><span class="line">    clipboard.on(&#39;success&#39;, $(function()&#123;</span><br><span class="line">      $(&quot;.fa-clipboard&quot;).click(function()&#123;</span><br><span class="line">        swal(&#123;   </span><br><span class="line">          title: &quot;&quot;,   </span><br><span class="line">          text: &#39;复制成功&#39;,   </span><br><span class="line">          html: false,</span><br><span class="line">          timer: 500,   </span><br><span class="line">          showConfirmButton: false</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;));  </span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
-
-<p>打开.\themes\next\layout_macro\post.swig文件，在</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;#####################&#125;</span><br><span class="line">&#123;### END POST BODY ###&#125;</span><br><span class="line">&#123;#####################&#125;</span><br></pre></td></tr></table></figure>
-<p>之后添加：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!--添加版权信息--&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &#123;% if not is_index %&#125;</span><br><span class="line">    &#123;% include &#39;my-copyright.swig&#39; %&#125;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>在.\themes\next\source\css_common\components\post\目录下，新建my-post-copyright.styl文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.my_post_copyright &#123;</span><br><span class="line">  width: 85%;</span><br><span class="line">  max-width: 45em;</span><br><span class="line">  margin: 2.8em auto 0;</span><br><span class="line">  padding: 0.5em 1.0em;</span><br><span class="line">  border: 1px solid #d3d3d3;</span><br><span class="line">  font-size: 0.93rem;</span><br><span class="line">  line-height: 1.6em;</span><br><span class="line">  word-break: break-all;</span><br><span class="line">  background: rgba(255,255,255,0.4);</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright p&#123;margin:0;&#125;</span><br><span class="line">.my_post_copyright span &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  width: 5.2em;</span><br><span class="line">  color: #333333; &#x2F;&#x2F; title color</span><br><span class="line">  font-weight: bold;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright .raw &#123;</span><br><span class="line">  margin-left: 1em;</span><br><span class="line">  width: 5em;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright a &#123;</span><br><span class="line">  color: #808080;</span><br><span class="line">  border-bottom:0;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright a:hover &#123;</span><br><span class="line">  color: #0593d3; &#x2F;&#x2F; link color</span><br><span class="line">  text-decoration: underline;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright:hover .fa-clipboard &#123;</span><br><span class="line">  color: #000;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright .post-url:hover &#123;</span><br><span class="line">  font-weight: normal;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright .copy-path &#123;</span><br><span class="line">  margin-left: 1em;</span><br><span class="line">  width: 1em;</span><br><span class="line">  +mobile()&#123;display:none;&#125;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright .copy-path:hover &#123;</span><br><span class="line">  color: #808080;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>打开.\themes\next\source\css_common\components\post\post.styl文件，在最后添加：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@import &quot;my-post-copyright&quot;</span><br></pre></td></tr></table></figure>
-
-<p>打开.\scaffolds\post.md文件，设置新文件开启版权声明</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">copyright: true #开启</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>参考：<a href="https://blog.csdn.net/u011236348/article/details/88169271">https://blog.csdn.net/u011236348/article/details/88169271</a></p>
-</blockquote>
-<h1 id="访客-阅读量统计"><a href="#访客-阅读量统计" class="headerlink" title="访客/阅读量统计"></a>访客/阅读量统计</h1><p>打开.\themes\next_config.yml文件，<br>搜索busuanzi_count关键字，把enable设置为true，</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Show Views &#x2F; Visitors of the website &#x2F; page with busuanzi.</span><br><span class="line"># Get more information on http:&#x2F;&#x2F;ibruce.info&#x2F;2015&#x2F;04&#x2F;04&#x2F;busuanzi</span><br><span class="line">busuanzi_count:</span><br><span class="line">  enable: true</span><br><span class="line">  total_visitors: true #访客数</span><br><span class="line">  total_visitors_icon: fa fa-user</span><br><span class="line">  total_views: true #访问数</span><br><span class="line">  total_views_icon: fa fa-eye</span><br><span class="line">  post_views: true #文章阅读量</span><br><span class="line">  post_views_icon: fa fa-eye</span><br></pre></td></tr></table></figure>
-<p>同一文件，搜索footer关键字，在其底下添加counter，设值为true。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">footer:</span><br><span class="line">  # Specify the date when the site was setup. If not defined, current year will be used.</span><br><span class="line">  #since: 2015</span><br><span class="line">  # count for visit</span><br><span class="line">  counter: true</span><br></pre></td></tr></table></figure>
-
-<p>打开.\themes\next\layout_partials\footer.swig文件，添加代码。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% if theme.footer.counter %&#125;</span><br><span class="line">    &lt;script async src&#x3D;&quot;&#x2F;&#x2F;dn-lbstatics.qbox.me&#x2F;busuanzi&#x2F;2.3&#x2F;busuanzi.pure.mini.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
-
-<p>访客、访问次数在网站主页底部，文章阅读量在文章开头。</p>
-<blockquote>
-<p>参考：<a href="https://blog.csdn.net/baidu_34310405/article/details/102665373">https://blog.csdn.net/baidu_34310405/article/details/102665373</a></p>
-</blockquote>
-<h1 id="博客中插入自己编写的html页面"><a href="#博客中插入自己编写的html页面" class="headerlink" title="博客中插入自己编写的html页面"></a>博客中插入自己编写的html页面</h1><p>看到next官方readme中LEAFERx博客sentence页面很好看，也动手搞一个类似的。利用jQuery的全屏滚动插件fullPage.js实现，网页部分主要参考链接中的代码。</p>
-<p>将自己的html页面插入博客中，首先新建一个页面<code>hexo new page &quot;schedule&quot;</code>，在生成的文件夹source/schedule/下复制网页的css/js/html文件。</p>
-<p>修改根目录下的<code>_config.yml</code>文件，跳过自定义页面的渲染过程，若文件夹下有子文件夹，需要改为<code>schedule/**</code>。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render:</span><br><span class="line"> - &quot;schedule&#x2F;*&quot;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>参考：<a href="https://www.dowebok.com/77.html">https://www.dowebok.com/77.html</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>other</category>
-        <category>hexo</category>
-        <category>next</category>
-      </categories>
-  </entry>
-  <entry>
     <title>git版本控制</title>
     <url>/2022/07/13/git-note/</url>
     <content><![CDATA[<blockquote>
@@ -424,39 +317,110 @@
       </categories>
   </entry>
   <entry>
-    <title>latex-tips</title>
-    <url>/2021/11/27/latex-tips/</url>
+    <title>fairseq代码位置记录</title>
+    <url>/2021/05/21/fairseq-tips/</url>
     <content><![CDATA[<blockquote>
-<p>latex/overleaf一些笔记。</p>
+<p>记录一些fairseq中功能实现的代码位置。<br>fairseq版本: 0.9.0</p>
 </blockquote>
 <span id="more"></span>
 
-<h1 id="图片排版"><a href="#图片排版" class="headerlink" title="图片排版"></a>图片排版</h1><h2 id="宏包："><a href="#宏包：" class="headerlink" title="宏包："></a>宏包：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\usepackage&#123;graphicx&#125; %插图宏包</span><br><span class="line">\usepackage&#123;subfig&#125; %子图包含宏包，较新</span><br><span class="line">\usepackage&#123;subfigure&#125; %子图包含宏包，较旧</span><br></pre></td></tr></table></figure>
+<h1 id="ensemble集成"><a href="#ensemble集成" class="headerlink" title="ensemble集成"></a>ensemble集成</h1><p>在fairseq/sequence_generator.py中760行，ensemble在beam search之前。</p>
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>pytorch</category>
+        <category>fairseq</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>fairseq踩坑记录</title>
+    <url>/2021/05/27/fairseq-tips1/</url>
+    <content><![CDATA[<blockquote>
+<p>记录一些fairseq中遇到的bug和解决方案。<br>fairseq版本: 0.9.0</p>
+</blockquote>
+<span id="more"></span>
 
-<h2 id="基本命令："><a href="#基本命令：" class="headerlink" title="基本命令："></a>基本命令：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[ht]</span><br><span class="line">\centering</span><br><span class="line">\includegraphics[width&#x3D;10cm]&#123;example.png&#125;</span><br><span class="line">\caption&#123;this is a figure&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="torch-max返回值"><a href="#torch-max返回值" class="headerlink" title="torch.max返回值"></a>torch.max返回值</h1><p>报错：<code>TypeError: expected Tensor as element 0 in argument 0, but got torch.return_types.max</code></p>
+<p>原因是torch.max(a, dim=)返回值是tuple类型，第一个元素是值，第二个元素是索引，因此只需要返回值的tensor时，torch.max(a, dim=).values即可</p>
+<h1 id="导致维度变化的命令"><a href="#导致维度变化的命令" class="headerlink" title="导致维度变化的命令"></a>导致维度变化的命令</h1><p>torch.max=tf.reduce_sum，都会使维度减一</p>
+<p>a = a[:-1:] 也会使维度减一</p>
+<p>cat维度不变，stack使维度加一，都是tensor拼接的功能</p>
+<h1 id="cpu和gpu上变量的类型不匹配问题"><a href="#cpu和gpu上变量的类型不匹配问题" class="headerlink" title="cpu和gpu上变量的类型不匹配问题"></a>cpu和gpu上变量的类型不匹配问题</h1><p>报错：RuntimeError: expected device cpu but got device cuda:0</p>
+<p>可能出现错误的位置：</p>
+<ul>
+<li><p>等号左边和右边类型不一样</p>
+</li>
+<li><p>运算符左右两端类型不同，例：+ - * /</p>
+</li>
+<li><p>同一个函数内，传入参数的类型不同，例matmul等</p>
+</li>
+</ul>
+<p>把tensor转移到相同的设备上解决问题</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-&gt;cuda : data.cuda()</span><br><span class="line">-&gt;cpu: data.cpu()</span><br><span class="line">-&gt;numpy：</span><br><span class="line">cuda类型不能直接转numpy 须先转成cpu类型，data.cpu().numpy()</span><br><span class="line">在cuda下训练中的数据不能直接转换为numpy，data.cpu().detach().numpy()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参考: <a href="https://blog.csdn.net/qq_41368074/article/details/105942534">https://blog.csdn.net/qq_41368074/article/details/105942534</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>pytorch</category>
+        <category>fairseq</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>hexo-next框架附加功能</title>
+    <url>/2021/05/27/hexo-next-tips/</url>
+    <content><![CDATA[<blockquote>
+<p>hexo+next框架博客的一些附加功能记录。<br>hexo: 5.4.0<br>next: 7.8.0</p>
+</blockquote>
+<span id="more"></span>
 
-<p>\centering表示的是里面紧跟的内容都居中；</p>
-<p>\includegrapics[参数1]{参数2}</p>
-<p>参数1：对图片进行一些调整，例如宽高缩放width=10cm,height=8cm,scale=0.4</p>
-<p>参数2：图片名</p>
-<p>\caption{标题}设置图片的一个编号以及为图片添加标题；</p>
-<h2 id="图片位置："><a href="#图片位置：" class="headerlink" title="图片位置："></a>图片位置：</h2><p>\begin{figure}[参数1]</p>
-<p>参数1：对图片在文中的位置进行设置，h 此处（here）t 页顶（top）b 页底（bottom）p 独立一页（page），<strong>H 固定位置</strong>；</p>
-<h2 id="subfig和subfigure的区别："><a href="#subfig和subfigure的区别：" class="headerlink" title="subfig和subfigure的区别："></a>subfig和subfigure的区别：</h2><p>subfig：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[tbp]</span><br><span class="line">	\centering</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:a&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\quad</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:b&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\\	</span><br><span class="line">	\caption&#123;Capital Roman numerals.&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="版本信息："><a href="#版本信息：" class="headerlink" title="版本信息："></a>版本信息：</h1><p>hexo和next版本信息可在相应文件夹的package.json中搜索version查看。</p>
+<h1 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明:"></a>版权声明:</h1><p>在.\themes\next\layout_macro\目录下，新建my-copyright.swig文件，内容为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% if page.copyright %&#125;</span><br><span class="line">&lt;div class&#x3D;&quot;my_post_copyright&quot;&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;&#x2F;cdn.bootcss.com&#x2F;clipboard.js&#x2F;1.5.10&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;!-- JS库 sweetalert 可修改路径 --&gt;</span><br><span class="line">  &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;http:&#x2F;&#x2F;jslibs.wuxubj.cn&#x2F;sweetalert_mini&#x2F;jquery-1.7.1.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;http:&#x2F;&#x2F;jslibs.wuxubj.cn&#x2F;sweetalert_mini&#x2F;sweetalert.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; type&#x3D;&quot;text&#x2F;css&quot; href&#x3D;&quot;http:&#x2F;&#x2F;jslibs.wuxubj.cn&#x2F;sweetalert_mini&#x2F;sweetalert.mini.css&quot;&gt;</span><br><span class="line"></span><br><span class="line">  &lt;p&gt;&lt;span&gt;本文标题:&lt;&#x2F;span&gt;&#123;&#123; page.title &#125;&#125;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;</span><br><span class="line">  &lt;p&gt;&lt;span&gt;本文作者:&lt;&#x2F;span&gt;xxx&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;</span><br><span class="line">  &lt;p&gt;&lt;span&gt;本文链接:&lt;&#x2F;span&gt;&lt;a href&#x3D;&quot;&#123;&#123; url_for(page.path) &#125;&#125;&quot; title&#x3D;&quot;&#123;&#123; page.title &#125;&#125;&quot;&gt;&#123;&#123; page.permalink &#125;&#125;&lt;&#x2F;a&gt;</span><br><span class="line">    &lt;span class&#x3D;&quot;copy-path&quot;  title&#x3D;&quot;点击复制文章链接&quot;&gt;&lt;i class&#x3D;&quot;fa fa-clipboard&quot; data-clipboard-text&#x3D;&quot;&#123;&#123; page.permalink &#125;&#125;&quot;  aria-label&#x3D;&quot;复制成功！&quot;&gt;&lt;&#x2F;i&gt;&lt;&#x2F;span&gt;</span><br><span class="line">  &lt;&#x2F;p&gt;</span><br><span class="line">  &lt;p&gt;&lt;span&gt;版权声明:&lt;&#x2F;span&gt;本博客所有文章除特别声明外，均采用&lt;a rel&#x3D;&quot;license&quot; href&#x3D;&quot;https:&#x2F;&#x2F;creativecommons.org&#x2F;licenses&#x2F;by-nc-nd&#x2F;4.0&#x2F;&quot; target&#x3D;&quot;_blank&quot; title&#x3D;&quot;Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)&quot;&gt;CC BY-NC-ND&lt;&#x2F;a&gt;许可协议。转载请注明出处！&lt;&#x2F;p&gt;  </span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;script&gt; </span><br><span class="line">    var clipboard &#x3D; new Clipboard(&#39;.fa-clipboard&#39;);</span><br><span class="line">    clipboard.on(&#39;success&#39;, $(function()&#123;</span><br><span class="line">      $(&quot;.fa-clipboard&quot;).click(function()&#123;</span><br><span class="line">        swal(&#123;   </span><br><span class="line">          title: &quot;&quot;,   </span><br><span class="line">          text: &#39;复制成功&#39;,   </span><br><span class="line">          html: false,</span><br><span class="line">          timer: 500,   </span><br><span class="line">          showConfirmButton: false</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;));  </span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
 
-<p>subfigure：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125; \centering </span><br><span class="line">\subfigure[figure 1 title.] &#123; \label&#123;fig:a&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig1.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\subfigure[figure 2 title.] &#123; \label&#123;fig:b&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig2.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\caption&#123; general title. &#125; </span><br><span class="line">\label&#123;fig&#125; </span><br><span class="line">\end&#123;figure&#125; </span><br></pre></td></tr></table></figure>
+<p>打开.\themes\next\layout_macro\post.swig文件，在</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;#####################&#125;</span><br><span class="line">&#123;### END POST BODY ###&#125;</span><br><span class="line">&#123;#####################&#125;</span><br></pre></td></tr></table></figure>
+<p>之后添加：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!--添加版权信息--&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &#123;% if not is_index %&#125;</span><br><span class="line">    &#123;% include &#39;my-copyright.swig&#39; %&#125;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
 
+<p>在.\themes\next\source\css_common\components\post\目录下，新建my-post-copyright.styl文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.my_post_copyright &#123;</span><br><span class="line">  width: 85%;</span><br><span class="line">  max-width: 45em;</span><br><span class="line">  margin: 2.8em auto 0;</span><br><span class="line">  padding: 0.5em 1.0em;</span><br><span class="line">  border: 1px solid #d3d3d3;</span><br><span class="line">  font-size: 0.93rem;</span><br><span class="line">  line-height: 1.6em;</span><br><span class="line">  word-break: break-all;</span><br><span class="line">  background: rgba(255,255,255,0.4);</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright p&#123;margin:0;&#125;</span><br><span class="line">.my_post_copyright span &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  width: 5.2em;</span><br><span class="line">  color: #333333; &#x2F;&#x2F; title color</span><br><span class="line">  font-weight: bold;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright .raw &#123;</span><br><span class="line">  margin-left: 1em;</span><br><span class="line">  width: 5em;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright a &#123;</span><br><span class="line">  color: #808080;</span><br><span class="line">  border-bottom:0;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright a:hover &#123;</span><br><span class="line">  color: #0593d3; &#x2F;&#x2F; link color</span><br><span class="line">  text-decoration: underline;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright:hover .fa-clipboard &#123;</span><br><span class="line">  color: #000;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright .post-url:hover &#123;</span><br><span class="line">  font-weight: normal;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright .copy-path &#123;</span><br><span class="line">  margin-left: 1em;</span><br><span class="line">  width: 1em;</span><br><span class="line">  +mobile()&#123;display:none;&#125;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright .copy-path:hover &#123;</span><br><span class="line">  color: #808080;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>打开.\themes\next\source\css_common\components\post\post.styl文件，在最后添加：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@import &quot;my-post-copyright&quot;</span><br></pre></td></tr></table></figure>
+
+<p>打开.\scaffolds\post.md文件，设置新文件开启版权声明</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">copyright: true #开启</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>参考：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/143529262">https://zhuanlan.zhihu.com/p/143529262</a></p>
-<p><a href="https://blog.csdn.net/yq_forever/article/details/84796802">https://blog.csdn.net/yq_forever/article/details/84796802</a></p>
+<p>参考：<a href="https://blog.csdn.net/u011236348/article/details/88169271">https://blog.csdn.net/u011236348/article/details/88169271</a></p>
+</blockquote>
+<h1 id="访客-阅读量统计"><a href="#访客-阅读量统计" class="headerlink" title="访客/阅读量统计"></a>访客/阅读量统计</h1><p>打开.\themes\next_config.yml文件，<br>搜索busuanzi_count关键字，把enable设置为true，</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Show Views &#x2F; Visitors of the website &#x2F; page with busuanzi.</span><br><span class="line"># Get more information on http:&#x2F;&#x2F;ibruce.info&#x2F;2015&#x2F;04&#x2F;04&#x2F;busuanzi</span><br><span class="line">busuanzi_count:</span><br><span class="line">  enable: true</span><br><span class="line">  total_visitors: true #访客数</span><br><span class="line">  total_visitors_icon: fa fa-user</span><br><span class="line">  total_views: true #访问数</span><br><span class="line">  total_views_icon: fa fa-eye</span><br><span class="line">  post_views: true #文章阅读量</span><br><span class="line">  post_views_icon: fa fa-eye</span><br></pre></td></tr></table></figure>
+<p>同一文件，搜索footer关键字，在其底下添加counter，设值为true。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">footer:</span><br><span class="line">  # Specify the date when the site was setup. If not defined, current year will be used.</span><br><span class="line">  #since: 2015</span><br><span class="line">  # count for visit</span><br><span class="line">  counter: true</span><br></pre></td></tr></table></figure>
+
+<p>打开.\themes\next\layout_partials\footer.swig文件，添加代码。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% if theme.footer.counter %&#125;</span><br><span class="line">    &lt;script async src&#x3D;&quot;&#x2F;&#x2F;dn-lbstatics.qbox.me&#x2F;busuanzi&#x2F;2.3&#x2F;busuanzi.pure.mini.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>访客、访问次数在网站主页底部，文章阅读量在文章开头。</p>
+<blockquote>
+<p>参考：<a href="https://blog.csdn.net/baidu_34310405/article/details/102665373">https://blog.csdn.net/baidu_34310405/article/details/102665373</a></p>
+</blockquote>
+<h1 id="博客中插入自己编写的html页面"><a href="#博客中插入自己编写的html页面" class="headerlink" title="博客中插入自己编写的html页面"></a>博客中插入自己编写的html页面</h1><p>看到next官方readme中LEAFERx博客sentence页面很好看，也动手搞一个类似的。利用jQuery的全屏滚动插件fullPage.js实现，网页部分主要参考链接中的代码。</p>
+<p>将自己的html页面插入博客中，首先新建一个页面<code>hexo new page &quot;schedule&quot;</code>，在生成的文件夹source/schedule/下复制网页的css/js/html文件。</p>
+<p>修改根目录下的<code>_config.yml</code>文件，跳过自定义页面的渲染过程，若文件夹下有子文件夹，需要改为<code>schedule/**</code>。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">skip_render:</span><br><span class="line"> - &quot;schedule&#x2F;*&quot;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>参考：<a href="https://www.dowebok.com/77.html">https://www.dowebok.com/77.html</a></p>
 </blockquote>
 ]]></content>
       <categories>
         <category>other</category>
+        <category>hexo</category>
+        <category>next</category>
       </categories>
   </entry>
   <entry>
@@ -620,6 +584,109 @@
       </categories>
   </entry>
   <entry>
+    <title>latex-tips</title>
+    <url>/2021/11/27/latex-tips/</url>
+    <content><![CDATA[<blockquote>
+<p>latex/overleaf一些笔记。</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="图片排版"><a href="#图片排版" class="headerlink" title="图片排版"></a>图片排版</h1><h2 id="宏包："><a href="#宏包：" class="headerlink" title="宏包："></a>宏包：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\usepackage&#123;graphicx&#125; %插图宏包</span><br><span class="line">\usepackage&#123;subfig&#125; %子图包含宏包，较新</span><br><span class="line">\usepackage&#123;subfigure&#125; %子图包含宏包，较旧</span><br></pre></td></tr></table></figure>
+
+<h2 id="基本命令："><a href="#基本命令：" class="headerlink" title="基本命令："></a>基本命令：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[ht]</span><br><span class="line">\centering</span><br><span class="line">\includegraphics[width&#x3D;10cm]&#123;example.png&#125;</span><br><span class="line">\caption&#123;this is a figure&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+
+<p>\centering表示的是里面紧跟的内容都居中；</p>
+<p>\includegrapics[参数1]{参数2}</p>
+<p>参数1：对图片进行一些调整，例如宽高缩放width=10cm,height=8cm,scale=0.4</p>
+<p>参数2：图片名</p>
+<p>\caption{标题}设置图片的一个编号以及为图片添加标题；</p>
+<h2 id="图片位置："><a href="#图片位置：" class="headerlink" title="图片位置："></a>图片位置：</h2><p>\begin{figure}[参数1]</p>
+<p>参数1：对图片在文中的位置进行设置，h 此处（here）t 页顶（top）b 页底（bottom）p 独立一页（page），<strong>H 固定位置</strong>；</p>
+<h2 id="subfig和subfigure的区别："><a href="#subfig和subfigure的区别：" class="headerlink" title="subfig和subfigure的区别："></a>subfig和subfigure的区别：</h2><p>subfig：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[tbp]</span><br><span class="line">	\centering</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:a&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\quad</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:b&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\\	</span><br><span class="line">	\caption&#123;Capital Roman numerals.&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+
+<p>subfigure：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125; \centering </span><br><span class="line">\subfigure[figure 1 title.] &#123; \label&#123;fig:a&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig1.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\subfigure[figure 2 title.] &#123; \label&#123;fig:b&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig2.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\caption&#123; general title. &#125; </span><br><span class="line">\label&#123;fig&#125; </span><br><span class="line">\end&#123;figure&#125; </span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>参考：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/143529262">https://zhuanlan.zhihu.com/p/143529262</a></p>
+<p><a href="https://blog.csdn.net/yq_forever/article/details/84796802">https://blog.csdn.net/yq_forever/article/details/84796802</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>pytorch笔记</title>
+    <url>/2021/05/28/pytorch-note/</url>
+    <content><![CDATA[<blockquote>
+<p>pytorch-学习笔记</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="0-pytorch的组件"><a href="#0-pytorch的组件" class="headerlink" title="0 pytorch的组件"></a>0 pytorch的组件</h1><table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://pytorch.org/docs/stable/torch.html"><strong>torch</strong></a></td>
+<td>在GPU上的类似Numpy的张量库，一些基本操作</td>
+</tr>
+<tr>
+<td><a href="https://pytorch.org/docs/stable/autograd.html"><strong>torch.autograd</strong></a></td>
+<td>支持torch中张量的微分操作</td>
+</tr>
+<tr>
+<td><a href="https://pytorch.org/docs/stable/jit.html"><strong>torch.jit</strong></a></td>
+<td>创建可序列化和可优化的编译堆栈(TorchScript)</td>
+</tr>
+<tr>
+<td><a href="https://pytorch.org/docs/stable/nn.html"><strong>torch.nn</strong></a></td>
+<td>与autograd深度集成的神经网络库</td>
+</tr>
+<tr>
+<td><a href="https://pytorch.org/docs/stable/multiprocessing.html"><strong>torch.multiprocessing</strong></a></td>
+<td>对数据加载Hogwild训练起效的多进程</td>
+</tr>
+<tr>
+<td><a href="https://pytorch.org/docs/stable/data.html"><strong>torch.utils</strong></a></td>
+<td>数据加载和其他实用程序功能</td>
+</tr>
+</tbody></table>
+<h1 id="1-pytorch手册"><a href="#1-pytorch手册" class="headerlink" title="1 pytorch手册"></a>1 pytorch手册</h1><h2 id="1-1-官方备忘录"><a href="#1-1-官方备忘录" class="headerlink" title="1.1 官方备忘录"></a><a href="https://pytorch.org/tutorials/beginner/ptcheat.html">1.1 官方备忘录</a></h2><p><strong>import:</strong></p>
+<p>一般的：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch                                        <span class="comment"># root package</span></span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> Dataset, DataLoader    <span class="comment"># dataset representation and loading</span></span><br></pre></td></tr></table></figure>
+
+<p>神经网络API：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.autograd <span class="keyword">as</span> autograd         <span class="comment"># computation graph</span></span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> Tensor                  <span class="comment"># tensor node in the computation graph</span></span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn                     <span class="comment"># neural networks</span></span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F           <span class="comment"># layers, activations and more</span></span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim               <span class="comment"># optimizers e.g. gradient descent, ADAM, etc.</span></span><br><span class="line"><span class="keyword">from</span> torch.jit <span class="keyword">import</span> script, trace       <span class="comment"># hybrid frontend decorator and tracing jit</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Tensor:</strong></p>
+<p>创建：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.randn(*size)              <span class="comment"># tensor with independent N(0,1) entries</span></span><br><span class="line">x = torch.[ones|zeros](*size)       <span class="comment"># tensor with all 1&#x27;s [or 0&#x27;s]</span></span><br><span class="line">x = torch.tensor(L)                 <span class="comment"># create tensor from [nested] list or ndarray L</span></span><br><span class="line">y = x.clone()                       <span class="comment"># clone of x</span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():               <span class="comment"># code wrap that stops autograd from tracking tensor history</span></span><br><span class="line">requires_grad=<span class="literal">True</span>                  <span class="comment"># arg, when set to True, tracks computation</span></span><br><span class="line">                                    <span class="comment"># history for future derivative calculations</span></span><br></pre></td></tr></table></figure>
+
+<p>维度：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x.size()                                  <span class="comment"># return tuple-like object of dimensions</span></span><br><span class="line">x = torch.cat(tensor_seq, dim=<span class="number">0</span>)          <span class="comment"># concatenates tensors along dim</span></span><br><span class="line">y = x.view(a,b,...)                       <span class="comment"># reshapes x into size (a,b,...)</span></span><br><span class="line">y = x.view(-<span class="number">1</span>,a)                          <span class="comment"># reshapes x into size (b,a) for some b</span></span><br><span class="line">y = x.transpose(a,b)                      <span class="comment"># swaps dimensions a and b</span></span><br><span class="line">y = x.permute(*dims)                      <span class="comment"># permutes dimensions</span></span><br><span class="line">y = x.unsqueeze(dim)                      <span class="comment"># tensor with added axis</span></span><br><span class="line">y = x.unsqueeze(dim=<span class="number">2</span>)                    <span class="comment"># (a,b,c) tensor -&gt; (a,b,1,c) tensor</span></span><br><span class="line">y = x.squeeze()                           <span class="comment"># removes all dimensions of size 1 (a,1,b,1) -&gt; (a,b)</span></span><br><span class="line">y = x.squeeze(dim=<span class="number">1</span>)                      <span class="comment"># removes specified dimension of size 1 (a,1,b,1) -&gt; (a,b,1)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h1><h2 id="访问元素"><a href="#访问元素" class="headerlink" title="访问元素"></a>访问元素</h2><p><code>[1,:]</code>其中:表示选择范围，只有:表示全选，与数字结合表示范围。</p>
+<p><code>[::3,::2]</code>其中::表示跳选，每隔x个选择一个。</p>
+<p>张量:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">x &#x3D; torch.arange(12) #生成</span><br><span class="line">x.shape #形状</span><br><span class="line">x.numel() #元素总数</span><br><span class="line">x &#x3D; x.reshape(3,4) #变换</span><br><span class="line">x &#x3D; torch.zeros((1,2,3)) #全零</span><br><span class="line">x &#x3D; torch.ones((2,3,4)) #全一</span><br><span class="line">x &#x3D; torch.tensor(list) #根据list生成tensor</span><br><span class="line">+ - * &#x2F; ** #对元素进行运算</span><br><span class="line">torch.exp(x) #指数运算</span><br><span class="line">torch.cat((x,y),dim&#x3D;0) #在第零维拼接，零维是最外侧</span><br><span class="line">x &#x3D;&#x3D; y #构建二元张量，是元素比较的结果</span><br><span class="line">x.sum() #求和，结果是一个元素的tensor</span><br><span class="line">x[0:2,:]&#x3D;12 #区域赋值</span><br><span class="line">x[:]&#x3D;x+y &#x2F; x+&#x3D;y #减少内存开销，前后不变</span><br><span class="line">y &#x3D; x.numpy() #tensor转ndarray</span><br><span class="line">x &#x3D; torch.tensor(y) #ndarray转tensor</span><br><span class="line">x.item() &#x2F; float(x) &#x2F; int(x) #0维张量转标量</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>pytorch</category>
+      </categories>
+  </entry>
+  <entry>
     <title>python笔记</title>
     <url>/2021/05/31/python-note/</url>
     <content><![CDATA[<blockquote>
@@ -695,70 +762,73 @@
       </categories>
   </entry>
   <entry>
-    <title>pytorch笔记</title>
-    <url>/2021/05/28/pytorch-note/</url>
+    <title>如何进行研究——Marco Tulio Ribeiro</title>
+    <url>/2022/08/18/research-tips/</url>
     <content><![CDATA[<blockquote>
-<p>pytorch-学习笔记</p>
+<p>对Marco Tulio Ribeiro写的两篇关于研究者如何进行研究的总结</p>
 </blockquote>
 <span id="more"></span>
 
-<h1 id="0-pytorch的组件"><a href="#0-pytorch的组件" class="headerlink" title="0 pytorch的组件"></a>0 pytorch的组件</h1><table>
-<thead>
-<tr>
-<th>Component</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><a href="https://pytorch.org/docs/stable/torch.html"><strong>torch</strong></a></td>
-<td>在GPU上的类似Numpy的张量库，一些基本操作</td>
-</tr>
-<tr>
-<td><a href="https://pytorch.org/docs/stable/autograd.html"><strong>torch.autograd</strong></a></td>
-<td>支持torch中张量的微分操作</td>
-</tr>
-<tr>
-<td><a href="https://pytorch.org/docs/stable/jit.html"><strong>torch.jit</strong></a></td>
-<td>创建可序列化和可优化的编译堆栈(TorchScript)</td>
-</tr>
-<tr>
-<td><a href="https://pytorch.org/docs/stable/nn.html"><strong>torch.nn</strong></a></td>
-<td>与autograd深度集成的神经网络库</td>
-</tr>
-<tr>
-<td><a href="https://pytorch.org/docs/stable/multiprocessing.html"><strong>torch.multiprocessing</strong></a></td>
-<td>对数据加载Hogwild训练起效的多进程</td>
-</tr>
-<tr>
-<td><a href="https://pytorch.org/docs/stable/data.html"><strong>torch.utils</strong></a></td>
-<td>数据加载和其他实用程序功能</td>
-</tr>
-</tbody></table>
-<h1 id="1-pytorch手册"><a href="#1-pytorch手册" class="headerlink" title="1 pytorch手册"></a>1 pytorch手册</h1><h2 id="1-1-官方备忘录"><a href="#1-1-官方备忘录" class="headerlink" title="1.1 官方备忘录"></a><a href="https://pytorch.org/tutorials/beginner/ptcheat.html">1.1 官方备忘录</a></h2><p><strong>import:</strong></p>
-<p>一般的：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch                                        <span class="comment"># root package</span></span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> Dataset, DataLoader    <span class="comment"># dataset representation and loading</span></span><br></pre></td></tr></table></figure>
-
-<p>神经网络API：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.autograd <span class="keyword">as</span> autograd         <span class="comment"># computation graph</span></span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> Tensor                  <span class="comment"># tensor node in the computation graph</span></span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn                     <span class="comment"># neural networks</span></span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F           <span class="comment"># layers, activations and more</span></span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim               <span class="comment"># optimizers e.g. gradient descent, ADAM, etc.</span></span><br><span class="line"><span class="keyword">from</span> torch.jit <span class="keyword">import</span> script, trace       <span class="comment"># hybrid frontend decorator and tracing jit</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>Tensor:</strong></p>
-<p>创建：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.randn(*size)              <span class="comment"># tensor with independent N(0,1) entries</span></span><br><span class="line">x = torch.[ones|zeros](*size)       <span class="comment"># tensor with all 1&#x27;s [or 0&#x27;s]</span></span><br><span class="line">x = torch.tensor(L)                 <span class="comment"># create tensor from [nested] list or ndarray L</span></span><br><span class="line">y = x.clone()                       <span class="comment"># clone of x</span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():               <span class="comment"># code wrap that stops autograd from tracking tensor history</span></span><br><span class="line">requires_grad=<span class="literal">True</span>                  <span class="comment"># arg, when set to True, tracks computation</span></span><br><span class="line">                                    <span class="comment"># history for future derivative calculations</span></span><br></pre></td></tr></table></figure>
-
-<p>维度：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x.size()                                  <span class="comment"># return tuple-like object of dimensions</span></span><br><span class="line">x = torch.cat(tensor_seq, dim=<span class="number">0</span>)          <span class="comment"># concatenates tensors along dim</span></span><br><span class="line">y = x.view(a,b,...)                       <span class="comment"># reshapes x into size (a,b,...)</span></span><br><span class="line">y = x.view(-<span class="number">1</span>,a)                          <span class="comment"># reshapes x into size (b,a) for some b</span></span><br><span class="line">y = x.transpose(a,b)                      <span class="comment"># swaps dimensions a and b</span></span><br><span class="line">y = x.permute(*dims)                      <span class="comment"># permutes dimensions</span></span><br><span class="line">y = x.unsqueeze(dim)                      <span class="comment"># tensor with added axis</span></span><br><span class="line">y = x.unsqueeze(dim=<span class="number">2</span>)                    <span class="comment"># (a,b,c) tensor -&gt; (a,b,1,c) tensor</span></span><br><span class="line">y = x.squeeze()                           <span class="comment"># removes all dimensions of size 1 (a,1,b,1) -&gt; (a,b)</span></span><br><span class="line">y = x.squeeze(dim=<span class="number">1</span>)                      <span class="comment"># removes specified dimension of size 1 (a,1,b,1) -&gt; (a,b,1)</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h1><h2 id="访问元素"><a href="#访问元素" class="headerlink" title="访问元素"></a>访问元素</h2><p><code>[1,:]</code>其中:表示选择范围，只有:表示全选，与数字结合表示范围。</p>
-<p><code>[::3,::2]</code>其中::表示跳选，每隔x个选择一个。</p>
-<p>张量:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">x &#x3D; torch.arange(12) #生成</span><br><span class="line">x.shape #形状</span><br><span class="line">x.numel() #元素总数</span><br><span class="line">x &#x3D; x.reshape(3,4) #变换</span><br><span class="line">x &#x3D; torch.zeros((1,2,3)) #全零</span><br><span class="line">x &#x3D; torch.ones((2,3,4)) #全一</span><br><span class="line">x &#x3D; torch.tensor(list) #根据list生成tensor</span><br><span class="line">+ - * &#x2F; ** #对元素进行运算</span><br><span class="line">torch.exp(x) #指数运算</span><br><span class="line">torch.cat((x,y),dim&#x3D;0) #在第零维拼接，零维是最外侧</span><br><span class="line">x &#x3D;&#x3D; y #构建二元张量，是元素比较的结果</span><br><span class="line">x.sum() #求和，结果是一个元素的tensor</span><br><span class="line">x[0:2,:]&#x3D;12 #区域赋值</span><br><span class="line">x[:]&#x3D;x+y &#x2F; x+&#x3D;y #减少内存开销，前后不变</span><br><span class="line">y &#x3D; x.numpy() #tensor转ndarray</span><br><span class="line">x &#x3D; torch.tensor(y) #ndarray转tensor</span><br><span class="line">x.item() &#x2F; float(x) &#x2F; int(x) #0维张量转标量</span><br></pre></td></tr></table></figure>
-
+<h1 id="1-提出研究思路"><a href="#1-提出研究思路" class="headerlink" title="1 提出研究思路"></a>1 提出研究思路</h1><h2 id="1-1-了解相邻领域"><a href="#1-1-了解相邻领域" class="headerlink" title="1.1 了解相邻领域"></a>1.1 了解相邻领域</h2><p>知道的越多越容易提出想法，在对自己的领域深入了解的同时，应该对自己研究方向的相邻领域有广泛的了解，可以通过课程或者论文的方式，不要陷入细节，而是有一个全局的概念，<strong>例如人们正在解决什么问题</strong>、<strong>哪些技术是最先进的</strong>以及<strong>如何进行评估等</strong>。</p>
+<p>安排一些学习时间，对内容可以随机一些，看论文时遇到不熟悉的技术和问题可以学习一下。</p>
+<p>与其他合作者交流喜欢的论文，阅读非自己领域的顶会论文，在报告会时多走动交流。</p>
+<h2 id="1-2-对重点问题设置过滤器"><a href="#1-2-对重点问题设置过滤器" class="headerlink" title="1.2 对重点问题设置过滤器"></a>1.2 对重点问题设置过滤器</h2><p>当我们有意识的思考某件事情时，会更容易的注意到其他事物与它的关联，因此列出要解决的重要的问题可以帮助研究者更好的注意到获得的新知识是否可以用于该问题。</p>
+<h2 id="1-3-调查失败的尝试"><a href="#1-3-调查失败的尝试" class="headerlink" title="1.3 调查失败的尝试"></a>1.3 调查失败的尝试</h2><p>对于研究中尝试的失败的方法，需要花时间来了解失败的原因，可以帮助我们更好的找到新的想法，对于暂时不能解决的可以放到一个清单中，之后再继续思考。</p>
+<p>这种学习方法也可以通过对他人工作的反思来进行，可以思考一下已经有的技术如何用在论文中没有提及但是有用的事情上，这种场景一般是失败的，进而可以思考失败的原因。</p>
+<h2 id="1-4-使用类比"><a href="#1-4-使用类比" class="headerlink" title="1.4 使用类比"></a>1.4 使用类比</h2><p>尝试在现有工作和未解决的问题之间找到类比，不是简单的套用a技术到b问题，而是探索相似和不同，找到合适的场景或符合类比所需的约束的情况。</p>
+<h2 id="1-5-挑战现状"><a href="#1-5-挑战现状" class="headerlink" title="1.5 挑战现状"></a>1.5 挑战现状</h2><p>首先需要理解为什么现状是这样，如果不知道是什么导致了现状，以及现状的合理性，那么挑战现状是白费努力。</p>
+<h1 id="2-组织和充实想法"><a href="#2-组织和充实想法" class="headerlink" title="2 组织和充实想法"></a>2 组织和充实想法</h1><p>需要对要解决的问题有清晰的了解和考量，一个不好的问题即使有一个很好的解决方法也意义不大。</p>
+<h2 id="2-1-组织潜在项目"><a href="#2-1-组织潜在项目" class="headerlink" title="2.1 组织潜在项目"></a>2.1 组织潜在项目</h2><p>可以按照下面的模板进行组织，以作者的工作checklist为示例说明，：</p>
+<p><strong>问题陈述：</strong>对我们要解决的问题的陈述</p>
+<p><em>我们想知道我们的模型是否符合业务规则、先验知识和常识。现在，即使是专家也很难写下这些是什么。大多数人甚至没有想过他们为什么需要这样做。</em></p>
+<p><strong>为什么困难：</strong>总结一下这个问题为什么重要或为什么我们要关心并解决它。</p>
+<p><em>训练/评估数据是静态的，通常具有模型可以利用的偏差。准确性通常不是我们关心的全部，而且测试集几乎从来没有足够大或变化到足以测试某些行为（例如，模型在存在拼写错误时的行为方式，模型对于某些异常值的行为方式等）。</em></p>
+<p><strong>已有的解决方案和失败原因：</strong>可能适用于“问题”的方法列表，即使它们不是专门为它设计的。请注意失败的方法并不是不好，只是我们希望它们不能解决我们的问题，即使它们在其他方面非常出色。</p>
+<p><em>我列出了一堆方法，并说“这些方法并不能真正测试人类期望的模型行为，只有少数例外。此外，有些需要访问模型内部”。</em></p>
+<p><strong>如果我有一个解决方案，是什么样的：</strong>重点不是实际提出解决方案，而是我们期望的解决方案，也就是对结果的预期或希望的形式，可以提出多种就更好了。</p>
+<p><em>测试框架，包括不同测试类型的分类</em></p>
+<p><em>一种从用户那里引出测试的方法</em></p>
+<p><em>使整个过程变得简单的软件</em></p>
+<p><strong>我怎样知道是否能解决：</strong>评估的草稿，不用详细</p>
+<p><em>许多令人信服的 SOTA 模型未能通过测试的例子，并从中收集到了见解。</em></p>
+<p><em>与微软工程师进行的“用户研究”，我们（希望）表明他们在编写测试后在自己的模型中发现了一堆（可修复的）问题。</em></p>
+<p><strong>不确定性是什么？什么对于这个工作来说是需要成立的，什么对于这个工作来说是无法成立的：</strong>这是关于确定高度不确定的区域，并确保我们尽可能快地排除会使项目或解决方案无效的事情。</p>
+<p><em>如果我是唯一能够进行测试的用户，那将是失败的。</em></p>
+<p><em>如果 SOTA 模型仅在特殊测试中失败，那么准确性可能已经足够好，我们不需要这个项目。</em></p>
+<p><strong>计划草图：</strong>草图是这里的关键词。我们只需要前几个步骤的合理细节，而第一步通常是某种形式的初步文献回顾。</p>
+<p>文献综述（lit review）</p>
+<p><em>为 SOTA 情绪分析模型编写测试</em></p>
+<p><em>为其他几个模型编写测试（paraphrase，SQuAD）</em></p>
+<p><em>尝试将这些组织成一般原则</em></p>
+<p><em>开发所需的任何工具</em></p>
+<p><em>与微软人员进行案例研究；与研究员的案例研究</em></p>
+<p><em>用户研究</em></p>
+<p><em>写论文</em></p>
+<h2 id="2-2-对模板的评价"><a href="#2-2-对模板的评价" class="headerlink" title="2.2 对模板的评价"></a>2.2 对模板的评价</h2><p>前五点（直到“我怎么知道我解决了它”）让我们了解了项目是什么，如果项目成功，世界会发生什么变化，为什么我们关心这种变化，以及我们如何证明确实发生了一些变化。最后两点主要用于评估项目，并有一个关于如何取得进展的暂定草图（如果无法指定草图是一个坏迹象）。</p>
+<p>模板是不断修改的，初期的版本很可能有各种问题，但是有一个模板比没有模板好很多。</p>
+<p>模板是面向问题的而不是解决方案的。</p>
+<h1 id="3-决定哪些想法值得作为研究项目进行"><a href="#3-决定哪些想法值得作为研究项目进行" class="headerlink" title="3 决定哪些想法值得作为研究项目进行"></a>3 决定哪些想法值得作为研究项目进行</h1><h2 id="3-1-想象不同的未来"><a href="#3-1-想象不同的未来" class="headerlink" title="3.1 想象不同的未来"></a>3.1 想象不同的未来</h2><p><strong>写下一个项目的可能结果</strong>，<strong>以及你对其可能性的估计</strong>（尽量具体）。有些项目在极端情况下（成功或失败）更为尖锐，而另一些项目则更有可能部分成功。即使是粗略的估计也会迫使您考虑当前的资源和约束如何影响成功的概率，以及您可以预期的成功或失败类型，例如“如果我成功，这个项目会产生什么样的影响？”，“我能不能弄清楚几周后我肯定会失败，还是几个月后才知道？”。反过来，这有助于你思考你的风险/回报组合，以及该项目的概况如何符合你的目标，例如，如果你是一名希望很快毕业的研究生，你可能不应该选择一个风险很大、几乎没有部分成功途径的项目。</p>
+<p>有一点需要注意：您应该对这些估计有很高的不确定性，并且对过早优化要非常小心。我认为在你当前的最佳估计中加入一些随机性（例如，有时根据你当前的信念和目标做一些没有真正意义的项目）是一个很好的策略，可以避免错过好机会，因为你无法预测它们。注意到我们大多数人不善于估计结果及其概率，我仍然认为在评估项目时进行粗略估计是有用的，即使人们不太重视这些估计。</p>
+<h2 id="3-2-确保回报上限很高"><a href="#3-2-确保回报上限很高" class="headerlink" title="3.2 确保回报上限很高"></a>3.2 确保回报上限很高</h2><p>“高上界”并不是一个好项目的充分条件，但“低上界”通常足以拒绝一个项目，无论你如何定义“成功”或“回报”。如果最好的情况是一篇“ok”的论文（即使风险接近于零），那么在几乎任何项目上花费大量时间都是不值得的。我的导师曾经说过，一篇好论文胜过三篇好论文，我认为这种心态真的很有帮助。当然，你不能保证伟大，但如果你追求“足够好”，这通常是你能做到的。</p>
+<h2 id="3-3-获得更多信息"><a href="#3-3-获得更多信息" class="headerlink" title="3.3 获得更多信息"></a>3.3 获得更多信息</h2><p>与其做出接受或拒绝项目的不可逆决定，不如收集更多信息，以完善提案并减少不确定性。重要的是在这个阶段将项目作为一种可能性（而不是确定性）来思考和讨论，例如避免说“这是我现在正在做的项目”。</p>
+<p>有以下两种方式来获得信息：</p>
+<p><strong>与人交流：</strong>把这个项目介绍给几个人，看看他们是否“相信”你的故事、你对其重要性的估计、当前解决方案的缺点等等。我认为持怀疑态度和消极态度的人在这一点上是很棒的，但矛盾的是，我认为你不应该听得太仔细。从一开始，大多数原创想法听起来都不太好。如果你不感到气馁，负面反馈是模板中“不确定性”部分的绝佳素材，为你提供可以检查和防御的伪造假设。此外，这是一个很好的方法来做廉价的文献综述，当人们问你“这不是X在1984年做的吗？”。</p>
+<p>向专家询问您不确定的特定问题也可以是一种降低失败风险不确定性的廉价方法。如果这是目标，我通常会尝试抽象地问我不确定的问题（例如，“你将如何解决这个子问题？”在给出项目背景之前——否则，这个人可以更专注于整个项目，而不是在我最想要的地方减少我的不确定性。当然，这里有一个权衡，因为提出更具体的问题会降低你得到意外（有用）建议的可能性。</p>
+<p><strong>参加黑客会议：</strong>回顾模板中的“不确定性”部分，并尝试减少不确定性，尤其是在可能导致项目失败的事情周围。</p>
+<p><a href="https://fedoraproject.org/wiki/Hack_session">Hack session</a> 是一种非正式的会议方式，起源于<a href="https://fedoraproject.org/wiki/CommOps">CommOps</a>团队。黑客会议是 CommOps 团队成员之间的协作式音频/视频通话。在 hack 会话中，成员处理团队中发生的各种故障单或问题。它们是掌握正在进行的工作并让团队其他成员快速回答问题的好方法。这也是进一步了解团队的好方法。</p>
+<p>有一些捷径，例如，如果提议的解决方案是管道A→ B→ C→ D，你对D有不确定性，只需要伪造C，而不是A→ B→ C。</p>
+<p>通常也可以使用廉价的下限来减少不确定性。例如使用zero-shot GPT-3、在相关任务上训练过的预训练模型或者编写一个粗糙的基于规则的模型等等。一旦你有了某个步骤的廉价下限，你就可以使用它，看看它能帮你走多远。</p>
+<p>黑客会议也可以确保你真的很好地解决问题。即使你手工完成所有步骤（一种很棒的捷径），你也必须检查你提议的任何步骤和“输出”是否现实（“输出”与检查模板中的“为什么困难”部分是否合理特别相关）。</p>
+<p>黑客会议的结果可以成为与一群新的人交谈的绝佳素材，因为你通常会得到具体的例子，让人们很容易想象一个项目的“最终结果”。</p>
+<blockquote>
+<p>参考：</p>
+<p><a href="https://medium.com/@marcotcr/coming-up-with-research-ideas-3032682e5852">https://medium.com/@marcotcr/coming-up-with-research-ideas-3032682e5852</a></p>
+<p><a href="https://medium.com/@marcotcr/organizing-and-evaluating-research-ideas-e137637b599e">https://medium.com/@marcotcr/organizing-and-evaluating-research-ideas-e137637b599e</a></p>
+<p><a href="https://mp.weixin.qq.com/s/nDj_m1Cq1qi3Qo4E--EhpA">https://mp.weixin.qq.com/s/nDj_m1Cq1qi3Qo4E--EhpA</a></p>
+</blockquote>
 ]]></content>
       <categories>
-        <category>code</category>
-        <category>pytorch</category>
+        <category>other</category>
       </categories>
   </entry>
   <entry>
@@ -850,76 +920,6 @@
       </categories>
   </entry>
   <entry>
-    <title>如何进行研究——Marco Tulio Ribeiro</title>
-    <url>/2022/08/18/research-tips/</url>
-    <content><![CDATA[<blockquote>
-<p>对Marco Tulio Ribeiro写的两篇关于研究者如何进行研究的总结</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="1-提出研究思路"><a href="#1-提出研究思路" class="headerlink" title="1 提出研究思路"></a>1 提出研究思路</h1><h2 id="1-1-了解相邻领域"><a href="#1-1-了解相邻领域" class="headerlink" title="1.1 了解相邻领域"></a>1.1 了解相邻领域</h2><p>知道的越多越容易提出想法，在对自己的领域深入了解的同时，应该对自己研究方向的相邻领域有广泛的了解，可以通过课程或者论文的方式，不要陷入细节，而是有一个全局的概念，<strong>例如人们正在解决什么问题</strong>、<strong>哪些技术是最先进的</strong>以及<strong>如何进行评估等</strong>。</p>
-<p>安排一些学习时间，对内容可以随机一些，看论文时遇到不熟悉的技术和问题可以学习一下。</p>
-<p>与其他合作者交流喜欢的论文，阅读非自己领域的顶会论文，在报告会时多走动交流。</p>
-<h2 id="1-2-对重点问题设置过滤器"><a href="#1-2-对重点问题设置过滤器" class="headerlink" title="1.2 对重点问题设置过滤器"></a>1.2 对重点问题设置过滤器</h2><p>当我们有意识的思考某件事情时，会更容易的注意到其他事物与它的关联，因此列出要解决的重要的问题可以帮助研究者更好的注意到获得的新知识是否可以用于该问题。</p>
-<h2 id="1-3-调查失败的尝试"><a href="#1-3-调查失败的尝试" class="headerlink" title="1.3 调查失败的尝试"></a>1.3 调查失败的尝试</h2><p>对于研究中尝试的失败的方法，需要花时间来了解失败的原因，可以帮助我们更好的找到新的想法，对于暂时不能解决的可以放到一个清单中，之后再继续思考。</p>
-<p>这种学习方法也可以通过对他人工作的反思来进行，可以思考一下已经有的技术如何用在论文中没有提及但是有用的事情上，这种场景一般是失败的，进而可以思考失败的原因。</p>
-<h2 id="1-4-使用类比"><a href="#1-4-使用类比" class="headerlink" title="1.4 使用类比"></a>1.4 使用类比</h2><p>尝试在现有工作和未解决的问题之间找到类比，不是简单的套用a技术到b问题，而是探索相似和不同，找到合适的场景或符合类比所需的约束的情况。</p>
-<h2 id="1-5-挑战现状"><a href="#1-5-挑战现状" class="headerlink" title="1.5 挑战现状"></a>1.5 挑战现状</h2><p>首先需要理解为什么现状是这样，如果不知道是什么导致了现状，以及现状的合理性，那么挑战现状是白费努力。</p>
-<h1 id="2-组织和充实想法"><a href="#2-组织和充实想法" class="headerlink" title="2 组织和充实想法"></a>2 组织和充实想法</h1><p>需要对要解决的问题有清晰的了解和考量，一个不好的问题即使有一个很好的解决方法也意义不大。</p>
-<h2 id="2-1-组织潜在项目"><a href="#2-1-组织潜在项目" class="headerlink" title="2.1 组织潜在项目"></a>2.1 组织潜在项目</h2><p>可以按照下面的模板进行组织，以作者的工作checklist为示例说明，：</p>
-<p><strong>问题陈述：</strong>对我们要解决的问题的陈述</p>
-<p><em>我们想知道我们的模型是否符合业务规则、先验知识和常识。现在，即使是专家也很难写下这些是什么。大多数人甚至没有想过他们为什么需要这样做。</em></p>
-<p><strong>为什么困难：</strong>总结一下这个问题为什么重要或为什么我们要关心并解决它。</p>
-<p><em>训练/评估数据是静态的，通常具有模型可以利用的偏差。准确性通常不是我们关心的全部，而且测试集几乎从来没有足够大或变化到足以测试某些行为（例如，模型在存在拼写错误时的行为方式，模型对于某些异常值的行为方式等）。</em></p>
-<p><strong>已有的解决方案和失败原因：</strong>可能适用于“问题”的方法列表，即使它们不是专门为它设计的。请注意失败的方法并不是不好，只是我们希望它们不能解决我们的问题，即使它们在其他方面非常出色。</p>
-<p><em>我列出了一堆方法，并说“这些方法并不能真正测试人类期望的模型行为，只有少数例外。此外，有些需要访问模型内部”。</em></p>
-<p><strong>如果我有一个解决方案，是什么样的：</strong>重点不是实际提出解决方案，而是我们期望的解决方案，也就是对结果的预期或希望的形式，可以提出多种就更好了。</p>
-<p><em>测试框架，包括不同测试类型的分类</em></p>
-<p><em>一种从用户那里引出测试的方法</em></p>
-<p><em>使整个过程变得简单的软件</em></p>
-<p><strong>我怎样知道是否能解决：</strong>评估的草稿，不用详细</p>
-<p><em>许多令人信服的 SOTA 模型未能通过测试的例子，并从中收集到了见解。</em></p>
-<p><em>与微软工程师进行的“用户研究”，我们（希望）表明他们在编写测试后在自己的模型中发现了一堆（可修复的）问题。</em></p>
-<p><strong>不确定性是什么？什么对于这个工作来说是需要成立的，什么对于这个工作来说是无法成立的：</strong>这是关于确定高度不确定的区域，并确保我们尽可能快地排除会使项目或解决方案无效的事情。</p>
-<p><em>如果我是唯一能够进行测试的用户，那将是失败的。</em></p>
-<p><em>如果 SOTA 模型仅在特殊测试中失败，那么准确性可能已经足够好，我们不需要这个项目。</em></p>
-<p><strong>计划草图：</strong>草图是这里的关键词。我们只需要前几个步骤的合理细节，而第一步通常是某种形式的初步文献回顾。</p>
-<p>文献综述（lit review）</p>
-<p><em>为 SOTA 情绪分析模型编写测试</em></p>
-<p><em>为其他几个模型编写测试（paraphrase，SQuAD）</em></p>
-<p><em>尝试将这些组织成一般原则</em></p>
-<p><em>开发所需的任何工具</em></p>
-<p><em>与微软人员进行案例研究；与研究员的案例研究</em></p>
-<p><em>用户研究</em></p>
-<p><em>写论文</em></p>
-<h2 id="2-2-对模板的评价"><a href="#2-2-对模板的评价" class="headerlink" title="2.2 对模板的评价"></a>2.2 对模板的评价</h2><p>前五点（直到“我怎么知道我解决了它”）让我们了解了项目是什么，如果项目成功，世界会发生什么变化，为什么我们关心这种变化，以及我们如何证明确实发生了一些变化。最后两点主要用于评估项目，并有一个关于如何取得进展的暂定草图（如果无法指定草图是一个坏迹象）。</p>
-<p>模板是不断修改的，初期的版本很可能有各种问题，但是有一个模板比没有模板好很多。</p>
-<p>模板是面向问题的而不是解决方案的。</p>
-<h1 id="3-决定哪些想法值得作为研究项目进行"><a href="#3-决定哪些想法值得作为研究项目进行" class="headerlink" title="3 决定哪些想法值得作为研究项目进行"></a>3 决定哪些想法值得作为研究项目进行</h1><h2 id="3-1-想象不同的未来"><a href="#3-1-想象不同的未来" class="headerlink" title="3.1 想象不同的未来"></a>3.1 想象不同的未来</h2><p><strong>写下一个项目的可能结果</strong>，<strong>以及你对其可能性的估计</strong>（尽量具体）。有些项目在极端情况下（成功或失败）更为尖锐，而另一些项目则更有可能部分成功。即使是粗略的估计也会迫使您考虑当前的资源和约束如何影响成功的概率，以及您可以预期的成功或失败类型，例如“如果我成功，这个项目会产生什么样的影响？”，“我能不能弄清楚几周后我肯定会失败，还是几个月后才知道？”。反过来，这有助于你思考你的风险/回报组合，以及该项目的概况如何符合你的目标，例如，如果你是一名希望很快毕业的研究生，你可能不应该选择一个风险很大、几乎没有部分成功途径的项目。</p>
-<p>有一点需要注意：您应该对这些估计有很高的不确定性，并且对过早优化要非常小心。我认为在你当前的最佳估计中加入一些随机性（例如，有时根据你当前的信念和目标做一些没有真正意义的项目）是一个很好的策略，可以避免错过好机会，因为你无法预测它们。注意到我们大多数人不善于估计结果及其概率，我仍然认为在评估项目时进行粗略估计是有用的，即使人们不太重视这些估计。</p>
-<h2 id="3-2-确保回报上限很高"><a href="#3-2-确保回报上限很高" class="headerlink" title="3.2 确保回报上限很高"></a>3.2 确保回报上限很高</h2><p>“高上界”并不是一个好项目的充分条件，但“低上界”通常足以拒绝一个项目，无论你如何定义“成功”或“回报”。如果最好的情况是一篇“ok”的论文（即使风险接近于零），那么在几乎任何项目上花费大量时间都是不值得的。我的导师曾经说过，一篇好论文胜过三篇好论文，我认为这种心态真的很有帮助。当然，你不能保证伟大，但如果你追求“足够好”，这通常是你能做到的。</p>
-<h2 id="3-3-获得更多信息"><a href="#3-3-获得更多信息" class="headerlink" title="3.3 获得更多信息"></a>3.3 获得更多信息</h2><p>与其做出接受或拒绝项目的不可逆决定，不如收集更多信息，以完善提案并减少不确定性。重要的是在这个阶段将项目作为一种可能性（而不是确定性）来思考和讨论，例如避免说“这是我现在正在做的项目”。</p>
-<p>有以下两种方式来获得信息：</p>
-<p><strong>与人交流：</strong>把这个项目介绍给几个人，看看他们是否“相信”你的故事、你对其重要性的估计、当前解决方案的缺点等等。我认为持怀疑态度和消极态度的人在这一点上是很棒的，但矛盾的是，我认为你不应该听得太仔细。从一开始，大多数原创想法听起来都不太好。如果你不感到气馁，负面反馈是模板中“不确定性”部分的绝佳素材，为你提供可以检查和防御的伪造假设。此外，这是一个很好的方法来做廉价的文献综述，当人们问你“这不是X在1984年做的吗？”。</p>
-<p>向专家询问您不确定的特定问题也可以是一种降低失败风险不确定性的廉价方法。如果这是目标，我通常会尝试抽象地问我不确定的问题（例如，“你将如何解决这个子问题？”在给出项目背景之前——否则，这个人可以更专注于整个项目，而不是在我最想要的地方减少我的不确定性。当然，这里有一个权衡，因为提出更具体的问题会降低你得到意外（有用）建议的可能性。</p>
-<p><strong>参加黑客会议：</strong>回顾模板中的“不确定性”部分，并尝试减少不确定性，尤其是在可能导致项目失败的事情周围。</p>
-<p><a href="https://fedoraproject.org/wiki/Hack_session">Hack session</a> 是一种非正式的会议方式，起源于<a href="https://fedoraproject.org/wiki/CommOps">CommOps</a>团队。黑客会议是 CommOps 团队成员之间的协作式音频/视频通话。在 hack 会话中，成员处理团队中发生的各种故障单或问题。它们是掌握正在进行的工作并让团队其他成员快速回答问题的好方法。这也是进一步了解团队的好方法。</p>
-<p>有一些捷径，例如，如果提议的解决方案是管道A→ B→ C→ D，你对D有不确定性，只需要伪造C，而不是A→ B→ C。</p>
-<p>通常也可以使用廉价的下限来减少不确定性。例如使用zero-shot GPT-3、在相关任务上训练过的预训练模型或者编写一个粗糙的基于规则的模型等等。一旦你有了某个步骤的廉价下限，你就可以使用它，看看它能帮你走多远。</p>
-<p>黑客会议也可以确保你真的很好地解决问题。即使你手工完成所有步骤（一种很棒的捷径），你也必须检查你提议的任何步骤和“输出”是否现实（“输出”与检查模板中的“为什么困难”部分是否合理特别相关）。</p>
-<p>黑客会议的结果可以成为与一群新的人交谈的绝佳素材，因为你通常会得到具体的例子，让人们很容易想象一个项目的“最终结果”。</p>
-<blockquote>
-<p>参考：</p>
-<p><a href="https://medium.com/@marcotcr/coming-up-with-research-ideas-3032682e5852">https://medium.com/@marcotcr/coming-up-with-research-ideas-3032682e5852</a></p>
-<p><a href="https://medium.com/@marcotcr/organizing-and-evaluating-research-ideas-e137637b599e">https://medium.com/@marcotcr/organizing-and-evaluating-research-ideas-e137637b599e</a></p>
-<p><a href="https://mp.weixin.qq.com/s/nDj_m1Cq1qi3Qo4E--EhpA">https://mp.weixin.qq.com/s/nDj_m1Cq1qi3Qo4E--EhpA</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>other</category>
-      </categories>
-  </entry>
-  <entry>
     <title>tf-tensor变换</title>
     <url>/2021/05/27/tf-tensor-conversion/</url>
     <content><![CDATA[<blockquote>
@@ -940,6 +940,57 @@
       <categories>
         <category>code</category>
         <category>tensorflow</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>每周知识碎片4</title>
+    <url>/2022/08/18/weekly-220809/</url>
+    <content><![CDATA[<blockquote>
+<p>新进入实验室的一个月！疯狂吸入零碎知识，加油哇！</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="1-shell脚本中set-e的作用"><a href="#1-shell脚本中set-e的作用" class="headerlink" title="1 shell脚本中set -e的作用"></a>1 shell脚本中set -e的作用</h1><p>linux系统的说明：”Exit immediately if a simple command exits with a non-zero status.”</p>
+<p>在”set -e”之后出现的代码，一旦出现了返回值非零，整个脚本就会立即退出，那么就可以避免一些脚本的危险操作。</p>
+<h1 id="2-python下载包报错"><a href="#2-python下载包报错" class="headerlink" title="2 python下载包报错"></a>2 python下载包报错</h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ERROR: Could not find a version that satisfies the requirement difflib (from versions: none)</span><br><span class="line"></span><br><span class="line">ERROR: No matching distribution found for difflib</span><br></pre></td></tr></table></figure>
+
+<p>可能是因为下载的包是python内置包，可以import一下试试。</p>
+<h1 id="3-sh脚本执行报错"><a href="#3-sh脚本执行报错" class="headerlink" title="3 sh脚本执行报错"></a>3 sh脚本执行报错</h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Syntax error: &quot;(&quot; unexpected</span><br></pre></td></tr></table></figure>
+
+<p>报错原因：</p>
+<p>在常见的linux发行版中，sh一般指向bash，但是有的系统debian、ubuntu上的sh默认指向dash，只支持基本的shell功能。</p>
+<p>解决方式：用以下两种方式之一执行脚本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bash test.sh</span><br><span class="line">./test.sh</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-执行-sh文件总是提示permission-denied"><a href="#4-执行-sh文件总是提示permission-denied" class="headerlink" title="4 执行.sh文件总是提示permission denied"></a>4 执行.sh文件总是提示permission denied</h1><p>一种常见可能是，写代码的时候加入了不必要的空格或者字符，sh文件代码之间不需要空格，去掉一般可以解决。</p>
+<h1 id="5-3090显卡和pytorch-cuda的适配"><a href="#5-3090显卡和pytorch-cuda的适配" class="headerlink" title="5 3090显卡和pytorch/cuda的适配"></a>5 3090显卡和pytorch/cuda的适配</h1><p>问题：</p>
+<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220809190437730.png" alt="image-20220809190437730"></p>
+<p>NVIDIA GeForce RTX 3090 with CUDA capability sm_86 is not compatible with the current PyTorch installation.<br>The current PyTorch install supports CUDA capabilities sm_37 sm_50 sm_60 sm_70.</p>
+<p><strong>RTX 3090</strong>显卡适配11.0以上版本的cuda</p>
+<p>解决办法：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install torch==1.8.0+cu111 torchvision==0.9.0+cu111 torchaudio==0.8.0 -f https://download.pytorch.org/whl/torch_stable.html</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://blog.csdn.net/weixin_41596697/article/details/120455682">参考的博客</a>说不同时安装有依赖问题。</p>
+]]></content>
+      <categories>
+        <category>weekly</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>每周知识碎片3</title>
+    <url>/2022/03/31/weekly-220331/</url>
+    <content><![CDATA[<blockquote>
+<p>三月的最后一天！太阳很好的一天！huggingface🤗！</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="python中的-staticmethod方法"><a href="#python中的-staticmethod方法" class="headerlink" title="python中的@staticmethod方法"></a>python中的@staticmethod方法</h1><p>作用：方便外部函数集成到类中，可以<strong>在不实例化类的情况下直接访问该方法</strong>。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,num</span>):</span></span><br><span class="line">            self.num = num;</span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">cout_num</span>(<span class="params">self</span>):</span></span><br><span class="line">            <span class="built_in">print</span>(self.num)</span><br><span class="line"><span class="meta">      @staticmethod</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">print_num</span>():</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Hello World&quot;</span>)         </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化&quot;&quot;&quot;</span></span><br><span class="line">      obj = Test(<span class="number">10</span>)</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化成员方法&quot;&quot;&quot;</span></span><br><span class="line">      obj.cout_num()</span><br><span class="line">      <span class="string">&quot;&quot;&quot;直接访问静态方法&quot;&quot;&quot;</span></span><br><span class="line">      Test.print_num()</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化 访问静态方法&quot;&quot;&quot;</span></span><br><span class="line">      obj.print_num()</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;输出结果&quot;&quot;&quot;</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line">Hello World</span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
+
+<p>在读embedding类的代码（<a href="https://github.com/UKPLab/sentence-transformers/blob/master/sentence_transformers/models/WordEmbeddings.py">sentence-transformers/sentence-transformers/models/WordEmbeddings.py</a>）时看到该方法，实例化方法需要传入embedding_weight变量，通过staticmethod可以直接通过txt文件或者模型来创建实例，相当于提供了三种创建方法。</p>
+]]></content>
+      <categories>
+        <category>weekly</category>
       </categories>
   </entry>
   <entry>
@@ -1033,57 +1084,6 @@
 <p>确定论文值得读之后，可以快速的把整个论文过一遍，不需要知道所有的细节，需要了解重要的图和表，知道每一个部分在干什么，圈出相关文献。觉得文章太难，可以读引用的文献。</p>
 <p><strong>第三遍</strong>：</p>
 <p>要知道每一句话每一段在说什么，在心里复述一下文章提出什么问题，用什么方法来解决这个问题，实验是怎么做的。想一下如果是我来做我要怎么做，作者没有解决的问题我是否有合适的方法可以继续解决。合上文章，回忆每一个部分在讲什么。</p>
-]]></content>
-      <categories>
-        <category>weekly</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>每周知识碎片3</title>
-    <url>/2022/03/31/weekly-220331/</url>
-    <content><![CDATA[<blockquote>
-<p>三月的最后一天！太阳很好的一天！huggingface🤗！</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="python中的-staticmethod方法"><a href="#python中的-staticmethod方法" class="headerlink" title="python中的@staticmethod方法"></a>python中的@staticmethod方法</h1><p>作用：方便外部函数集成到类中，可以<strong>在不实例化类的情况下直接访问该方法</strong>。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,num</span>):</span></span><br><span class="line">            self.num = num;</span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">cout_num</span>(<span class="params">self</span>):</span></span><br><span class="line">            <span class="built_in">print</span>(self.num)</span><br><span class="line"><span class="meta">      @staticmethod</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">print_num</span>():</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Hello World&quot;</span>)         </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化&quot;&quot;&quot;</span></span><br><span class="line">      obj = Test(<span class="number">10</span>)</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化成员方法&quot;&quot;&quot;</span></span><br><span class="line">      obj.cout_num()</span><br><span class="line">      <span class="string">&quot;&quot;&quot;直接访问静态方法&quot;&quot;&quot;</span></span><br><span class="line">      Test.print_num()</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化 访问静态方法&quot;&quot;&quot;</span></span><br><span class="line">      obj.print_num()</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;输出结果&quot;&quot;&quot;</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line">Hello World</span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
-
-<p>在读embedding类的代码（<a href="https://github.com/UKPLab/sentence-transformers/blob/master/sentence_transformers/models/WordEmbeddings.py">sentence-transformers/sentence-transformers/models/WordEmbeddings.py</a>）时看到该方法，实例化方法需要传入embedding_weight变量，通过staticmethod可以直接通过txt文件或者模型来创建实例，相当于提供了三种创建方法。</p>
-]]></content>
-      <categories>
-        <category>weekly</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>每周知识碎片4</title>
-    <url>/2022/08/18/weekly-220809/</url>
-    <content><![CDATA[<blockquote>
-<p>新进入实验室的一个月！疯狂吸入零碎知识，加油哇！</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="1-shell脚本中set-e的作用"><a href="#1-shell脚本中set-e的作用" class="headerlink" title="1 shell脚本中set -e的作用"></a>1 shell脚本中set -e的作用</h1><p>linux系统的说明：”Exit immediately if a simple command exits with a non-zero status.”</p>
-<p>在”set -e”之后出现的代码，一旦出现了返回值非零，整个脚本就会立即退出，那么就可以避免一些脚本的危险操作。</p>
-<h1 id="2-python下载包报错"><a href="#2-python下载包报错" class="headerlink" title="2 python下载包报错"></a>2 python下载包报错</h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ERROR: Could not find a version that satisfies the requirement difflib (from versions: none)</span><br><span class="line"></span><br><span class="line">ERROR: No matching distribution found for difflib</span><br></pre></td></tr></table></figure>
-
-<p>可能是因为下载的包是python内置包，可以import一下试试。</p>
-<h1 id="3-sh脚本执行报错"><a href="#3-sh脚本执行报错" class="headerlink" title="3 sh脚本执行报错"></a>3 sh脚本执行报错</h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Syntax error: &quot;(&quot; unexpected</span><br></pre></td></tr></table></figure>
-
-<p>报错原因：</p>
-<p>在常见的linux发行版中，sh一般指向bash，但是有的系统debian、ubuntu上的sh默认指向dash，只支持基本的shell功能。</p>
-<p>解决方式：用以下两种方式之一执行脚本</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bash test.sh</span><br><span class="line">./test.sh</span><br></pre></td></tr></table></figure>
-
-<h1 id="4-执行-sh文件总是提示permission-denied"><a href="#4-执行-sh文件总是提示permission-denied" class="headerlink" title="4 执行.sh文件总是提示permission denied"></a>4 执行.sh文件总是提示permission denied</h1><p>一种常见可能是，写代码的时候加入了不必要的空格或者字符，sh文件代码之间不需要空格，去掉一般可以解决。</p>
-<h1 id="5-3090显卡和pytorch-cuda的适配"><a href="#5-3090显卡和pytorch-cuda的适配" class="headerlink" title="5 3090显卡和pytorch/cuda的适配"></a>5 3090显卡和pytorch/cuda的适配</h1><p>问题：</p>
-<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220809190437730.png" alt="image-20220809190437730"></p>
-<p>NVIDIA GeForce RTX 3090 with CUDA capability sm_86 is not compatible with the current PyTorch installation.<br>The current PyTorch install supports CUDA capabilities sm_37 sm_50 sm_60 sm_70.</p>
-<p><strong>RTX 3090</strong>显卡适配11.0以上版本的cuda</p>
-<p>解决办法：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install torch==1.8.0+cu111 torchvision==0.9.0+cu111 torchaudio==0.8.0 -f https://download.pytorch.org/whl/torch_stable.html</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://blog.csdn.net/weixin_41596697/article/details/120455682">参考的博客</a>说不同时安装有依赖问题。</p>
 ]]></content>
       <categories>
         <category>weekly</category>
