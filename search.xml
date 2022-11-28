@@ -103,8 +103,46 @@
 
 
 
-<h1 id="2-pytorch-cuda安装"><a href="#2-pytorch-cuda安装" class="headerlink" title="2 pytorch+cuda安装"></a>2 pytorch+cuda安装</h1><p>在<a href="https://pytorch.org/get-started/locally/">pytorch官网</a>根据系统和版本复制安装命令，如果首页没有所需版本可在“You can also <a href="https://pytorch.org/get-started/previous-versions">install previous versions of PyTorch</a>“处查找。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch</span><br></pre></td></tr></table></figure>
+<h1 id="2-cuda安装"><a href="#2-cuda安装" class="headerlink" title="2 cuda安装"></a>2 cuda安装</h1><p><strong>注：</strong>在进行3步骤安装cuda版本的pytorch时，一直没有成功，一开始以为是cuda的问题，找到了这个解决方案，但是后续发现是第三步命令有问题，在第三步可以解决，所以可以不进行这一步。</p>
+<p>0 查看当前显卡可安装的cuda版本：</p>
+<p>可以查看当前NVIDIA驱动的版本，还可以查询与此驱动相匹配的Cuda版本，虽是匹配，但是Cuda的版本可以略低于此时驱动匹配的Cuda版本，因此，我们可以安装版本高一点的驱动，来兼容不同版本的Cuda。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure>
+
+<p>为没有super权限的用户安装cuda的步骤如下：</p>
+<p>1 首先在<a href="https://developer.nvidia.com/cuda-toolkit-archive">CUDA Toolkit Archive | NVIDIA Developer</a>下载对应的安装包：</p>
+<p>linux x86_64 ubuntu18.04 runfile(建议用此文件格式） </p>
+<p>2 对安装包属性进行修改为可执行：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chmod 755 cuda_11.3.0_465.19.01_linux.run</span><br></pre></td></tr></table></figure>
+
+<p>2 进行安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sh cuda_11.3.0_465.19.01_linux.run</span><br></pre></td></tr></table></figure>
+
+<p>3 安装进程</p>
+<p>accept，在CUDAinstall界面只选中“CUDA Toolkit 10.1”（前面带X默认选中）。选中“CUDA Toolkit 10.1”，按A进入，选中“Change Toolkit Install Path”，enter进入，将路径设置为非root路径，例如”/data0/xxx/local/cuda10.1/“，“finish”退出，“Done”退出.</p>
+<p>4 安装成功：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">&#x3D; Summary &#x3D;</span><br><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">Driver:   Not Selected</span><br><span class="line">Toolkit:  Installed in &#x2F;data&#x2F;yyfxu&#x2F;10-cuda&#x2F;cuda-11.3&#x2F;</span><br><span class="line">Samples:  Not Selected</span><br><span class="line"></span><br><span class="line">Please make sure that</span><br><span class="line"> -   PATH includes &#x2F;data&#x2F;yyfxu&#x2F;10-cuda&#x2F;cuda-11.3&#x2F;bin</span><br><span class="line"> -   LD_LIBRARY_PATH includes &#x2F;data&#x2F;yyfxu&#x2F;10-cuda&#x2F;cuda-11.3&#x2F;lib64, or, add &#x2F;data&#x2F;yyfxu&#x2F;10-cuda&#x2F;cuda-11.3&#x2F;lib64 to &#x2F;etc&#x2F;ld.so.conf and run ldconfig as root</span><br><span class="line"></span><br><span class="line">To uninstall the CUDA Toolkit, run cuda-uninstaller in &#x2F;data&#x2F;yyfxu&#x2F;10-cuda&#x2F;cuda-11.3&#x2F;bin</span><br><span class="line">***WARNING: Incomplete installation! This installation did not install the CUDA Driver. A driver of version at least 465.00 is required for CUDA 11.3 functionality to work.</span><br><span class="line">To install the driver using this installer, run the following command, replacing &lt;CudaInstaller&gt; with the name of this run file:</span><br><span class="line">    sudo &lt;CudaInstaller&gt;.run --silent --driver</span><br><span class="line"></span><br><span class="line">Logfile is &#x2F;tmp&#x2F;cuda-installer.log</span><br></pre></td></tr></table></figure>
+
+<p>5 修改环境变量：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim ~&#x2F;.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>跳转到最后，添加</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export CUDA_HOME&#x3D;&#x2F;data0&#x2F;xuyangbin&#x2F;local&#x2F;cuda10.1$&#123;CUDA_HOME:+:$&#123;CUDA_HOME&#125;&#125; </span><br><span class="line">export PATH&#x3D;&#x2F;data0&#x2F;xuyangbin&#x2F;local&#x2F;cuda10.1&#x2F;bin$&#123;PATH:+:$&#123;PATH&#125;&#125;</span><br><span class="line">export LD_LIBRARY_PATH&#x3D;&#x2F;data0&#x2F;xuyangbin&#x2F;local&#x2F;cuda10.1&#x2F;lib64&#x2F;$&#123;LD_LIBRARY_PATH:+:$&#123;LD_LIBRARY_PATH&#125;&#125;</span><br><span class="line">export LIBRARY_PATH&#x3D;&#x2F;data0&#x2F;xuyangbin&#x2F;local&#x2F;cuda10.1&#x2F;lib64$&#123;LIBRARY_PATH:+:$&#123;LIBRARY_PATH&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>生效：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">source ~&#x2F;.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>确认成功（在super没有安装nvcc的情况下无法显示）：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nvcc --version</span><br><span class="line"><span class="meta">#</span><span class="bash">cat /usr/<span class="built_in">local</span>/cuda/version.txt <span class="comment">#也可以用这条命令</span></span></span><br></pre></td></tr></table></figure>
+
+<p>这两条命令是查看当前Cuda的版本，即实际安装的Cuda版本。</p>
+<blockquote>
+<p>参考：</p>
+<p><a href="https://blog.csdn.net/qq_46277596/article/details/122332496">https://blog.csdn.net/qq_46277596/article/details/122332496</a></p>
+<p><a href="https://blog.csdn.net/m0_67401545/article/details/126434430">(1条消息) Linux查看当前Cuda（CUDA Toolkit ）版本_普通网友的博客-CSDN博客_cudatoolkit版本怎么看</a></p>
+</blockquote>
+<h1 id="3-pytorch安装"><a href="#3-pytorch安装" class="headerlink" title="3 pytorch安装"></a>3 pytorch安装</h1><p>在<a href="https://pytorch.org/get-started/locally/">pytorch官网</a>根据系统和版本复制安装命令，如果首页没有所需版本可在“You can also <a href="https://pytorch.org/get-started/previous-versions">install previous versions of PyTorch</a>“处查找。</p>
+<p><strong>注：</strong>在最近一次安装环境的过程中，发现conda install会安装成cpu版本，用pip install命令可以。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> CUDA 11.3</span></span><br><span class="line">pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113</span><br></pre></td></tr></table></figure>
 
 <p>测试是否安装成功：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">import torch</span><br><span class="line">flag = torch.cuda.is_available()</span><br><span class="line">print(flag)</span><br><span class="line">ngpu= 1</span><br><span class="line">device = torch.device(&quot;cuda:0&quot; if (torch.cuda.is_available() and ngpu &gt; 0) else &quot;cpu&quot;)</span><br><span class="line">print(device)</span><br><span class="line">print(torch.cuda.get_device_name(0))</span><br></pre></td></tr></table></figure>
@@ -113,7 +151,7 @@
 
 
 
-<h1 id="3-huggingface安装"><a href="#3-huggingface安装" class="headerlink" title="3 huggingface安装"></a>3 huggingface安装</h1><p>此处选择源码方式安装huggingface便于自行修改，其它安装方式在<a href="https://huggingface.co/docs/transformers/installation">官网</a>中有介绍。</p>
+<h1 id="4-huggingface安装"><a href="#4-huggingface安装" class="headerlink" title="4 huggingface安装"></a>4 huggingface安装</h1><p>此处选择源码方式安装huggingface便于自行修改，其它安装方式在<a href="https://huggingface.co/docs/transformers/installation">官网</a>中有介绍。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;huggingface&#x2F;transformers.git</span><br><span class="line">cd transformers</span><br><span class="line">pip install -e .</span><br></pre></td></tr></table></figure>
 
 <p><em>tips</em>：</p>
@@ -122,12 +160,12 @@
 <li>安装site-packages/PackageName.egg-link文件</li>
 <li>添加路径 site-packages/easy-install.pth</li>
 </ul>
-<h1 id="4-清华源加速"><a href="#4-清华源加速" class="headerlink" title="4 清华源加速"></a>4 清华源加速</h1><p>pip速度慢或出现超时错误时，考虑换成清华源下载包。</p>
+<h1 id="5-清华源加速"><a href="#5-清华源加速" class="headerlink" title="5 清华源加速"></a>5 清华源加速</h1><p>pip速度慢或出现超时错误时，考虑换成清华源下载包。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple xxx</span><br></pre></td></tr></table></figure>
 
 
 
-<h1 id="5-requirements-txt生成"><a href="#5-requirements-txt生成" class="headerlink" title="5 requirements.txt生成"></a>5 requirements.txt生成</h1><p>5.1 生成当前环境下的所有依赖：</p>
+<h1 id="6-requirements-txt生成"><a href="#6-requirements-txt生成" class="headerlink" title="6 requirements.txt生成"></a>6 requirements.txt生成</h1><p>5.1 生成当前环境下的所有依赖：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
 
 <p>5.2 生成指定项目下的所有依赖：</p>
@@ -139,7 +177,7 @@
 
 
 
-<h1 id="6-环境复制"><a href="#6-环境复制" class="headerlink" title="6 环境复制"></a>6 环境复制</h1><h2 id="从本机到本机的环境复制"><a href="#从本机到本机的环境复制" class="headerlink" title="从本机到本机的环境复制"></a>从本机到本机的环境复制</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda create -n new_env  --clone  exist_env</span><br></pre></td></tr></table></figure>
+<h1 id="7-环境复制"><a href="#7-环境复制" class="headerlink" title="7 环境复制"></a>7 环境复制</h1><h2 id="从本机到本机的环境复制"><a href="#从本机到本机的环境复制" class="headerlink" title="从本机到本机的环境复制"></a>从本机到本机的环境复制</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda create -n new_env  --clone  exist_env</span><br></pre></td></tr></table></figure>
 
 <h2 id="从一台服务器到另一台服务器的环境复制"><a href="#从一台服务器到另一台服务器的环境复制" class="headerlink" title="从一台服务器到另一台服务器的环境复制"></a>从一台服务器到另一台服务器的环境复制</h2><p><strong>第一种方法</strong>（自己尝试的时候报错未解决）：</p>
 <p>在本机上先激活环境，并导出配置文件</p>
@@ -165,6 +203,57 @@
       <categories>
         <category>other</category>
         <category>linux</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>fairseq代码位置记录</title>
+    <url>/2021/05/21/fairseq-tips/</url>
+    <content><![CDATA[<blockquote>
+<p>记录一些fairseq中功能实现的代码位置。<br>fairseq版本: 0.9.0</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="ensemble集成"><a href="#ensemble集成" class="headerlink" title="ensemble集成"></a>ensemble集成</h1><p>在fairseq/sequence_generator.py中760行，ensemble在beam search之前。</p>
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>pytorch</category>
+        <category>fairseq</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>fairseq踩坑记录</title>
+    <url>/2021/05/27/fairseq-tips1/</url>
+    <content><![CDATA[<blockquote>
+<p>记录一些fairseq中遇到的bug和解决方案。<br>fairseq版本: 0.9.0</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="torch-max返回值"><a href="#torch-max返回值" class="headerlink" title="torch.max返回值"></a>torch.max返回值</h1><p>报错：<code>TypeError: expected Tensor as element 0 in argument 0, but got torch.return_types.max</code></p>
+<p>原因是torch.max(a, dim=)返回值是tuple类型，第一个元素是值，第二个元素是索引，因此只需要返回值的tensor时，torch.max(a, dim=).values即可</p>
+<h1 id="导致维度变化的命令"><a href="#导致维度变化的命令" class="headerlink" title="导致维度变化的命令"></a>导致维度变化的命令</h1><p>torch.max=tf.reduce_sum，都会使维度减一</p>
+<p>a = a[:-1:] 也会使维度减一</p>
+<p>cat维度不变，stack使维度加一，都是tensor拼接的功能</p>
+<h1 id="cpu和gpu上变量的类型不匹配问题"><a href="#cpu和gpu上变量的类型不匹配问题" class="headerlink" title="cpu和gpu上变量的类型不匹配问题"></a>cpu和gpu上变量的类型不匹配问题</h1><p>报错：RuntimeError: expected device cpu but got device cuda:0</p>
+<p>可能出现错误的位置：</p>
+<ul>
+<li><p>等号左边和右边类型不一样</p>
+</li>
+<li><p>运算符左右两端类型不同，例：+ - * /</p>
+</li>
+<li><p>同一个函数内，传入参数的类型不同，例matmul等</p>
+</li>
+</ul>
+<p>把tensor转移到相同的设备上解决问题</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-&gt;cuda : data.cuda()</span><br><span class="line">-&gt;cpu: data.cpu()</span><br><span class="line">-&gt;numpy：</span><br><span class="line">cuda类型不能直接转numpy 须先转成cpu类型，data.cpu().numpy()</span><br><span class="line">在cuda下训练中的数据不能直接转换为numpy，data.cpu().detach().numpy()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参考: <a href="https://blog.csdn.net/qq_41368074/article/details/105942534">https://blog.csdn.net/qq_41368074/article/details/105942534</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>pytorch</category>
+        <category>fairseq</category>
       </categories>
   </entry>
   <entry>
@@ -317,54 +406,39 @@
       </categories>
   </entry>
   <entry>
-    <title>fairseq代码位置记录</title>
-    <url>/2021/05/21/fairseq-tips/</url>
+    <title>latex-tips</title>
+    <url>/2021/11/27/latex-tips/</url>
     <content><![CDATA[<blockquote>
-<p>记录一些fairseq中功能实现的代码位置。<br>fairseq版本: 0.9.0</p>
+<p>latex/overleaf一些笔记。</p>
 </blockquote>
 <span id="more"></span>
 
-<h1 id="ensemble集成"><a href="#ensemble集成" class="headerlink" title="ensemble集成"></a>ensemble集成</h1><p>在fairseq/sequence_generator.py中760行，ensemble在beam search之前。</p>
-]]></content>
-      <categories>
-        <category>code</category>
-        <category>pytorch</category>
-        <category>fairseq</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>fairseq踩坑记录</title>
-    <url>/2021/05/27/fairseq-tips1/</url>
-    <content><![CDATA[<blockquote>
-<p>记录一些fairseq中遇到的bug和解决方案。<br>fairseq版本: 0.9.0</p>
-</blockquote>
-<span id="more"></span>
+<h1 id="图片排版"><a href="#图片排版" class="headerlink" title="图片排版"></a>图片排版</h1><h2 id="宏包："><a href="#宏包：" class="headerlink" title="宏包："></a>宏包：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\usepackage&#123;graphicx&#125; %插图宏包</span><br><span class="line">\usepackage&#123;subfig&#125; %子图包含宏包，较新</span><br><span class="line">\usepackage&#123;subfigure&#125; %子图包含宏包，较旧</span><br></pre></td></tr></table></figure>
 
-<h1 id="torch-max返回值"><a href="#torch-max返回值" class="headerlink" title="torch.max返回值"></a>torch.max返回值</h1><p>报错：<code>TypeError: expected Tensor as element 0 in argument 0, but got torch.return_types.max</code></p>
-<p>原因是torch.max(a, dim=)返回值是tuple类型，第一个元素是值，第二个元素是索引，因此只需要返回值的tensor时，torch.max(a, dim=).values即可</p>
-<h1 id="导致维度变化的命令"><a href="#导致维度变化的命令" class="headerlink" title="导致维度变化的命令"></a>导致维度变化的命令</h1><p>torch.max=tf.reduce_sum，都会使维度减一</p>
-<p>a = a[:-1:] 也会使维度减一</p>
-<p>cat维度不变，stack使维度加一，都是tensor拼接的功能</p>
-<h1 id="cpu和gpu上变量的类型不匹配问题"><a href="#cpu和gpu上变量的类型不匹配问题" class="headerlink" title="cpu和gpu上变量的类型不匹配问题"></a>cpu和gpu上变量的类型不匹配问题</h1><p>报错：RuntimeError: expected device cpu but got device cuda:0</p>
-<p>可能出现错误的位置：</p>
-<ul>
-<li><p>等号左边和右边类型不一样</p>
-</li>
-<li><p>运算符左右两端类型不同，例：+ - * /</p>
-</li>
-<li><p>同一个函数内，传入参数的类型不同，例matmul等</p>
-</li>
-</ul>
-<p>把tensor转移到相同的设备上解决问题</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-&gt;cuda : data.cuda()</span><br><span class="line">-&gt;cpu: data.cpu()</span><br><span class="line">-&gt;numpy：</span><br><span class="line">cuda类型不能直接转numpy 须先转成cpu类型，data.cpu().numpy()</span><br><span class="line">在cuda下训练中的数据不能直接转换为numpy，data.cpu().detach().numpy()</span><br></pre></td></tr></table></figure>
+<h2 id="基本命令："><a href="#基本命令：" class="headerlink" title="基本命令："></a>基本命令：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[ht]</span><br><span class="line">\centering</span><br><span class="line">\includegraphics[width&#x3D;10cm]&#123;example.png&#125;</span><br><span class="line">\caption&#123;this is a figure&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+
+<p>\centering表示的是里面紧跟的内容都居中；</p>
+<p>\includegrapics[参数1]{参数2}</p>
+<p>参数1：对图片进行一些调整，例如宽高缩放width=10cm,height=8cm,scale=0.4</p>
+<p>参数2：图片名</p>
+<p>\caption{标题}设置图片的一个编号以及为图片添加标题；</p>
+<h2 id="图片位置："><a href="#图片位置：" class="headerlink" title="图片位置："></a>图片位置：</h2><p>\begin{figure}[参数1]</p>
+<p>参数1：对图片在文中的位置进行设置，h 此处（here）t 页顶（top）b 页底（bottom）p 独立一页（page），<strong>H 固定位置</strong>；</p>
+<h2 id="subfig和subfigure的区别："><a href="#subfig和subfigure的区别：" class="headerlink" title="subfig和subfigure的区别："></a>subfig和subfigure的区别：</h2><p>subfig：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[tbp]</span><br><span class="line">	\centering</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:a&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\quad</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:b&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\\	</span><br><span class="line">	\caption&#123;Capital Roman numerals.&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+
+<p>subfigure：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125; \centering </span><br><span class="line">\subfigure[figure 1 title.] &#123; \label&#123;fig:a&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig1.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\subfigure[figure 2 title.] &#123; \label&#123;fig:b&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig2.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\caption&#123; general title. &#125; </span><br><span class="line">\label&#123;fig&#125; </span><br><span class="line">\end&#123;figure&#125; </span><br></pre></td></tr></table></figure>
+
+
 <blockquote>
-<p>参考: <a href="https://blog.csdn.net/qq_41368074/article/details/105942534">https://blog.csdn.net/qq_41368074/article/details/105942534</a></p>
+<p>参考：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/143529262">https://zhuanlan.zhihu.com/p/143529262</a></p>
+<p><a href="https://blog.csdn.net/yq_forever/article/details/84796802">https://blog.csdn.net/yq_forever/article/details/84796802</a></p>
 </blockquote>
 ]]></content>
       <categories>
-        <category>code</category>
-        <category>pytorch</category>
-        <category>fairseq</category>
+        <category>other</category>
       </categories>
   </entry>
   <entry>
@@ -554,72 +628,6 @@
       </categories>
   </entry>
   <entry>
-    <title>DC分治</title>
-    <url>/2021/10/15/oj-DC/</url>
-    <content><![CDATA[<blockquote>
-<p>算法课笔记-分治<br>语言：C++</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>内容。</p>
-]]></content>
-      <categories>
-        <category>code</category>
-        <category>oj</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>DP动态规划</title>
-    <url>/2021/10/15/oj-DP/</url>
-    <content><![CDATA[<blockquote>
-<p>算法课笔记-动态规划<br>语言: C++</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="中文标题"><a href="#中文标题" class="headerlink" title="中文标题"></a>中文标题</h1><p>内容。</p>
-]]></content>
-      <categories>
-        <category>code</category>
-        <category>oj</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>latex-tips</title>
-    <url>/2021/11/27/latex-tips/</url>
-    <content><![CDATA[<blockquote>
-<p>latex/overleaf一些笔记。</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="图片排版"><a href="#图片排版" class="headerlink" title="图片排版"></a>图片排版</h1><h2 id="宏包："><a href="#宏包：" class="headerlink" title="宏包："></a>宏包：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\usepackage&#123;graphicx&#125; %插图宏包</span><br><span class="line">\usepackage&#123;subfig&#125; %子图包含宏包，较新</span><br><span class="line">\usepackage&#123;subfigure&#125; %子图包含宏包，较旧</span><br></pre></td></tr></table></figure>
-
-<h2 id="基本命令："><a href="#基本命令：" class="headerlink" title="基本命令："></a>基本命令：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[ht]</span><br><span class="line">\centering</span><br><span class="line">\includegraphics[width&#x3D;10cm]&#123;example.png&#125;</span><br><span class="line">\caption&#123;this is a figure&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
-
-<p>\centering表示的是里面紧跟的内容都居中；</p>
-<p>\includegrapics[参数1]{参数2}</p>
-<p>参数1：对图片进行一些调整，例如宽高缩放width=10cm,height=8cm,scale=0.4</p>
-<p>参数2：图片名</p>
-<p>\caption{标题}设置图片的一个编号以及为图片添加标题；</p>
-<h2 id="图片位置："><a href="#图片位置：" class="headerlink" title="图片位置："></a>图片位置：</h2><p>\begin{figure}[参数1]</p>
-<p>参数1：对图片在文中的位置进行设置，h 此处（here）t 页顶（top）b 页底（bottom）p 独立一页（page），<strong>H 固定位置</strong>；</p>
-<h2 id="subfig和subfigure的区别："><a href="#subfig和subfigure的区别：" class="headerlink" title="subfig和subfigure的区别："></a>subfig和subfigure的区别：</h2><p>subfig：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[tbp]</span><br><span class="line">	\centering</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:a&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\quad</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:b&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\\	</span><br><span class="line">	\caption&#123;Capital Roman numerals.&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
-
-<p>subfigure：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125; \centering </span><br><span class="line">\subfigure[figure 1 title.] &#123; \label&#123;fig:a&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig1.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\subfigure[figure 2 title.] &#123; \label&#123;fig:b&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig2.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\caption&#123; general title. &#125; </span><br><span class="line">\label&#123;fig&#125; </span><br><span class="line">\end&#123;figure&#125; </span><br></pre></td></tr></table></figure>
-
-
-<blockquote>
-<p>参考：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/143529262">https://zhuanlan.zhihu.com/p/143529262</a></p>
-<p><a href="https://blog.csdn.net/yq_forever/article/details/84796802">https://blog.csdn.net/yq_forever/article/details/84796802</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>other</category>
-      </categories>
-  </entry>
-  <entry>
     <title>pytorch笔记</title>
     <url>/2021/05/28/pytorch-note/</url>
     <content><![CDATA[<blockquote>
@@ -762,73 +770,33 @@
       </categories>
   </entry>
   <entry>
-    <title>如何进行研究——Marco Tulio Ribeiro</title>
-    <url>/2022/08/18/research-tips/</url>
+    <title>DC分治</title>
+    <url>/2021/10/15/oj-DC/</url>
     <content><![CDATA[<blockquote>
-<p>对Marco Tulio Ribeiro写的两篇关于研究者如何进行研究的总结</p>
+<p>算法课笔记-分治<br>语言：C++</p>
 </blockquote>
 <span id="more"></span>
 
-<h1 id="1-提出研究思路"><a href="#1-提出研究思路" class="headerlink" title="1 提出研究思路"></a>1 提出研究思路</h1><h2 id="1-1-了解相邻领域"><a href="#1-1-了解相邻领域" class="headerlink" title="1.1 了解相邻领域"></a>1.1 了解相邻领域</h2><p>知道的越多越容易提出想法，在对自己的领域深入了解的同时，应该对自己研究方向的相邻领域有广泛的了解，可以通过课程或者论文的方式，不要陷入细节，而是有一个全局的概念，<strong>例如人们正在解决什么问题</strong>、<strong>哪些技术是最先进的</strong>以及<strong>如何进行评估等</strong>。</p>
-<p>安排一些学习时间，对内容可以随机一些，看论文时遇到不熟悉的技术和问题可以学习一下。</p>
-<p>与其他合作者交流喜欢的论文，阅读非自己领域的顶会论文，在报告会时多走动交流。</p>
-<h2 id="1-2-对重点问题设置过滤器"><a href="#1-2-对重点问题设置过滤器" class="headerlink" title="1.2 对重点问题设置过滤器"></a>1.2 对重点问题设置过滤器</h2><p>当我们有意识的思考某件事情时，会更容易的注意到其他事物与它的关联，因此列出要解决的重要的问题可以帮助研究者更好的注意到获得的新知识是否可以用于该问题。</p>
-<h2 id="1-3-调查失败的尝试"><a href="#1-3-调查失败的尝试" class="headerlink" title="1.3 调查失败的尝试"></a>1.3 调查失败的尝试</h2><p>对于研究中尝试的失败的方法，需要花时间来了解失败的原因，可以帮助我们更好的找到新的想法，对于暂时不能解决的可以放到一个清单中，之后再继续思考。</p>
-<p>这种学习方法也可以通过对他人工作的反思来进行，可以思考一下已经有的技术如何用在论文中没有提及但是有用的事情上，这种场景一般是失败的，进而可以思考失败的原因。</p>
-<h2 id="1-4-使用类比"><a href="#1-4-使用类比" class="headerlink" title="1.4 使用类比"></a>1.4 使用类比</h2><p>尝试在现有工作和未解决的问题之间找到类比，不是简单的套用a技术到b问题，而是探索相似和不同，找到合适的场景或符合类比所需的约束的情况。</p>
-<h2 id="1-5-挑战现状"><a href="#1-5-挑战现状" class="headerlink" title="1.5 挑战现状"></a>1.5 挑战现状</h2><p>首先需要理解为什么现状是这样，如果不知道是什么导致了现状，以及现状的合理性，那么挑战现状是白费努力。</p>
-<h1 id="2-组织和充实想法"><a href="#2-组织和充实想法" class="headerlink" title="2 组织和充实想法"></a>2 组织和充实想法</h1><p>需要对要解决的问题有清晰的了解和考量，一个不好的问题即使有一个很好的解决方法也意义不大。</p>
-<h2 id="2-1-组织潜在项目"><a href="#2-1-组织潜在项目" class="headerlink" title="2.1 组织潜在项目"></a>2.1 组织潜在项目</h2><p>可以按照下面的模板进行组织，以作者的工作checklist为示例说明，：</p>
-<p><strong>问题陈述：</strong>对我们要解决的问题的陈述</p>
-<p><em>我们想知道我们的模型是否符合业务规则、先验知识和常识。现在，即使是专家也很难写下这些是什么。大多数人甚至没有想过他们为什么需要这样做。</em></p>
-<p><strong>为什么困难：</strong>总结一下这个问题为什么重要或为什么我们要关心并解决它。</p>
-<p><em>训练/评估数据是静态的，通常具有模型可以利用的偏差。准确性通常不是我们关心的全部，而且测试集几乎从来没有足够大或变化到足以测试某些行为（例如，模型在存在拼写错误时的行为方式，模型对于某些异常值的行为方式等）。</em></p>
-<p><strong>已有的解决方案和失败原因：</strong>可能适用于“问题”的方法列表，即使它们不是专门为它设计的。请注意失败的方法并不是不好，只是我们希望它们不能解决我们的问题，即使它们在其他方面非常出色。</p>
-<p><em>我列出了一堆方法，并说“这些方法并不能真正测试人类期望的模型行为，只有少数例外。此外，有些需要访问模型内部”。</em></p>
-<p><strong>如果我有一个解决方案，是什么样的：</strong>重点不是实际提出解决方案，而是我们期望的解决方案，也就是对结果的预期或希望的形式，可以提出多种就更好了。</p>
-<p><em>测试框架，包括不同测试类型的分类</em></p>
-<p><em>一种从用户那里引出测试的方法</em></p>
-<p><em>使整个过程变得简单的软件</em></p>
-<p><strong>我怎样知道是否能解决：</strong>评估的草稿，不用详细</p>
-<p><em>许多令人信服的 SOTA 模型未能通过测试的例子，并从中收集到了见解。</em></p>
-<p><em>与微软工程师进行的“用户研究”，我们（希望）表明他们在编写测试后在自己的模型中发现了一堆（可修复的）问题。</em></p>
-<p><strong>不确定性是什么？什么对于这个工作来说是需要成立的，什么对于这个工作来说是无法成立的：</strong>这是关于确定高度不确定的区域，并确保我们尽可能快地排除会使项目或解决方案无效的事情。</p>
-<p><em>如果我是唯一能够进行测试的用户，那将是失败的。</em></p>
-<p><em>如果 SOTA 模型仅在特殊测试中失败，那么准确性可能已经足够好，我们不需要这个项目。</em></p>
-<p><strong>计划草图：</strong>草图是这里的关键词。我们只需要前几个步骤的合理细节，而第一步通常是某种形式的初步文献回顾。</p>
-<p>文献综述（lit review）</p>
-<p><em>为 SOTA 情绪分析模型编写测试</em></p>
-<p><em>为其他几个模型编写测试（paraphrase，SQuAD）</em></p>
-<p><em>尝试将这些组织成一般原则</em></p>
-<p><em>开发所需的任何工具</em></p>
-<p><em>与微软人员进行案例研究；与研究员的案例研究</em></p>
-<p><em>用户研究</em></p>
-<p><em>写论文</em></p>
-<h2 id="2-2-对模板的评价"><a href="#2-2-对模板的评价" class="headerlink" title="2.2 对模板的评价"></a>2.2 对模板的评价</h2><p>前五点（直到“我怎么知道我解决了它”）让我们了解了项目是什么，如果项目成功，世界会发生什么变化，为什么我们关心这种变化，以及我们如何证明确实发生了一些变化。最后两点主要用于评估项目，并有一个关于如何取得进展的暂定草图（如果无法指定草图是一个坏迹象）。</p>
-<p>模板是不断修改的，初期的版本很可能有各种问题，但是有一个模板比没有模板好很多。</p>
-<p>模板是面向问题的而不是解决方案的。</p>
-<h1 id="3-决定哪些想法值得作为研究项目进行"><a href="#3-决定哪些想法值得作为研究项目进行" class="headerlink" title="3 决定哪些想法值得作为研究项目进行"></a>3 决定哪些想法值得作为研究项目进行</h1><h2 id="3-1-想象不同的未来"><a href="#3-1-想象不同的未来" class="headerlink" title="3.1 想象不同的未来"></a>3.1 想象不同的未来</h2><p><strong>写下一个项目的可能结果</strong>，<strong>以及你对其可能性的估计</strong>（尽量具体）。有些项目在极端情况下（成功或失败）更为尖锐，而另一些项目则更有可能部分成功。即使是粗略的估计也会迫使您考虑当前的资源和约束如何影响成功的概率，以及您可以预期的成功或失败类型，例如“如果我成功，这个项目会产生什么样的影响？”，“我能不能弄清楚几周后我肯定会失败，还是几个月后才知道？”。反过来，这有助于你思考你的风险/回报组合，以及该项目的概况如何符合你的目标，例如，如果你是一名希望很快毕业的研究生，你可能不应该选择一个风险很大、几乎没有部分成功途径的项目。</p>
-<p>有一点需要注意：您应该对这些估计有很高的不确定性，并且对过早优化要非常小心。我认为在你当前的最佳估计中加入一些随机性（例如，有时根据你当前的信念和目标做一些没有真正意义的项目）是一个很好的策略，可以避免错过好机会，因为你无法预测它们。注意到我们大多数人不善于估计结果及其概率，我仍然认为在评估项目时进行粗略估计是有用的，即使人们不太重视这些估计。</p>
-<h2 id="3-2-确保回报上限很高"><a href="#3-2-确保回报上限很高" class="headerlink" title="3.2 确保回报上限很高"></a>3.2 确保回报上限很高</h2><p>“高上界”并不是一个好项目的充分条件，但“低上界”通常足以拒绝一个项目，无论你如何定义“成功”或“回报”。如果最好的情况是一篇“ok”的论文（即使风险接近于零），那么在几乎任何项目上花费大量时间都是不值得的。我的导师曾经说过，一篇好论文胜过三篇好论文，我认为这种心态真的很有帮助。当然，你不能保证伟大，但如果你追求“足够好”，这通常是你能做到的。</p>
-<h2 id="3-3-获得更多信息"><a href="#3-3-获得更多信息" class="headerlink" title="3.3 获得更多信息"></a>3.3 获得更多信息</h2><p>与其做出接受或拒绝项目的不可逆决定，不如收集更多信息，以完善提案并减少不确定性。重要的是在这个阶段将项目作为一种可能性（而不是确定性）来思考和讨论，例如避免说“这是我现在正在做的项目”。</p>
-<p>有以下两种方式来获得信息：</p>
-<p><strong>与人交流：</strong>把这个项目介绍给几个人，看看他们是否“相信”你的故事、你对其重要性的估计、当前解决方案的缺点等等。我认为持怀疑态度和消极态度的人在这一点上是很棒的，但矛盾的是，我认为你不应该听得太仔细。从一开始，大多数原创想法听起来都不太好。如果你不感到气馁，负面反馈是模板中“不确定性”部分的绝佳素材，为你提供可以检查和防御的伪造假设。此外，这是一个很好的方法来做廉价的文献综述，当人们问你“这不是X在1984年做的吗？”。</p>
-<p>向专家询问您不确定的特定问题也可以是一种降低失败风险不确定性的廉价方法。如果这是目标，我通常会尝试抽象地问我不确定的问题（例如，“你将如何解决这个子问题？”在给出项目背景之前——否则，这个人可以更专注于整个项目，而不是在我最想要的地方减少我的不确定性。当然，这里有一个权衡，因为提出更具体的问题会降低你得到意外（有用）建议的可能性。</p>
-<p><strong>参加黑客会议：</strong>回顾模板中的“不确定性”部分，并尝试减少不确定性，尤其是在可能导致项目失败的事情周围。</p>
-<p><a href="https://fedoraproject.org/wiki/Hack_session">Hack session</a> 是一种非正式的会议方式，起源于<a href="https://fedoraproject.org/wiki/CommOps">CommOps</a>团队。黑客会议是 CommOps 团队成员之间的协作式音频/视频通话。在 hack 会话中，成员处理团队中发生的各种故障单或问题。它们是掌握正在进行的工作并让团队其他成员快速回答问题的好方法。这也是进一步了解团队的好方法。</p>
-<p>有一些捷径，例如，如果提议的解决方案是管道A→ B→ C→ D，你对D有不确定性，只需要伪造C，而不是A→ B→ C。</p>
-<p>通常也可以使用廉价的下限来减少不确定性。例如使用zero-shot GPT-3、在相关任务上训练过的预训练模型或者编写一个粗糙的基于规则的模型等等。一旦你有了某个步骤的廉价下限，你就可以使用它，看看它能帮你走多远。</p>
-<p>黑客会议也可以确保你真的很好地解决问题。即使你手工完成所有步骤（一种很棒的捷径），你也必须检查你提议的任何步骤和“输出”是否现实（“输出”与检查模板中的“为什么困难”部分是否合理特别相关）。</p>
-<p>黑客会议的结果可以成为与一群新的人交谈的绝佳素材，因为你通常会得到具体的例子，让人们很容易想象一个项目的“最终结果”。</p>
-<blockquote>
-<p>参考：</p>
-<p><a href="https://medium.com/@marcotcr/coming-up-with-research-ideas-3032682e5852">https://medium.com/@marcotcr/coming-up-with-research-ideas-3032682e5852</a></p>
-<p><a href="https://medium.com/@marcotcr/organizing-and-evaluating-research-ideas-e137637b599e">https://medium.com/@marcotcr/organizing-and-evaluating-research-ideas-e137637b599e</a></p>
-<p><a href="https://mp.weixin.qq.com/s/nDj_m1Cq1qi3Qo4E--EhpA">https://mp.weixin.qq.com/s/nDj_m1Cq1qi3Qo4E--EhpA</a></p>
-</blockquote>
+<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>内容。</p>
 ]]></content>
       <categories>
-        <category>other</category>
+        <category>code</category>
+        <category>oj</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>DP动态规划</title>
+    <url>/2021/10/15/oj-DP/</url>
+    <content><![CDATA[<blockquote>
+<p>算法课笔记-动态规划<br>语言: C++</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="中文标题"><a href="#中文标题" class="headerlink" title="中文标题"></a>中文标题</h1><p>内容。</p>
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>oj</category>
       </categories>
   </entry>
   <entry>
@@ -920,6 +888,76 @@
       </categories>
   </entry>
   <entry>
+    <title>如何进行研究——Marco Tulio Ribeiro</title>
+    <url>/2022/08/18/research-tips/</url>
+    <content><![CDATA[<blockquote>
+<p>对Marco Tulio Ribeiro写的两篇关于研究者如何进行研究的总结</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="1-提出研究思路"><a href="#1-提出研究思路" class="headerlink" title="1 提出研究思路"></a>1 提出研究思路</h1><h2 id="1-1-了解相邻领域"><a href="#1-1-了解相邻领域" class="headerlink" title="1.1 了解相邻领域"></a>1.1 了解相邻领域</h2><p>知道的越多越容易提出想法，在对自己的领域深入了解的同时，应该对自己研究方向的相邻领域有广泛的了解，可以通过课程或者论文的方式，不要陷入细节，而是有一个全局的概念，<strong>例如人们正在解决什么问题</strong>、<strong>哪些技术是最先进的</strong>以及<strong>如何进行评估等</strong>。</p>
+<p>安排一些学习时间，对内容可以随机一些，看论文时遇到不熟悉的技术和问题可以学习一下。</p>
+<p>与其他合作者交流喜欢的论文，阅读非自己领域的顶会论文，在报告会时多走动交流。</p>
+<h2 id="1-2-对重点问题设置过滤器"><a href="#1-2-对重点问题设置过滤器" class="headerlink" title="1.2 对重点问题设置过滤器"></a>1.2 对重点问题设置过滤器</h2><p>当我们有意识的思考某件事情时，会更容易的注意到其他事物与它的关联，因此列出要解决的重要的问题可以帮助研究者更好的注意到获得的新知识是否可以用于该问题。</p>
+<h2 id="1-3-调查失败的尝试"><a href="#1-3-调查失败的尝试" class="headerlink" title="1.3 调查失败的尝试"></a>1.3 调查失败的尝试</h2><p>对于研究中尝试的失败的方法，需要花时间来了解失败的原因，可以帮助我们更好的找到新的想法，对于暂时不能解决的可以放到一个清单中，之后再继续思考。</p>
+<p>这种学习方法也可以通过对他人工作的反思来进行，可以思考一下已经有的技术如何用在论文中没有提及但是有用的事情上，这种场景一般是失败的，进而可以思考失败的原因。</p>
+<h2 id="1-4-使用类比"><a href="#1-4-使用类比" class="headerlink" title="1.4 使用类比"></a>1.4 使用类比</h2><p>尝试在现有工作和未解决的问题之间找到类比，不是简单的套用a技术到b问题，而是探索相似和不同，找到合适的场景或符合类比所需的约束的情况。</p>
+<h2 id="1-5-挑战现状"><a href="#1-5-挑战现状" class="headerlink" title="1.5 挑战现状"></a>1.5 挑战现状</h2><p>首先需要理解为什么现状是这样，如果不知道是什么导致了现状，以及现状的合理性，那么挑战现状是白费努力。</p>
+<h1 id="2-组织和充实想法"><a href="#2-组织和充实想法" class="headerlink" title="2 组织和充实想法"></a>2 组织和充实想法</h1><p>需要对要解决的问题有清晰的了解和考量，一个不好的问题即使有一个很好的解决方法也意义不大。</p>
+<h2 id="2-1-组织潜在项目"><a href="#2-1-组织潜在项目" class="headerlink" title="2.1 组织潜在项目"></a>2.1 组织潜在项目</h2><p>可以按照下面的模板进行组织，以作者的工作checklist为示例说明，：</p>
+<p><strong>问题陈述：</strong>对我们要解决的问题的陈述</p>
+<p><em>我们想知道我们的模型是否符合业务规则、先验知识和常识。现在，即使是专家也很难写下这些是什么。大多数人甚至没有想过他们为什么需要这样做。</em></p>
+<p><strong>为什么困难：</strong>总结一下这个问题为什么重要或为什么我们要关心并解决它。</p>
+<p><em>训练/评估数据是静态的，通常具有模型可以利用的偏差。准确性通常不是我们关心的全部，而且测试集几乎从来没有足够大或变化到足以测试某些行为（例如，模型在存在拼写错误时的行为方式，模型对于某些异常值的行为方式等）。</em></p>
+<p><strong>已有的解决方案和失败原因：</strong>可能适用于“问题”的方法列表，即使它们不是专门为它设计的。请注意失败的方法并不是不好，只是我们希望它们不能解决我们的问题，即使它们在其他方面非常出色。</p>
+<p><em>我列出了一堆方法，并说“这些方法并不能真正测试人类期望的模型行为，只有少数例外。此外，有些需要访问模型内部”。</em></p>
+<p><strong>如果我有一个解决方案，是什么样的：</strong>重点不是实际提出解决方案，而是我们期望的解决方案，也就是对结果的预期或希望的形式，可以提出多种就更好了。</p>
+<p><em>测试框架，包括不同测试类型的分类</em></p>
+<p><em>一种从用户那里引出测试的方法</em></p>
+<p><em>使整个过程变得简单的软件</em></p>
+<p><strong>我怎样知道是否能解决：</strong>评估的草稿，不用详细</p>
+<p><em>许多令人信服的 SOTA 模型未能通过测试的例子，并从中收集到了见解。</em></p>
+<p><em>与微软工程师进行的“用户研究”，我们（希望）表明他们在编写测试后在自己的模型中发现了一堆（可修复的）问题。</em></p>
+<p><strong>不确定性是什么？什么对于这个工作来说是需要成立的，什么对于这个工作来说是无法成立的：</strong>这是关于确定高度不确定的区域，并确保我们尽可能快地排除会使项目或解决方案无效的事情。</p>
+<p><em>如果我是唯一能够进行测试的用户，那将是失败的。</em></p>
+<p><em>如果 SOTA 模型仅在特殊测试中失败，那么准确性可能已经足够好，我们不需要这个项目。</em></p>
+<p><strong>计划草图：</strong>草图是这里的关键词。我们只需要前几个步骤的合理细节，而第一步通常是某种形式的初步文献回顾。</p>
+<p>文献综述（lit review）</p>
+<p><em>为 SOTA 情绪分析模型编写测试</em></p>
+<p><em>为其他几个模型编写测试（paraphrase，SQuAD）</em></p>
+<p><em>尝试将这些组织成一般原则</em></p>
+<p><em>开发所需的任何工具</em></p>
+<p><em>与微软人员进行案例研究；与研究员的案例研究</em></p>
+<p><em>用户研究</em></p>
+<p><em>写论文</em></p>
+<h2 id="2-2-对模板的评价"><a href="#2-2-对模板的评价" class="headerlink" title="2.2 对模板的评价"></a>2.2 对模板的评价</h2><p>前五点（直到“我怎么知道我解决了它”）让我们了解了项目是什么，如果项目成功，世界会发生什么变化，为什么我们关心这种变化，以及我们如何证明确实发生了一些变化。最后两点主要用于评估项目，并有一个关于如何取得进展的暂定草图（如果无法指定草图是一个坏迹象）。</p>
+<p>模板是不断修改的，初期的版本很可能有各种问题，但是有一个模板比没有模板好很多。</p>
+<p>模板是面向问题的而不是解决方案的。</p>
+<h1 id="3-决定哪些想法值得作为研究项目进行"><a href="#3-决定哪些想法值得作为研究项目进行" class="headerlink" title="3 决定哪些想法值得作为研究项目进行"></a>3 决定哪些想法值得作为研究项目进行</h1><h2 id="3-1-想象不同的未来"><a href="#3-1-想象不同的未来" class="headerlink" title="3.1 想象不同的未来"></a>3.1 想象不同的未来</h2><p><strong>写下一个项目的可能结果</strong>，<strong>以及你对其可能性的估计</strong>（尽量具体）。有些项目在极端情况下（成功或失败）更为尖锐，而另一些项目则更有可能部分成功。即使是粗略的估计也会迫使您考虑当前的资源和约束如何影响成功的概率，以及您可以预期的成功或失败类型，例如“如果我成功，这个项目会产生什么样的影响？”，“我能不能弄清楚几周后我肯定会失败，还是几个月后才知道？”。反过来，这有助于你思考你的风险/回报组合，以及该项目的概况如何符合你的目标，例如，如果你是一名希望很快毕业的研究生，你可能不应该选择一个风险很大、几乎没有部分成功途径的项目。</p>
+<p>有一点需要注意：您应该对这些估计有很高的不确定性，并且对过早优化要非常小心。我认为在你当前的最佳估计中加入一些随机性（例如，有时根据你当前的信念和目标做一些没有真正意义的项目）是一个很好的策略，可以避免错过好机会，因为你无法预测它们。注意到我们大多数人不善于估计结果及其概率，我仍然认为在评估项目时进行粗略估计是有用的，即使人们不太重视这些估计。</p>
+<h2 id="3-2-确保回报上限很高"><a href="#3-2-确保回报上限很高" class="headerlink" title="3.2 确保回报上限很高"></a>3.2 确保回报上限很高</h2><p>“高上界”并不是一个好项目的充分条件，但“低上界”通常足以拒绝一个项目，无论你如何定义“成功”或“回报”。如果最好的情况是一篇“ok”的论文（即使风险接近于零），那么在几乎任何项目上花费大量时间都是不值得的。我的导师曾经说过，一篇好论文胜过三篇好论文，我认为这种心态真的很有帮助。当然，你不能保证伟大，但如果你追求“足够好”，这通常是你能做到的。</p>
+<h2 id="3-3-获得更多信息"><a href="#3-3-获得更多信息" class="headerlink" title="3.3 获得更多信息"></a>3.3 获得更多信息</h2><p>与其做出接受或拒绝项目的不可逆决定，不如收集更多信息，以完善提案并减少不确定性。重要的是在这个阶段将项目作为一种可能性（而不是确定性）来思考和讨论，例如避免说“这是我现在正在做的项目”。</p>
+<p>有以下两种方式来获得信息：</p>
+<p><strong>与人交流：</strong>把这个项目介绍给几个人，看看他们是否“相信”你的故事、你对其重要性的估计、当前解决方案的缺点等等。我认为持怀疑态度和消极态度的人在这一点上是很棒的，但矛盾的是，我认为你不应该听得太仔细。从一开始，大多数原创想法听起来都不太好。如果你不感到气馁，负面反馈是模板中“不确定性”部分的绝佳素材，为你提供可以检查和防御的伪造假设。此外，这是一个很好的方法来做廉价的文献综述，当人们问你“这不是X在1984年做的吗？”。</p>
+<p>向专家询问您不确定的特定问题也可以是一种降低失败风险不确定性的廉价方法。如果这是目标，我通常会尝试抽象地问我不确定的问题（例如，“你将如何解决这个子问题？”在给出项目背景之前——否则，这个人可以更专注于整个项目，而不是在我最想要的地方减少我的不确定性。当然，这里有一个权衡，因为提出更具体的问题会降低你得到意外（有用）建议的可能性。</p>
+<p><strong>参加黑客会议：</strong>回顾模板中的“不确定性”部分，并尝试减少不确定性，尤其是在可能导致项目失败的事情周围。</p>
+<p><a href="https://fedoraproject.org/wiki/Hack_session">Hack session</a> 是一种非正式的会议方式，起源于<a href="https://fedoraproject.org/wiki/CommOps">CommOps</a>团队。黑客会议是 CommOps 团队成员之间的协作式音频/视频通话。在 hack 会话中，成员处理团队中发生的各种故障单或问题。它们是掌握正在进行的工作并让团队其他成员快速回答问题的好方法。这也是进一步了解团队的好方法。</p>
+<p>有一些捷径，例如，如果提议的解决方案是管道A→ B→ C→ D，你对D有不确定性，只需要伪造C，而不是A→ B→ C。</p>
+<p>通常也可以使用廉价的下限来减少不确定性。例如使用zero-shot GPT-3、在相关任务上训练过的预训练模型或者编写一个粗糙的基于规则的模型等等。一旦你有了某个步骤的廉价下限，你就可以使用它，看看它能帮你走多远。</p>
+<p>黑客会议也可以确保你真的很好地解决问题。即使你手工完成所有步骤（一种很棒的捷径），你也必须检查你提议的任何步骤和“输出”是否现实（“输出”与检查模板中的“为什么困难”部分是否合理特别相关）。</p>
+<p>黑客会议的结果可以成为与一群新的人交谈的绝佳素材，因为你通常会得到具体的例子，让人们很容易想象一个项目的“最终结果”。</p>
+<blockquote>
+<p>参考：</p>
+<p><a href="https://medium.com/@marcotcr/coming-up-with-research-ideas-3032682e5852">https://medium.com/@marcotcr/coming-up-with-research-ideas-3032682e5852</a></p>
+<p><a href="https://medium.com/@marcotcr/organizing-and-evaluating-research-ideas-e137637b599e">https://medium.com/@marcotcr/organizing-and-evaluating-research-ideas-e137637b599e</a></p>
+<p><a href="https://mp.weixin.qq.com/s/nDj_m1Cq1qi3Qo4E--EhpA">https://mp.weixin.qq.com/s/nDj_m1Cq1qi3Qo4E--EhpA</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+  </entry>
+  <entry>
     <title>tf-tensor变换</title>
     <url>/2021/05/27/tf-tensor-conversion/</url>
     <content><![CDATA[<blockquote>
@@ -940,6 +978,23 @@
       <categories>
         <category>code</category>
         <category>tensorflow</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>每周知识碎片3</title>
+    <url>/2022/03/31/weekly-220331/</url>
+    <content><![CDATA[<blockquote>
+<p>三月的最后一天！太阳很好的一天！huggingface🤗！</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="python中的-staticmethod方法"><a href="#python中的-staticmethod方法" class="headerlink" title="python中的@staticmethod方法"></a>python中的@staticmethod方法</h1><p>作用：方便外部函数集成到类中，可以<strong>在不实例化类的情况下直接访问该方法</strong>。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,num</span>):</span></span><br><span class="line">            self.num = num;</span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">cout_num</span>(<span class="params">self</span>):</span></span><br><span class="line">            <span class="built_in">print</span>(self.num)</span><br><span class="line"><span class="meta">      @staticmethod</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">print_num</span>():</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Hello World&quot;</span>)         </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化&quot;&quot;&quot;</span></span><br><span class="line">      obj = Test(<span class="number">10</span>)</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化成员方法&quot;&quot;&quot;</span></span><br><span class="line">      obj.cout_num()</span><br><span class="line">      <span class="string">&quot;&quot;&quot;直接访问静态方法&quot;&quot;&quot;</span></span><br><span class="line">      Test.print_num()</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化 访问静态方法&quot;&quot;&quot;</span></span><br><span class="line">      obj.print_num()</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;输出结果&quot;&quot;&quot;</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line">Hello World</span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
+
+<p>在读embedding类的代码（<a href="https://github.com/UKPLab/sentence-transformers/blob/master/sentence_transformers/models/WordEmbeddings.py">sentence-transformers/sentence-transformers/models/WordEmbeddings.py</a>）时看到该方法，实例化方法需要传入embedding_weight变量，通过staticmethod可以直接通过txt文件或者模型来创建实例，相当于提供了三种创建方法。</p>
+]]></content>
+      <categories>
+        <category>weekly</category>
       </categories>
   </entry>
   <entry>
@@ -964,30 +1019,12 @@
 
 <h1 id="4-执行-sh文件总是提示permission-denied"><a href="#4-执行-sh文件总是提示permission-denied" class="headerlink" title="4 执行.sh文件总是提示permission denied"></a>4 执行.sh文件总是提示permission denied</h1><p>一种常见可能是，写代码的时候加入了不必要的空格或者字符，sh文件代码之间不需要空格，去掉一般可以解决。</p>
 <h1 id="5-3090显卡和pytorch-cuda的适配"><a href="#5-3090显卡和pytorch-cuda的适配" class="headerlink" title="5 3090显卡和pytorch/cuda的适配"></a>5 3090显卡和pytorch/cuda的适配</h1><p>问题：</p>
-<p><img src="C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220809190437730.png" alt="image-20220809190437730"></p>
 <p>NVIDIA GeForce RTX 3090 with CUDA capability sm_86 is not compatible with the current PyTorch installation.<br>The current PyTorch install supports CUDA capabilities sm_37 sm_50 sm_60 sm_70.</p>
 <p><strong>RTX 3090</strong>显卡适配11.0以上版本的cuda</p>
 <p>解决办法：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install torch==1.8.0+cu111 torchvision==0.9.0+cu111 torchaudio==0.8.0 -f https://download.pytorch.org/whl/torch_stable.html</span><br></pre></td></tr></table></figure>
 
 <p><a href="https://blog.csdn.net/weixin_41596697/article/details/120455682">参考的博客</a>说不同时安装有依赖问题。</p>
-]]></content>
-      <categories>
-        <category>weekly</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>每周知识碎片3</title>
-    <url>/2022/03/31/weekly-220331/</url>
-    <content><![CDATA[<blockquote>
-<p>三月的最后一天！太阳很好的一天！huggingface🤗！</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="python中的-staticmethod方法"><a href="#python中的-staticmethod方法" class="headerlink" title="python中的@staticmethod方法"></a>python中的@staticmethod方法</h1><p>作用：方便外部函数集成到类中，可以<strong>在不实例化类的情况下直接访问该方法</strong>。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,num</span>):</span></span><br><span class="line">            self.num = num;</span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">cout_num</span>(<span class="params">self</span>):</span></span><br><span class="line">            <span class="built_in">print</span>(self.num)</span><br><span class="line"><span class="meta">      @staticmethod</span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">print_num</span>():</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Hello World&quot;</span>)         </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化&quot;&quot;&quot;</span></span><br><span class="line">      obj = Test(<span class="number">10</span>)</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化成员方法&quot;&quot;&quot;</span></span><br><span class="line">      obj.cout_num()</span><br><span class="line">      <span class="string">&quot;&quot;&quot;直接访问静态方法&quot;&quot;&quot;</span></span><br><span class="line">      Test.print_num()</span><br><span class="line">      <span class="string">&quot;&quot;&quot;实例化 访问静态方法&quot;&quot;&quot;</span></span><br><span class="line">      obj.print_num()</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;输出结果&quot;&quot;&quot;</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line">Hello World</span><br><span class="line">Hello World</span><br></pre></td></tr></table></figure>
-
-<p>在读embedding类的代码（<a href="https://github.com/UKPLab/sentence-transformers/blob/master/sentence_transformers/models/WordEmbeddings.py">sentence-transformers/sentence-transformers/models/WordEmbeddings.py</a>）时看到该方法，实例化方法需要传入embedding_weight变量，通过staticmethod可以直接通过txt文件或者模型来创建实例，相当于提供了三种创建方法。</p>
 ]]></content>
       <categories>
         <category>weekly</category>
