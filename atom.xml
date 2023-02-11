@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-11-27T15:01:32.327Z</updated>
+  <updated>2023-02-11T16:45:42.769Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>每周知识碎片6</title>
+    <link href="http://example.com/2023/02/12/weekly-230212/"/>
+    <id>http://example.com/2023/02/12/weekly-230212/</id>
+    <published>2023-02-11T16:35:59.000Z</published>
+    <updated>2023-02-11T16:45:42.769Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>有具体的事情做的时候都是快乐的。</p></blockquote><span id="more"></span><h1 id="1-报错信息ImportError-lib64-libstdc-so-6-version-CXXABI-1-3-9’-not-found-required-by…………"><a href="#1-报错信息ImportError-lib64-libstdc-so-6-version-CXXABI-1-3-9’-not-found-required-by…………" class="headerlink" title="1 报错信息ImportError: /lib64/libstdc++.so.6: version `CXXABI_1.3.9’ not found (required by…………)"></a>1 报错信息ImportError: /lib64/libstdc++.so.6: version `CXXABI_1.3.9’ not found (required by…………)</h1><p>linux上运行python文件出现bug：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ImportError: /lib64/libstdc++.so.6: version `CXXABI_1.3.9&#x27; not found </span><br><span class="line">(required by anaconda3/lib/python3.6/site-packages/scipy/sparse/_sparsetools.cpython-36m-x86_64-linux-gnu.so)</span><br></pre></td></tr></table></figure><p>原因：gcc动态库版本过老</p><p>网上找到的其他方案大多需要root，这篇博客给了没有root情况下的解决方案。</p><p>在.bashrc文件中，添加</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LD_LIBRARY_PATH&#x3D;&#x2F;home&#x2F;feng&#x2F;anaconda3&#x2F;lib:$LD_LIBRARY_PATH     （将anaconda3库文件路径添加到系统的库文件路径中）</span><br><span class="line">export LD_LIBRARY_PATH</span><br></pre></td></tr></table></figure><p>执行source  ~/.bashrc，解决。</p><blockquote><p>参考：<a href="https://dandelioncloud.cn/article/details/1529779417287245826/">https://dandelioncloud.cn/article/details/1529779417287245826/</a></p></blockquote><h1 id="2-cuda-runtime-error-30-unknown-error-at-aten-src-THC-THCGeneral-cpp-87"><a href="#2-cuda-runtime-error-30-unknown-error-at-aten-src-THC-THCGeneral-cpp-87" class="headerlink" title="2 cuda runtime error (30) : unknown error at ..\aten\src\THC\THCGeneral.cpp:87"></a>2 cuda runtime error (30) : unknown error at ..\aten\src\THC\THCGeneral.cpp:87</h1><p>cuda相关的问题，网上的解释都试了一遍没有解决，最终发现是3090显卡和cuda11以上才适配，是之前遇到过的老问题了，同时得到的经验是遇到cuda问题时报错和实际的错误可能不太一致，可以多考虑cuda适配等问题，可能是解决的正确方案。</p>]]></content>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;有具体的事情做的时候都是快乐的。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="weekly" scheme="http://example.com/categories/weekly/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>每周知识碎片5</title>
+    <link href="http://example.com/2022/11/28/weekly-221128/"/>
+    <id>http://example.com/2022/11/28/weekly-221128/</id>
+    <published>2022-11-28T14:58:15.000Z</published>
+    <updated>2023-02-11T16:38:49.482Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>由奢入俭难啊！从双屏回归笔记本小屏，又开始写博客啦！</p></blockquote><span id="more"></span><h1 id="1-如何卸载pip安装的可编辑的包"><a href="#1-如何卸载pip安装的可编辑的包" class="headerlink" title="1 如何卸载pip安装的可编辑的包"></a>1 如何卸载pip安装的可编辑的包</h1><p>可编辑的包的安装：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --editable .&#x2F;</span><br></pre></td></tr></table></figure><p>卸载：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -r $(find . -name &#39;*.egg-info&#39;)</span><br></pre></td></tr></table></figure><blockquote><p>参考：<a href="https://www.itdaan.com/blog/2013/06/27/6db5d4594a3687b35610ac2a86a019c4.html">如何使用pip卸载可编辑的包(安装-e) - How to uninstall editable packages with pip (installed with -e) - 开发者知识库 (itdaan.com)</a></p></blockquote>]]></content>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;由奢入俭难啊！从双屏回归笔记本小屏，又开始写博客啦！&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="weekly" scheme="http://example.com/categories/weekly/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>每周知识碎片4</title>
@@ -414,54 +456,6 @@
     <category term="pytorch" scheme="http://example.com/categories/code/pytorch/"/>
     
     <category term="fairseq" scheme="http://example.com/categories/code/pytorch/fairseq/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>hexo-next框架附加功能</title>
-    <link href="http://example.com/2021/05/27/hexo-next-tips/"/>
-    <id>http://example.com/2021/05/27/hexo-next-tips/</id>
-    <published>2021-05-27T06:17:10.000Z</published>
-    <updated>2021-05-28T05:10:34.487Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>hexo+next框架博客的一些附加功能记录。<br>hexo: 5.4.0<br>next: 7.8.0</p></blockquote><span id="more"></span><h1 id="版本信息："><a href="#版本信息：" class="headerlink" title="版本信息："></a>版本信息：</h1><p>hexo和next版本信息可在相应文件夹的package.json中搜索version查看。</p><h1 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明:"></a>版权声明:</h1><p>在.\themes\next\layout_macro\目录下，新建my-copyright.swig文件，内容为：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if page.copyright %&#125;</span><br><span class="line">&lt;div class&#x3D;&quot;my_post_copyright&quot;&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;&#x2F;cdn.bootcss.com&#x2F;clipboard.js&#x2F;1.5.10&#x2F;clipboard.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;!-- JS库 sweetalert 可修改路径 --&gt;</span><br><span class="line">  &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;http:&#x2F;&#x2F;jslibs.wuxubj.cn&#x2F;sweetalert_mini&#x2F;jquery-1.7.1.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;http:&#x2F;&#x2F;jslibs.wuxubj.cn&#x2F;sweetalert_mini&#x2F;sweetalert.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">  &lt;link rel&#x3D;&quot;stylesheet&quot; type&#x3D;&quot;text&#x2F;css&quot; href&#x3D;&quot;http:&#x2F;&#x2F;jslibs.wuxubj.cn&#x2F;sweetalert_mini&#x2F;sweetalert.mini.css&quot;&gt;</span><br><span class="line"></span><br><span class="line">  &lt;p&gt;&lt;span&gt;本文标题:&lt;&#x2F;span&gt;&#123;&#123; page.title &#125;&#125;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;</span><br><span class="line">  &lt;p&gt;&lt;span&gt;本文作者:&lt;&#x2F;span&gt;xxx&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;</span><br><span class="line">  &lt;p&gt;&lt;span&gt;本文链接:&lt;&#x2F;span&gt;&lt;a href&#x3D;&quot;&#123;&#123; url_for(page.path) &#125;&#125;&quot; title&#x3D;&quot;&#123;&#123; page.title &#125;&#125;&quot;&gt;&#123;&#123; page.permalink &#125;&#125;&lt;&#x2F;a&gt;</span><br><span class="line">    &lt;span class&#x3D;&quot;copy-path&quot;  title&#x3D;&quot;点击复制文章链接&quot;&gt;&lt;i class&#x3D;&quot;fa fa-clipboard&quot; data-clipboard-text&#x3D;&quot;&#123;&#123; page.permalink &#125;&#125;&quot;  aria-label&#x3D;&quot;复制成功！&quot;&gt;&lt;&#x2F;i&gt;&lt;&#x2F;span&gt;</span><br><span class="line">  &lt;&#x2F;p&gt;</span><br><span class="line">  &lt;p&gt;&lt;span&gt;版权声明:&lt;&#x2F;span&gt;本博客所有文章除特别声明外，均采用&lt;a rel&#x3D;&quot;license&quot; href&#x3D;&quot;https:&#x2F;&#x2F;creativecommons.org&#x2F;licenses&#x2F;by-nc-nd&#x2F;4.0&#x2F;&quot; target&#x3D;&quot;_blank&quot; title&#x3D;&quot;Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)&quot;&gt;CC BY-NC-ND&lt;&#x2F;a&gt;许可协议。转载请注明出处！&lt;&#x2F;p&gt;  </span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;script&gt; </span><br><span class="line">    var clipboard &#x3D; new Clipboard(&#39;.fa-clipboard&#39;);</span><br><span class="line">    clipboard.on(&#39;success&#39;, $(function()&#123;</span><br><span class="line">      $(&quot;.fa-clipboard&quot;).click(function()&#123;</span><br><span class="line">        swal(&#123;   </span><br><span class="line">          title: &quot;&quot;,   </span><br><span class="line">          text: &#39;复制成功&#39;,   </span><br><span class="line">          html: false,</span><br><span class="line">          timer: 500,   </span><br><span class="line">          showConfirmButton: false</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;));  </span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure><p>打开.\themes\next\layout_macro\post.swig文件，在</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;#####################&#125;</span><br><span class="line">&#123;### END POST BODY ###&#125;</span><br><span class="line">&#123;#####################&#125;</span><br></pre></td></tr></table></figure><p>之后添加：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--添加版权信息--&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &#123;% if not is_index %&#125;</span><br><span class="line">    &#123;% include &#39;my-copyright.swig&#39; %&#125;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure><p>在.\themes\next\source\css_common\components\post\目录下，新建my-post-copyright.styl文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">.my_post_copyright &#123;</span><br><span class="line">  width: 85%;</span><br><span class="line">  max-width: 45em;</span><br><span class="line">  margin: 2.8em auto 0;</span><br><span class="line">  padding: 0.5em 1.0em;</span><br><span class="line">  border: 1px solid #d3d3d3;</span><br><span class="line">  font-size: 0.93rem;</span><br><span class="line">  line-height: 1.6em;</span><br><span class="line">  word-break: break-all;</span><br><span class="line">  background: rgba(255,255,255,0.4);</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright p&#123;margin:0;&#125;</span><br><span class="line">.my_post_copyright span &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  width: 5.2em;</span><br><span class="line">  color: #333333; &#x2F;&#x2F; title color</span><br><span class="line">  font-weight: bold;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright .raw &#123;</span><br><span class="line">  margin-left: 1em;</span><br><span class="line">  width: 5em;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright a &#123;</span><br><span class="line">  color: #808080;</span><br><span class="line">  border-bottom:0;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright a:hover &#123;</span><br><span class="line">  color: #0593d3; &#x2F;&#x2F; link color</span><br><span class="line">  text-decoration: underline;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright:hover .fa-clipboard &#123;</span><br><span class="line">  color: #000;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright .post-url:hover &#123;</span><br><span class="line">  font-weight: normal;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright .copy-path &#123;</span><br><span class="line">  margin-left: 1em;</span><br><span class="line">  width: 1em;</span><br><span class="line">  +mobile()&#123;display:none;&#125;</span><br><span class="line">&#125;</span><br><span class="line">.my_post_copyright .copy-path:hover &#123;</span><br><span class="line">  color: #808080;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>打开.\themes\next\source\css_common\components\post\post.styl文件，在最后添加：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;my-post-copyright&quot;</span><br></pre></td></tr></table></figure><p>打开.\scaffolds\post.md文件，设置新文件开启版权声明</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">copyright: true #开启</span><br><span class="line">---</span><br></pre></td></tr></table></figure><blockquote><p>参考：<a href="https://blog.csdn.net/u011236348/article/details/88169271">https://blog.csdn.net/u011236348/article/details/88169271</a></p></blockquote><h1 id="访客-阅读量统计"><a href="#访客-阅读量统计" class="headerlink" title="访客/阅读量统计"></a>访客/阅读量统计</h1><p>打开.\themes\next_config.yml文件，<br>搜索busuanzi_count关键字，把enable设置为true，</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># Show Views &#x2F; Visitors of the website &#x2F; page with busuanzi.</span><br><span class="line"># Get more information on http:&#x2F;&#x2F;ibruce.info&#x2F;2015&#x2F;04&#x2F;04&#x2F;busuanzi</span><br><span class="line">busuanzi_count:</span><br><span class="line">  enable: true</span><br><span class="line">  total_visitors: true #访客数</span><br><span class="line">  total_visitors_icon: fa fa-user</span><br><span class="line">  total_views: true #访问数</span><br><span class="line">  total_views_icon: fa fa-eye</span><br><span class="line">  post_views: true #文章阅读量</span><br><span class="line">  post_views_icon: fa fa-eye</span><br></pre></td></tr></table></figure><p>同一文件，搜索footer关键字，在其底下添加counter，设值为true。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">footer:</span><br><span class="line">  # Specify the date when the site was setup. If not defined, current year will be used.</span><br><span class="line">  #since: 2015</span><br><span class="line">  # count for visit</span><br><span class="line">  counter: true</span><br></pre></td></tr></table></figure><p>打开.\themes\next\layout_partials\footer.swig文件，添加代码。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if theme.footer.counter %&#125;</span><br><span class="line">    &lt;script async src&#x3D;&quot;&#x2F;&#x2F;dn-lbstatics.qbox.me&#x2F;busuanzi&#x2F;2.3&#x2F;busuanzi.pure.mini.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure><p>访客、访问次数在网站主页底部，文章阅读量在文章开头。</p><blockquote><p>参考：<a href="https://blog.csdn.net/baidu_34310405/article/details/102665373">https://blog.csdn.net/baidu_34310405/article/details/102665373</a></p></blockquote><h1 id="博客中插入自己编写的html页面"><a href="#博客中插入自己编写的html页面" class="headerlink" title="博客中插入自己编写的html页面"></a>博客中插入自己编写的html页面</h1><p>看到next官方readme中LEAFERx博客sentence页面很好看，也动手搞一个类似的。利用jQuery的全屏滚动插件fullPage.js实现，网页部分主要参考链接中的代码。</p><p>将自己的html页面插入博客中，首先新建一个页面<code>hexo new page &quot;schedule&quot;</code>，在生成的文件夹source/schedule/下复制网页的css/js/html文件。</p><p>修改根目录下的<code>_config.yml</code>文件，跳过自定义页面的渲染过程，若文件夹下有子文件夹，需要改为<code>schedule/**</code>。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">skip_render:</span><br><span class="line"> - &quot;schedule&#x2F;*&quot;</span><br></pre></td></tr></table></figure><blockquote><p>参考：<a href="https://www.dowebok.com/77.html">https://www.dowebok.com/77.html</a></p></blockquote>]]></content>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;hexo+next框架博客的一些附加功能记录。&lt;br&gt;hexo: 5.4.0&lt;br&gt;next: 7.8.0&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="other" scheme="http://example.com/categories/other/"/>
-    
-    <category term="hexo" scheme="http://example.com/categories/other/hexo/"/>
-    
-    <category term="next" scheme="http://example.com/categories/other/hexo/next/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>tf-tensor变换</title>
-    <link href="http://example.com/2021/05/27/tf-tensor-conversion/"/>
-    <id>http://example.com/2021/05/27/tf-tensor-conversion/</id>
-    <published>2021-05-27T05:53:10.000Z</published>
-    <updated>2021-05-27T08:39:45.786Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>tensorflow中tensor变换的函数汇总。</p></blockquote><span id="more"></span><p><code>tf.stack</code><br>list-&gt;tensor<br>（tf.convert_to_tensor）</p><p><code>tf.unstack</code><br>tensor-&gt;list</p><p><code>tf.expand_dims</code><br>扩展维度</p><p><code>reduce_sum/max/mean</code><br>减少维度</p><p><code>tf.reshape</code><br>改变各维度大小（可增加减少维度）</p><p><code>tf.transpose</code><br>调换维度顺序</p><p><code>tf.tile</code><br>不改变维度的复制</p><p><code>tf.concat</code><br>不改变维度的拼接</p><p><code>tf.broadcast_to</code><br>广播</p>]]></content>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;tensorflow中tensor变换的函数汇总。&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="code" scheme="http://example.com/categories/code/"/>
-    
-    <category term="tensorflow" scheme="http://example.com/categories/code/tensorflow/"/>
     
     
   </entry>

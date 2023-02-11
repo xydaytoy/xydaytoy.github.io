@@ -406,6 +406,42 @@
       </categories>
   </entry>
   <entry>
+    <title>latex-tips</title>
+    <url>/2021/11/27/latex-tips/</url>
+    <content><![CDATA[<blockquote>
+<p>latex/overleaf一些笔记。</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="图片排版"><a href="#图片排版" class="headerlink" title="图片排版"></a>图片排版</h1><h2 id="宏包："><a href="#宏包：" class="headerlink" title="宏包："></a>宏包：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\usepackage&#123;graphicx&#125; %插图宏包</span><br><span class="line">\usepackage&#123;subfig&#125; %子图包含宏包，较新</span><br><span class="line">\usepackage&#123;subfigure&#125; %子图包含宏包，较旧</span><br></pre></td></tr></table></figure>
+
+<h2 id="基本命令："><a href="#基本命令：" class="headerlink" title="基本命令："></a>基本命令：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[ht]</span><br><span class="line">\centering</span><br><span class="line">\includegraphics[width&#x3D;10cm]&#123;example.png&#125;</span><br><span class="line">\caption&#123;this is a figure&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+
+<p>\centering表示的是里面紧跟的内容都居中；</p>
+<p>\includegrapics[参数1]{参数2}</p>
+<p>参数1：对图片进行一些调整，例如宽高缩放width=10cm,height=8cm,scale=0.4</p>
+<p>参数2：图片名</p>
+<p>\caption{标题}设置图片的一个编号以及为图片添加标题；</p>
+<h2 id="图片位置："><a href="#图片位置：" class="headerlink" title="图片位置："></a>图片位置：</h2><p>\begin{figure}[参数1]</p>
+<p>参数1：对图片在文中的位置进行设置，h 此处（here）t 页顶（top）b 页底（bottom）p 独立一页（page），<strong>H 固定位置</strong>；</p>
+<h2 id="subfig和subfigure的区别："><a href="#subfig和subfigure的区别：" class="headerlink" title="subfig和subfigure的区别："></a>subfig和subfigure的区别：</h2><p>subfig：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[tbp]</span><br><span class="line">	\centering</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:a&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\quad</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:b&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\\	</span><br><span class="line">	\caption&#123;Capital Roman numerals.&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+
+<p>subfigure：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125; \centering </span><br><span class="line">\subfigure[figure 1 title.] &#123; \label&#123;fig:a&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig1.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\subfigure[figure 2 title.] &#123; \label&#123;fig:b&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig2.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\caption&#123; general title. &#125; </span><br><span class="line">\label&#123;fig&#125; </span><br><span class="line">\end&#123;figure&#125; </span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>参考：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/143529262">https://zhuanlan.zhihu.com/p/143529262</a></p>
+<p><a href="https://blog.csdn.net/yq_forever/article/details/84796802">https://blog.csdn.net/yq_forever/article/details/84796802</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+  </entry>
+  <entry>
     <title>hexo-next框架附加功能</title>
     <url>/2021/05/27/hexo-next-tips/</url>
     <content><![CDATA[<blockquote>
@@ -459,42 +495,6 @@
         <category>other</category>
         <category>hexo</category>
         <category>next</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>latex-tips</title>
-    <url>/2021/11/27/latex-tips/</url>
-    <content><![CDATA[<blockquote>
-<p>latex/overleaf一些笔记。</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="图片排版"><a href="#图片排版" class="headerlink" title="图片排版"></a>图片排版</h1><h2 id="宏包："><a href="#宏包：" class="headerlink" title="宏包："></a>宏包：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\usepackage&#123;graphicx&#125; %插图宏包</span><br><span class="line">\usepackage&#123;subfig&#125; %子图包含宏包，较新</span><br><span class="line">\usepackage&#123;subfigure&#125; %子图包含宏包，较旧</span><br></pre></td></tr></table></figure>
-
-<h2 id="基本命令："><a href="#基本命令：" class="headerlink" title="基本命令："></a>基本命令：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[ht]</span><br><span class="line">\centering</span><br><span class="line">\includegraphics[width&#x3D;10cm]&#123;example.png&#125;</span><br><span class="line">\caption&#123;this is a figure&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
-
-<p>\centering表示的是里面紧跟的内容都居中；</p>
-<p>\includegrapics[参数1]{参数2}</p>
-<p>参数1：对图片进行一些调整，例如宽高缩放width=10cm,height=8cm,scale=0.4</p>
-<p>参数2：图片名</p>
-<p>\caption{标题}设置图片的一个编号以及为图片添加标题；</p>
-<h2 id="图片位置："><a href="#图片位置：" class="headerlink" title="图片位置："></a>图片位置：</h2><p>\begin{figure}[参数1]</p>
-<p>参数1：对图片在文中的位置进行设置，h 此处（here）t 页顶（top）b 页底（bottom）p 独立一页（page），<strong>H 固定位置</strong>；</p>
-<h2 id="subfig和subfigure的区别："><a href="#subfig和subfigure的区别：" class="headerlink" title="subfig和subfigure的区别："></a>subfig和subfigure的区别：</h2><p>subfig：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125;[tbp]</span><br><span class="line">	\centering</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:a&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\quad</span><br><span class="line">	\subfloat[Arabic numerals]&#123;\label&#123;fig:b&#125;\includegraphics[width&#x3D;1in]&#123;placeholder&#125;&#125;\\	</span><br><span class="line">	\caption&#123;Capital Roman numerals.&#125;</span><br><span class="line">\end&#123;figure&#125;</span><br></pre></td></tr></table></figure>
-
-<p>subfigure：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\begin&#123;figure&#125; \centering </span><br><span class="line">\subfigure[figure 1 title.] &#123; \label&#123;fig:a&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig1.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\subfigure[figure 2 title.] &#123; \label&#123;fig:b&#125; </span><br><span class="line">\includegraphics[width&#x3D;0.8\columnwidth]&#123;fig2.eps&#125; </span><br><span class="line">&#125; </span><br><span class="line">\caption&#123; general title. &#125; </span><br><span class="line">\label&#123;fig&#125; </span><br><span class="line">\end&#123;figure&#125; </span><br></pre></td></tr></table></figure>
-
-
-<blockquote>
-<p>参考：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/143529262">https://zhuanlan.zhihu.com/p/143529262</a></p>
-<p><a href="https://blog.csdn.net/yq_forever/article/details/84796802">https://blog.csdn.net/yq_forever/article/details/84796802</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>other</category>
       </categories>
   </entry>
   <entry>
@@ -658,73 +658,6 @@
       </categories>
   </entry>
   <entry>
-    <title>pytorch笔记</title>
-    <url>/2021/05/28/pytorch-note/</url>
-    <content><![CDATA[<blockquote>
-<p>pytorch-学习笔记</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="0-pytorch的组件"><a href="#0-pytorch的组件" class="headerlink" title="0 pytorch的组件"></a>0 pytorch的组件</h1><table>
-<thead>
-<tr>
-<th>Component</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><a href="https://pytorch.org/docs/stable/torch.html"><strong>torch</strong></a></td>
-<td>在GPU上的类似Numpy的张量库，一些基本操作</td>
-</tr>
-<tr>
-<td><a href="https://pytorch.org/docs/stable/autograd.html"><strong>torch.autograd</strong></a></td>
-<td>支持torch中张量的微分操作</td>
-</tr>
-<tr>
-<td><a href="https://pytorch.org/docs/stable/jit.html"><strong>torch.jit</strong></a></td>
-<td>创建可序列化和可优化的编译堆栈(TorchScript)</td>
-</tr>
-<tr>
-<td><a href="https://pytorch.org/docs/stable/nn.html"><strong>torch.nn</strong></a></td>
-<td>与autograd深度集成的神经网络库</td>
-</tr>
-<tr>
-<td><a href="https://pytorch.org/docs/stable/multiprocessing.html"><strong>torch.multiprocessing</strong></a></td>
-<td>对数据加载Hogwild训练起效的多进程</td>
-</tr>
-<tr>
-<td><a href="https://pytorch.org/docs/stable/data.html"><strong>torch.utils</strong></a></td>
-<td>数据加载和其他实用程序功能</td>
-</tr>
-</tbody></table>
-<h1 id="1-pytorch手册"><a href="#1-pytorch手册" class="headerlink" title="1 pytorch手册"></a>1 pytorch手册</h1><h2 id="1-1-官方备忘录"><a href="#1-1-官方备忘录" class="headerlink" title="1.1 官方备忘录"></a><a href="https://pytorch.org/tutorials/beginner/ptcheat.html">1.1 官方备忘录</a></h2><p><strong>import:</strong></p>
-<p>一般的：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch                                        <span class="comment"># root package</span></span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> Dataset, DataLoader    <span class="comment"># dataset representation and loading</span></span><br></pre></td></tr></table></figure>
-
-<p>神经网络API：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.autograd <span class="keyword">as</span> autograd         <span class="comment"># computation graph</span></span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> Tensor                  <span class="comment"># tensor node in the computation graph</span></span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn                     <span class="comment"># neural networks</span></span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F           <span class="comment"># layers, activations and more</span></span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim               <span class="comment"># optimizers e.g. gradient descent, ADAM, etc.</span></span><br><span class="line"><span class="keyword">from</span> torch.jit <span class="keyword">import</span> script, trace       <span class="comment"># hybrid frontend decorator and tracing jit</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>Tensor:</strong></p>
-<p>创建：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.randn(*size)              <span class="comment"># tensor with independent N(0,1) entries</span></span><br><span class="line">x = torch.[ones|zeros](*size)       <span class="comment"># tensor with all 1&#x27;s [or 0&#x27;s]</span></span><br><span class="line">x = torch.tensor(L)                 <span class="comment"># create tensor from [nested] list or ndarray L</span></span><br><span class="line">y = x.clone()                       <span class="comment"># clone of x</span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():               <span class="comment"># code wrap that stops autograd from tracking tensor history</span></span><br><span class="line">requires_grad=<span class="literal">True</span>                  <span class="comment"># arg, when set to True, tracks computation</span></span><br><span class="line">                                    <span class="comment"># history for future derivative calculations</span></span><br></pre></td></tr></table></figure>
-
-<p>维度：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x.size()                                  <span class="comment"># return tuple-like object of dimensions</span></span><br><span class="line">x = torch.cat(tensor_seq, dim=<span class="number">0</span>)          <span class="comment"># concatenates tensors along dim</span></span><br><span class="line">y = x.view(a,b,...)                       <span class="comment"># reshapes x into size (a,b,...)</span></span><br><span class="line">y = x.view(-<span class="number">1</span>,a)                          <span class="comment"># reshapes x into size (b,a) for some b</span></span><br><span class="line">y = x.transpose(a,b)                      <span class="comment"># swaps dimensions a and b</span></span><br><span class="line">y = x.permute(*dims)                      <span class="comment"># permutes dimensions</span></span><br><span class="line">y = x.unsqueeze(dim)                      <span class="comment"># tensor with added axis</span></span><br><span class="line">y = x.unsqueeze(dim=<span class="number">2</span>)                    <span class="comment"># (a,b,c) tensor -&gt; (a,b,1,c) tensor</span></span><br><span class="line">y = x.squeeze()                           <span class="comment"># removes all dimensions of size 1 (a,1,b,1) -&gt; (a,b)</span></span><br><span class="line">y = x.squeeze(dim=<span class="number">1</span>)                      <span class="comment"># removes specified dimension of size 1 (a,1,b,1) -&gt; (a,b,1)</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h1><h2 id="访问元素"><a href="#访问元素" class="headerlink" title="访问元素"></a>访问元素</h2><p><code>[1,:]</code>其中:表示选择范围，只有:表示全选，与数字结合表示范围。</p>
-<p><code>[::3,::2]</code>其中::表示跳选，每隔x个选择一个。</p>
-<p>张量:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">x &#x3D; torch.arange(12) #生成</span><br><span class="line">x.shape #形状</span><br><span class="line">x.numel() #元素总数</span><br><span class="line">x &#x3D; x.reshape(3,4) #变换</span><br><span class="line">x &#x3D; torch.zeros((1,2,3)) #全零</span><br><span class="line">x &#x3D; torch.ones((2,3,4)) #全一</span><br><span class="line">x &#x3D; torch.tensor(list) #根据list生成tensor</span><br><span class="line">+ - * &#x2F; ** #对元素进行运算</span><br><span class="line">torch.exp(x) #指数运算</span><br><span class="line">torch.cat((x,y),dim&#x3D;0) #在第零维拼接，零维是最外侧</span><br><span class="line">x &#x3D;&#x3D; y #构建二元张量，是元素比较的结果</span><br><span class="line">x.sum() #求和，结果是一个元素的tensor</span><br><span class="line">x[0:2,:]&#x3D;12 #区域赋值</span><br><span class="line">x[:]&#x3D;x+y &#x2F; x+&#x3D;y #减少内存开销，前后不变</span><br><span class="line">y &#x3D; x.numpy() #tensor转ndarray</span><br><span class="line">x &#x3D; torch.tensor(y) #ndarray转tensor</span><br><span class="line">x.item() &#x2F; float(x) &#x2F; int(x) #0维张量转标量</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>code</category>
-        <category>pytorch</category>
-      </categories>
-  </entry>
-  <entry>
     <title>python笔记</title>
     <url>/2021/05/31/python-note/</url>
     <content><![CDATA[<blockquote>
@@ -797,6 +730,73 @@
       <categories>
         <category>code</category>
         <category>python</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>pytorch笔记</title>
+    <url>/2021/05/28/pytorch-note/</url>
+    <content><![CDATA[<blockquote>
+<p>pytorch-学习笔记</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="0-pytorch的组件"><a href="#0-pytorch的组件" class="headerlink" title="0 pytorch的组件"></a>0 pytorch的组件</h1><table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://pytorch.org/docs/stable/torch.html"><strong>torch</strong></a></td>
+<td>在GPU上的类似Numpy的张量库，一些基本操作</td>
+</tr>
+<tr>
+<td><a href="https://pytorch.org/docs/stable/autograd.html"><strong>torch.autograd</strong></a></td>
+<td>支持torch中张量的微分操作</td>
+</tr>
+<tr>
+<td><a href="https://pytorch.org/docs/stable/jit.html"><strong>torch.jit</strong></a></td>
+<td>创建可序列化和可优化的编译堆栈(TorchScript)</td>
+</tr>
+<tr>
+<td><a href="https://pytorch.org/docs/stable/nn.html"><strong>torch.nn</strong></a></td>
+<td>与autograd深度集成的神经网络库</td>
+</tr>
+<tr>
+<td><a href="https://pytorch.org/docs/stable/multiprocessing.html"><strong>torch.multiprocessing</strong></a></td>
+<td>对数据加载Hogwild训练起效的多进程</td>
+</tr>
+<tr>
+<td><a href="https://pytorch.org/docs/stable/data.html"><strong>torch.utils</strong></a></td>
+<td>数据加载和其他实用程序功能</td>
+</tr>
+</tbody></table>
+<h1 id="1-pytorch手册"><a href="#1-pytorch手册" class="headerlink" title="1 pytorch手册"></a>1 pytorch手册</h1><h2 id="1-1-官方备忘录"><a href="#1-1-官方备忘录" class="headerlink" title="1.1 官方备忘录"></a><a href="https://pytorch.org/tutorials/beginner/ptcheat.html">1.1 官方备忘录</a></h2><p><strong>import:</strong></p>
+<p>一般的：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch                                        <span class="comment"># root package</span></span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> Dataset, DataLoader    <span class="comment"># dataset representation and loading</span></span><br></pre></td></tr></table></figure>
+
+<p>神经网络API：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.autograd <span class="keyword">as</span> autograd         <span class="comment"># computation graph</span></span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> Tensor                  <span class="comment"># tensor node in the computation graph</span></span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn                     <span class="comment"># neural networks</span></span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F           <span class="comment"># layers, activations and more</span></span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim               <span class="comment"># optimizers e.g. gradient descent, ADAM, etc.</span></span><br><span class="line"><span class="keyword">from</span> torch.jit <span class="keyword">import</span> script, trace       <span class="comment"># hybrid frontend decorator and tracing jit</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Tensor:</strong></p>
+<p>创建：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.randn(*size)              <span class="comment"># tensor with independent N(0,1) entries</span></span><br><span class="line">x = torch.[ones|zeros](*size)       <span class="comment"># tensor with all 1&#x27;s [or 0&#x27;s]</span></span><br><span class="line">x = torch.tensor(L)                 <span class="comment"># create tensor from [nested] list or ndarray L</span></span><br><span class="line">y = x.clone()                       <span class="comment"># clone of x</span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():               <span class="comment"># code wrap that stops autograd from tracking tensor history</span></span><br><span class="line">requires_grad=<span class="literal">True</span>                  <span class="comment"># arg, when set to True, tracks computation</span></span><br><span class="line">                                    <span class="comment"># history for future derivative calculations</span></span><br></pre></td></tr></table></figure>
+
+<p>维度：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x.size()                                  <span class="comment"># return tuple-like object of dimensions</span></span><br><span class="line">x = torch.cat(tensor_seq, dim=<span class="number">0</span>)          <span class="comment"># concatenates tensors along dim</span></span><br><span class="line">y = x.view(a,b,...)                       <span class="comment"># reshapes x into size (a,b,...)</span></span><br><span class="line">y = x.view(-<span class="number">1</span>,a)                          <span class="comment"># reshapes x into size (b,a) for some b</span></span><br><span class="line">y = x.transpose(a,b)                      <span class="comment"># swaps dimensions a and b</span></span><br><span class="line">y = x.permute(*dims)                      <span class="comment"># permutes dimensions</span></span><br><span class="line">y = x.unsqueeze(dim)                      <span class="comment"># tensor with added axis</span></span><br><span class="line">y = x.unsqueeze(dim=<span class="number">2</span>)                    <span class="comment"># (a,b,c) tensor -&gt; (a,b,1,c) tensor</span></span><br><span class="line">y = x.squeeze()                           <span class="comment"># removes all dimensions of size 1 (a,1,b,1) -&gt; (a,b)</span></span><br><span class="line">y = x.squeeze(dim=<span class="number">1</span>)                      <span class="comment"># removes specified dimension of size 1 (a,1,b,1) -&gt; (a,b,1)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h1><h2 id="访问元素"><a href="#访问元素" class="headerlink" title="访问元素"></a>访问元素</h2><p><code>[1,:]</code>其中:表示选择范围，只有:表示全选，与数字结合表示范围。</p>
+<p><code>[::3,::2]</code>其中::表示跳选，每隔x个选择一个。</p>
+<p>张量:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">x &#x3D; torch.arange(12) #生成</span><br><span class="line">x.shape #形状</span><br><span class="line">x.numel() #元素总数</span><br><span class="line">x &#x3D; x.reshape(3,4) #变换</span><br><span class="line">x &#x3D; torch.zeros((1,2,3)) #全零</span><br><span class="line">x &#x3D; torch.ones((2,3,4)) #全一</span><br><span class="line">x &#x3D; torch.tensor(list) #根据list生成tensor</span><br><span class="line">+ - * &#x2F; ** #对元素进行运算</span><br><span class="line">torch.exp(x) #指数运算</span><br><span class="line">torch.cat((x,y),dim&#x3D;0) #在第零维拼接，零维是最外侧</span><br><span class="line">x &#x3D;&#x3D; y #构建二元张量，是元素比较的结果</span><br><span class="line">x.sum() #求和，结果是一个元素的tensor</span><br><span class="line">x[0:2,:]&#x3D;12 #区域赋值</span><br><span class="line">x[:]&#x3D;x+y &#x2F; x+&#x3D;y #减少内存开销，前后不变</span><br><span class="line">y &#x3D; x.numpy() #tensor转ndarray</span><br><span class="line">x &#x3D; torch.tensor(y) #ndarray转tensor</span><br><span class="line">x.item() &#x2F; float(x) &#x2F; int(x) #0维张量转标量</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>code</category>
+        <category>pytorch</category>
       </categories>
   </entry>
   <entry>
@@ -1121,6 +1121,54 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install torch==1.8.0+cu111 torchvision==0.9.0+cu111 torchaudio==0.8.0 -f https://download.pytorch.org/whl/torch_stable.html</span><br></pre></td></tr></table></figure>
 
 <p><a href="https://blog.csdn.net/weixin_41596697/article/details/120455682">参考的博客</a>说不同时安装有依赖问题。</p>
+]]></content>
+      <categories>
+        <category>weekly</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>每周知识碎片5</title>
+    <url>/2022/11/28/weekly-221128/</url>
+    <content><![CDATA[<blockquote>
+<p>由奢入俭难啊！从双屏回归笔记本小屏，又开始写博客啦！</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="1-如何卸载pip安装的可编辑的包"><a href="#1-如何卸载pip安装的可编辑的包" class="headerlink" title="1 如何卸载pip安装的可编辑的包"></a>1 如何卸载pip安装的可编辑的包</h1><p>可编辑的包的安装：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pip install --editable .&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>卸载：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rm -r $(find . -name &#39;*.egg-info&#39;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>参考：<a href="https://www.itdaan.com/blog/2013/06/27/6db5d4594a3687b35610ac2a86a019c4.html">如何使用pip卸载可编辑的包(安装-e) - How to uninstall editable packages with pip (installed with -e) - 开发者知识库 (itdaan.com)</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>weekly</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>每周知识碎片6</title>
+    <url>/2023/02/12/weekly-230212/</url>
+    <content><![CDATA[<blockquote>
+<p>有具体的事情做的时候都是快乐的。</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="1-报错信息ImportError-lib64-libstdc-so-6-version-CXXABI-1-3-9’-not-found-required-by…………"><a href="#1-报错信息ImportError-lib64-libstdc-so-6-version-CXXABI-1-3-9’-not-found-required-by…………" class="headerlink" title="1 报错信息ImportError: /lib64/libstdc++.so.6: version `CXXABI_1.3.9’ not found (required by…………)"></a>1 报错信息ImportError: /lib64/libstdc++.so.6: version `CXXABI_1.3.9’ not found (required by…………)</h1><p>linux上运行python文件出现bug：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ImportError: /lib64/libstdc++.so.6: version `CXXABI_1.3.9&#x27; not found </span><br><span class="line">(required by anaconda3/lib/python3.6/site-packages/scipy/sparse/_sparsetools.cpython-36m-x86_64-linux-gnu.so)</span><br></pre></td></tr></table></figure>
+
+<p>原因：gcc动态库版本过老</p>
+<p>网上找到的其他方案大多需要root，这篇博客给了没有root情况下的解决方案。</p>
+<p>在.bashrc文件中，添加</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LD_LIBRARY_PATH&#x3D;&#x2F;home&#x2F;feng&#x2F;anaconda3&#x2F;lib:$LD_LIBRARY_PATH     （将anaconda3库文件路径添加到系统的库文件路径中）</span><br><span class="line">export LD_LIBRARY_PATH</span><br></pre></td></tr></table></figure>
+
+<p>执行source  ~/.bashrc，解决。</p>
+<blockquote>
+<p>参考：<a href="https://dandelioncloud.cn/article/details/1529779417287245826/">https://dandelioncloud.cn/article/details/1529779417287245826/</a></p>
+</blockquote>
+<h1 id="2-cuda-runtime-error-30-unknown-error-at-aten-src-THC-THCGeneral-cpp-87"><a href="#2-cuda-runtime-error-30-unknown-error-at-aten-src-THC-THCGeneral-cpp-87" class="headerlink" title="2 cuda runtime error (30) : unknown error at ..\aten\src\THC\THCGeneral.cpp:87"></a>2 cuda runtime error (30) : unknown error at ..\aten\src\THC\THCGeneral.cpp:87</h1><p>cuda相关的问题，网上的解释都试了一遍没有解决，最终发现是3090显卡和cuda11以上才适配，是之前遇到过的老问题了，同时得到的经验是遇到cuda问题时报错和实际的错误可能不太一致，可以多考虑cuda适配等问题，可能是解决的正确方案。</p>
 ]]></content>
       <categories>
         <category>weekly</category>
